@@ -41,7 +41,7 @@
 
         .grid-view {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
@@ -291,9 +291,10 @@
                             onchange="filterMonsters()">
                             <option value="">All Locales</option>
                             <option value="Normal">Normal</option>
-                            <option value="Hot">Hot</option>
-                            <option value="Cold">Cold</option>
-                            <option value="Underwater">Underwater</option>
+                            <option value="Water">Underwater</option>
+                            <option value="Snow">Cold</option>
+                            <option value="Desert">Hot</option>
+                            <option value="Volcano">Hot</option>
                             <option value="Unknown">Unknown</option>
                         </select>
                     </div>
@@ -348,7 +349,7 @@
                     }
                 ],
                 game: ["MH1", "MH2", "MH3", "MH4", "MH GENERATIONS", "MH FRONTIERS", "MH WORLD", "MH RISE", "MH WILDS"],
-                image: "https://i.pinimg.com/originals/fe/c1/1c/fec11c85e3e9f25525ab37c8541614f6.png",
+                image: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon.png?raw=true",
                 gallery: [                    "https://static.wikia.nocookie.net/monsterhunterespanol/images/5/58/MHRise-Render_Rathalos.png/revision/latest/scale-to-width-down/1200?cb=20210107183147&path-prefix=es",                 "https://www.monsterhunter.com/stories/assets/images/monsters/img-rathalos-2.png",                    "https://preview.redd.it/017pmdr4fced1.png?auto=webp&s=e3e663a20d823ace13e0c9cd9bacd1aeca400557"
                 ],
                 description: "The King of the Skies, known for its mastery of fire and flight.",
@@ -440,7 +441,7 @@
                     }
                 ],
                 game: ["MH3", "MH4", "MH GENERATIONS"],
-                image: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/monster-hunter-3-ultimate/c/cd/Lagiacrus_icon.png?width=325",
+                image: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon.png?raw=true",
                 gallery: [                    "https://static.wikia.nocookie.net/monsterhunterespanol/images/b/bb/MHGen-Render_Lagiacrus.png/revision/latest/thumbnail/width/360/height/360?cb=20150903114815&path-prefix=es",				"https://sm.ign.com/ign_ap/news/m/monster-hu/monster-hunter-devs-explain-why-lagiacrus-wont-be-in-sunbrea_emdy.jpg",         "https://mhhints.wordpress.com/wp-content/uploads/2011/01/monsterhuntertri2.jpg",
                 ],
                 description: "A legendary black dragon that has brought ruin to countless civilizations.",
@@ -553,58 +554,7 @@
 					}
 				]
 			},
-			{
-				id: 6,
-				name: "Tigrex",
-				type: "Flying Wyvern",
-				threat: 5,
-				locale: ["Frozen Tundra", "Desert", "Shrine Ruins"],
-				variants: [
-					{
-						name: "Brute Tigrex",
-						image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKC71xNY4hdGrPgf0yWGAEyCMwLz0Mxxvaw&s"
-					},
-					{
-						name: "Molten Tigrex",
-						image: "https://static.wikia.nocookie.net/fanonmonsterhunter/images/a/a3/Molten_Tigrex_Fanon_World_Icon.png/revision/latest?cb=20220110143042"
-					}
-				],
-				game: ["MH2", "MH FREEDOM UNITE", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
-				image: "https://i.pinimg.com/564x/a3/2c/ef/a32cefd67ab381619669606025fd2a86.jpg",
-				gallery: [
-					"https://static.wikia.nocookie.net/monsterhunterespanol/images/1/10/MHRise-Render_Tigrex.png/revision/latest/scale-to-width-down/1200?cb=20210316081929&path-prefix=es",
-					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8iqeV5UlBdrLb1orfPsONmpMKX1MfyAdQQ&s",
-					"https://i.ytimg.com/vi/jW5vJEDprlA/maxresdefault.jpg"
-				],
-				description: "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
-				weaknesses: {
-					fire: { value: 1, image: "https://cdn-icons-png.flaticon.com/128/482/482103.png" },
-					water: { value: 2, image: "https://cdn-icons-png.flaticon.com/128/606/606797.png" },
-					thunder: { value: 3, image: "https://cdn-icons-png.flaticon.com/128/248/248053.png" },
-					ice: { value: 2, image: "https://cdn-icons-png.flaticon.com/128/3654/3654729.png" },
-					dragon: { value: 1, image: "https://cdn-icons-png.flaticon.com/128/5998/5998689.png" }
-				},
-				materials: [
-					{
-						name: "Tigrex Scale+",
-						rarity: 6,
-						dropRate: 72,
-						source: "Body Carve"
-					},
-					{
-						name: "Tigrex Claw+",
-						rarity: 6,
-						dropRate: 60,
-						source: "Part Break"
-					},
-					{
-						name: "Tigrex Gem",
-						rarity: 7,
-						dropRate: 3,
-						source: "Tail Carve"
-					}
-				]
-			},
+			{id: 6, name: "Tigrex", type: "Flying Wyvern", threat: 5, locale: ["Snow", "Desert", "Normal"], variants: [{name: "Brute Tigrex", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKC71xNY4hdGrPgf0yWGAEyCMwLz0Mxxvaw&s"}, {name: "Molten Tigrex", image: "https://static.wikia.nocookie.net/fanonmonsterhunter/images/a/a3/Molten_Tigrex_Fanon_World_Icon.png/revision/latest?cb=20220110143042"}], game: ["MH2", "MH FREEDOM UNITE", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"], image: "https://i.pinimg.com/564x/a3/2c/ef/a32cefd67ab381619669606025fd2a86.jpg", gallery: ["https://static.wikia.nocookie.net/monsterhunterespanol/images/1/10/MHRise-Render_Tigrex.png/revision/latest/scale-to-width-down/1200?cb=20210316081929&path-prefix=es", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8iqeV5UlBdrLb1orfPsONmpMKX1MfyAdQQ&s", "https://i.ytimg.com/vi/jW5vJEDprlA/maxresdefault.jpg"], description: "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.", weaknesses: {fire: {value: 1, image: "https://cdn-icons-png.flaticon.com/128/482/482103.png"}, water: {value: 2, image: "https://cdn-icons-png.flaticon.com/128/606/606797.png"}, thunder: {value: 3, image: "https://cdn-icons-png.flaticon.com/128/248/248053.png"}, ice: {value: 2, image: "https://cdn-icons-png.flaticon.com/128/3654/3654729.png"}, dragon: {value: 1, image: "https://cdn-icons-png.flaticon.com/128/5998/5998689.png"}}, materials: [{name: "Tigrex Scale+", rarity: 6, dropRate: 72, source: "Body Carve"}, {name: "Tigrex Claw+", rarity: 6, dropRate: 60, source: "Part Break"}, {name: "Tigrex Gem", rarity: 7, dropRate: 3, source: "Tail Carve"}]},
 		];
 
         let currentView = 'grid';
