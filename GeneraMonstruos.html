@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/8832/8832898.png">
+    <title>GENERADOR DE MONSTRUOS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #d0d0d0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
+            max-width: calc(33% - 20px);
+        }
+
+        /* La sección del JSON generado ocupa todo el ancho */
+        .form-section.full-width {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .weakness-input {
+            width: 60px;
+            margin-right: 10px;
+        }
+        textarea {
+            height: 400px;
+            font-family: monospace;
+        }
+        button {
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .template {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .weakness-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .weakness-label {
+            width: 100px;
+        }
+
+        h1 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="display:flex;justify-content:center;align-items:center;text-align: center;">🐉 GENERADOR DE MONSTRUOS 🐉</h1>
+    
+    <div class="container">
+        <div class="form-section">
+            <h2>Información Básica</h2>
+            <div class="form-row">
+                <label>ID del Monstruo:</label>
+                <input type="number" id="monsterId" min="1">
+            </div>
+            <div class="form-row">
+                <label>Nombre del Monstruo:</label>
+                <input type="text" id="name">
+            </div>
+            <div class="form-row">
+                <label>Tipo:</label>
+                <select id="type">
+                    <option value="Flying Wyvern">Flying Wyvern</option>
+                    <option value="Brute Wyvern">Brute Wyvern</option>
+                    <option value="Fanged Wyvern">Fanged Wyvern</option>
+                    <option value="Bird Wyvern">Bird Wyvern</option>
+                    <option value="Piscine Wyvern">Piscine Wyvern</option>
+                    <option value="Elder Dragon">Elder Dragon</option>
+                    <option value="Fanged Beast">Fanged Beast</option>
+                    <option value="Leviathan">Leviathan</option>
+                    <option value="Amphibian">Amphibian</option>
+                    <option value="Carapaceon">Carapaceon</option>
+                    <option value="Temnoceran">Temnoceran</option>
+                    <option value="Neopteron">Neopteron</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Nivel de Amenaza (1-7):</label>
+                <input type="number" id="threat" min="1" max="7">
+            </div>
+            <div class="form-row">
+                <label>Hábitats:</label>
+                <input type="text" id="locale">
+                <div class="template">Posibles: Normal, Water, Snow, Desert, Volcano, Unkwown. (separados por coma)</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Imágenes</h2>
+            <div class="form-row">
+                <label>Imagen Principal (URL):</label>
+                <input type="text" id="image">
+            </div>
+            <div class="form-row">
+                <label>Galería (URLs):</label>
+                <input type="text" id="gallery">
+                <div class="template">URLs separadas por coma</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Descripción y Juegos</h2>
+            <div class="form-row">
+                <label>Descripción:</label>
+                <input type="text" id="description">
+            </div>
+            <div class="form-row">
+                <label>Juegos:</label>
+                <input type="text" id="games">
+                <div class="template">Posibles: MH1, MH2, MH3, MH4, MH GENERATIONS, MH FRONTIERS, MH WORLD, MH RISE, MH WILDS. (separados por coma)</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Variantes</h2>
+            <div class="form-row">
+                <input type="text" id="variants">
+                <div class="template">Formato: Nombre;URL, Nombre2;URL2 (nombre y URL separados por punto y coma, variantes separadas por coma)</div>
+            </div>			
+            <h2>Materiales</h2>
+            <div class="form-row">
+                <input type="text" id="materials">
+                <div class="template">Formato: nombre;rareza;tasaDropeo;fuente (separados por punto y coma, materiales separados por coma)</div>
+                <div class="template">Ejemplo: Escama;6;70;Body Carve, Ala;6;65;Wing Break</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Debilidades (0-3)</h2>
+            <div class="weakness-container">
+                <span class="weakness-label">Fuego:</span>
+                <input type="number" id="fire" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Agua:</span>
+                <input type="number" id="water" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Trueno:</span>
+                <input type="number" id="thunder" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Hielo:</span>
+                <input type="number" id="ice" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Dragon:</span>
+                <input type="number" id="dragon" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Nitro:</span>
+                <input type="number" id="blast" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Veneno:</span>
+                <input type="number" id="poison" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Paralisis:</span>
+                <input type="number" id="paralisis" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Dormir:</span>
+                <input type="number" id="sleep" class="weakness-input" min="0" max="3">
+            </div>
+            <div class="weakness-container">
+                <span class="weakness-label">Aturdir:</span>
+                <input type="number" id="knock" class="weakness-input" min="0" max="3">
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button style="font-weight:bold;font-size: 24px;"onclick="generarJSON()">🐉 GENERAR MONSTRUO 🐉</button>
+    </div>
+    
+    <div class="form-section full-width">
+        <textarea id="output" readonly></textarea>
+        <button onclick="copiarTexto()">Copiar al Portapapeles</button>
+    </div>
+    <script>
+        function generarJSON() {
+            // URLs fijas para los iconos de debilidades
+            const weaknessIcons = {
+                fire: "https://cdn-icons-png.flaticon.com/128/482/482103.png",
+                water: "https://cdn-icons-png.flaticon.com/128/606/606797.png",
+                thunder: "https://cdn-icons-png.flaticon.com/128/248/248053.png",
+                ice: "https://cdn-icons-png.flaticon.com/128/3654/3654729.png",
+                dragon: "https://cdn-icons-png.flaticon.com/128/5998/5998689.png",
+                blast: "https://cdn-icons-png.flaticon.com/128/3047/3047036.png",
+                posion: "https://cdn-icons-png.flaticon.com/128/12556/12556527.png",
+                paralisis: "https://cdn-icons-png.flaticon.com/128/478/478855.png",
+                sleep: "https://cdn-icons-png.flaticon.com/128/594/594550.png",
+                knock: "https://cdn-icons-png.flaticon.com/128/4208/4208410.png"
+            };
+
+            // Procesar variantes
+			const variantesInput = document.getElementById("variants").value.trim();
+			const variantes = variantesInput ? variantesInput.split(",").map(x => {
+				const [name, image] = x.trim().split(";");
+				return {
+					name: name.trim(),
+					image: image.trim()
+				};
+			}).filter(x => x.name && x.image) : []; // Si no hay variantes, se asigna un array vacío
+
+
+            // Procesar debilidades
+            const debilidades = {
+                fire: {
+                    value: parseInt(document.getElementById("fire").value) || 0,
+                    image: weaknessIcons.fire
+                },
+                water: {
+                    value: parseInt(document.getElementById("water").value) || 0,
+                    image: weaknessIcons.water
+                },
+                thunder: {
+                    value: parseInt(document.getElementById("thunder").value) || 0,
+                    image: weaknessIcons.thunder
+                },
+                ice: {
+                    value: parseInt(document.getElementById("ice").value) || 0,
+                    image: weaknessIcons.ice
+                },
+                dragon: {
+                    value: parseInt(document.getElementById("dragon").value) || 0,
+                    image: weaknessIcons.dragon
+                },
+                blast: {
+                    value: parseInt(document.getElementById("blast").value) || 0,
+                    image: weaknessIcons.blast
+                },
+                poison: {
+                    value: parseInt(document.getElementById("poison").value) || 0,
+                    image: weaknessIcons.poison
+                },
+                paralisis: {
+                    value: parseInt(document.getElementById("paralisis").value) || 0,
+                    image: weaknessIcons.paralisis
+                },
+                sleep: {
+                    value: parseInt(document.getElementById("sleep").value) || 0,
+                    image: weaknessIcons.sleep
+                },
+                knock: {
+                    value: parseInt(document.getElementById("knock").value) || 0,
+                    image: weaknessIcons.knock
+                }
+            };
+			
+			const materiales = document.getElementById("materials").value.split(",").map(x => {
+                const [name, rarity, dropRate, source] = x.trim().split(";");
+                return {
+                    name: name.trim(),
+                    rarity: parseInt(rarity.trim()),
+                    dropRate: parseInt(dropRate.trim()),
+                    source: source.trim()
+                };
+            }).filter(x => x.name && x.rarity && x.dropRate && x.source);
+
+            // Crear objeto del monstruo
+            const monstruo = {
+                id: parseInt(document.getElementById("monsterId").value),
+                name: document.getElementById("name").value,
+                type: document.getElementById("type").value,
+                threat: parseInt(document.getElementById("threat").value),
+                locale: document.getElementById("locale").value.split(",").map(x => x.trim()),
+                variants: variantes,
+                game: document.getElementById("games").value.split(",").map(x => x.trim()),
+                image: document.getElementById("image").value,
+                gallery: document.getElementById("gallery").value.split(",").map(x => x.trim()),
+                description: document.getElementById("description").value,
+                weaknesses: debilidades,
+                materials: materiales
+            };
+
+            // Función personalizada para formatear el JSON sin comillas en las claves
+            function formatearJSON(obj, indentLevel = 0) {
+                const indent = '    '.repeat(indentLevel);
+                const nextIndent = '    '.repeat(indentLevel + 1);
+                
+                if (Array.isArray(obj)) {
+                    const elements = obj.map(item => {
+                        if (typeof item === 'object' && item !== null) {
+                            return formatearJSON(item, indentLevel + 1);
+                        }
+                        return JSON.stringify(item);
+                    }).join(', ');
+                    return `[${elements}]`;
+                }
+                
+                if (typeof obj === 'object' && obj !== null) {
+                    const properties = Object.entries(obj).map(([key, value]) => {
+                        const formattedValue = typeof value === 'object' && value !== null
+                            ? formatearJSON(value, indentLevel + 1)
+                            : JSON.stringify(value);
+                        return `${key}: ${formattedValue}`;
+                    }).join(', ');
+                    return `{${properties}},`;
+                }
+                
+                return JSON.stringify(obj);
+            }
+
+            // Mostrar el JSON formateado
+            document.getElementById("output").value = formatearJSON(monstruo);
+        }
+
+        function copiarTexto() {
+            const texto = document.getElementById("output");
+            texto.select();
+            document.execCommand("copy");
+            alert("JSON copiado al portapapeles");
+        }
+    </script>
+</body>
+</html>
