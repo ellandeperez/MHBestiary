@@ -39,7 +39,7 @@
         "fire": 1,
         "water": 1,
         "thunder": 1,
-        "ice": 1,
+        "ice": 0,
         "dragon": 1,
         "blast": 1,
         "poison": 1,
