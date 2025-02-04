@@ -21,21 +21,17 @@
     ]
   },
   {
-    "id": 2,
+    "id": null,
     "name": "",
     "type": "",
     "threat": 1,
     "locale": [
-        "Agua",
-        "Unknown"
+        "Normal",
+        "Water",
+        "Volcano"
     ],
     "variants": [],
-    "game": [
-        "MH2",
-        "MH FREEDOM UNITE",
-        "MH WORLD",
-        "MH RISE"
-    ],
+    "game": [],
     "image": "",
     "gallery": [],
     "description": "",
@@ -52,5 +48,5 @@
         "knock": 1
     },
     "materials": []
-  }
+}
 ]
