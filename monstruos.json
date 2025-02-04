@@ -25,13 +25,32 @@
     "name": "",
     "type": "",
     "threat": 1,
-    "locale": [],
+    "locale": [
+        "Agua",
+        "Unknown"
+    ],
     "variants": [],
-    "game": [],
+    "game": [
+        "MH2",
+        "MH FREEDOM UNITE",
+        "MH WORLD",
+        "MH RISE"
+    ],
     "image": "",
     "gallery": [],
     "description": "",
-    "weaknesses": {"fire": 1,"water": 2,"thunder": 3,"ice": 2,"dragon": 1,"blast": 1,"poison": 2,"paralisis": 3,"sleep": 2,"knock": 1},
+    "weaknesses": {
+        "fire": 1,
+        "water": 1,
+        "thunder": 1,
+        "ice": 1,
+        "dragon": 1,
+        "blast": 1,
+        "poison": 1,
+        "paralisis": 1,
+        "sleep": 1,
+        "knock": 1
+    },
     "materials": []
   }
 ]
