@@ -431,8 +431,8 @@
             materialDiv.innerHTML = `
                 <input type="text" placeholder="Nombre" class="material-name">
                 <input type="number" placeholder="Rareza (1-7)" class="material-rarity" min="1" max="7">
-                <input type="number" placeholder="Drop %" class="material-droprate" min="0" max="100">
-                <input type="text" placeholder="Parte" class="material-source">
+                <input type="number" placeholder="Drop (Sin '%')" class="material-droprate" min="0" max="100">
+                <input type="text" placeholder="Parte de monstruo" class="material-source">
                 <button type="button" class="delete-btn" onclick="this.parentNode.remove()">Eliminar</button>
             `;
             container.appendChild(materialDiv);
