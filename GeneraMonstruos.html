@@ -1,0 +1,581 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Monster Hunter JSON Generator</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            margin-left: 0.5rem;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        #jsonOutput {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .grid-weaknesses {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.25rem;
+        }
+        .weakness-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .weakness-item select {
+            width: auto;
+        }
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+        }
+        .generate-btn {
+            background: #27ae60;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+        .generate-btn:hover {
+            background: #219a52;
+        }
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        .material-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 0.5rem;
+            align-items: center;
+        }
+		.parts-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .damage-type-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+        
+        .damage-type-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .damage-type-item select {
+            width: 70px;
+        }
+        @media (max-width: 768px) {
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .damage-type-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .grid-weaknesses {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .checkbox-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .material-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+	<div style="display:flex;justify-content:left;align-items:left;text-align: center;">
+		<a href="https://ellandeperez.github.io/MHBestiary/" style="padding:5px;">
+			<img style="width:50px;height:50px;" src="https://cdn-icons-png.flaticon.com/128/9283/9283458.png" alt="Alternar Modo Oscuro">
+		</a>
+	</div>
+    <h1>GENERADOR DE MONSTRUOS</h1>
+	<div class="form-section">
+        <div class="form-grid">
+            <div class="input-group">
+                <label>ID:</label>
+                <input type="number" id="monsterId" min="1">
+            </div>
+            
+            <div class="input-group">
+                <label>Nombre:</label>
+                <input type="text" id="monsterName">
+            </div>
+            
+            <div class="input-group">
+                <label>Tipo:</label>				
+                <select id="monsterType">
+                    <option value="Temnoceran">Temnocerante</option>
+                    <option value="Bird Wyvern">Wyvern Pajaro</option>
+                    <option value="Flying Wyvern">Wyvern Volador</option>
+                    <option value="Piscine Wyvern">Wyvern Piscina</option>
+                    <option value="Carapaceon">Carapaceon</option>
+                    <option value="Amphibian">Amphibio</option>
+                    <option value="Fanged Beast">Bestia con Colmillos</option>
+                    <option value="Leviathan">Leviathan</option>
+                    <option value="Snake Wyvern">Wyvern Serpiente</option>
+                    <option value="Brute Wyvern">Wyvern Bruto</option>
+                    <option value="Fanged Wyvern">Wyvern con Colmillos</option>
+                    <option value="Elder Dragon">Dragon Anciano</option>
+                    <option value="Unknown">Unknown</option>
+                    <option value="Relict">Relict</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>Peligro:</label>
+                <select id="monsterThreat">
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                    <option value="6">★★★★★★</option>
+                    <option value="7">★★★★★★★</option>
+                </select>
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Juegos:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="games" value="MH2"> MH2</label>
+                    <label><input type="checkbox" name="games" value="MH FREEDOM UNITE"> MH FREEDOM UNITE</label>
+                    <label><input type="checkbox" name="games" value="MH3"> MH3</label>
+                    <label><input type="checkbox" name="games" value="MH4"> MH4</label>
+                    <label><input type="checkbox" name="games" value="MH GENERATIONS"> MH GENERATIONS</label>
+                    <label><input type="checkbox" name="games" value="MH WORLD"> MH WORLD</label>
+                    <label><input type="checkbox" name="games" value="MH RISE"> MH RISE</label>
+                </div>
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Hábitat:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="locale" value="Normal"> Normal</label>
+                    <label><input type="checkbox" name="locale" value="Water"> Agua</label>
+                    <label><input type="checkbox" name="locale" value="Snow"> Nieve</label>
+                    <label><input type="checkbox" name="locale" value="Desert"> Desierto</label>
+                    <label><input type="checkbox" name="locale" value="Volcano"> Volcán</label>
+                    <label><input type="checkbox" name="locale" value="Unknown"> Unknown</label>
+                </div>
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Debilidades:</label>
+                <div class="grid-weaknesses">
+                    <div class="weakness-item">
+                        <label>Fuego:</label>
+                        <select class="weakness" data-element="fire">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Agua:</label>
+                        <select class="weakness" data-element="water">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Rayo:</label>
+                        <select class="weakness" data-element="thunder">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Hielo:</label>
+                        <select class="weakness" data-element="ice">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Dragón:</label>
+                        <select class="weakness" data-element="dragon">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Nitro:</label>
+                        <select class="weakness" data-element="blast">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Veneno:</label>
+                        <select class="weakness" data-element="poison">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Parálisis:</label>
+                        <select class="weakness" data-element="paralisis">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Sueño:</label>
+                        <select class="weakness" data-element="sleep">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                    <div class="weakness-item">
+                        <label>Stun:</label>
+                        <select class="weakness" data-element="knock">
+							<option value="0">x</option>
+							<option value="1">★</option>
+							<option value="2">★★</option>
+							<option value="3">★★★</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Descripción:</label>
+                <textarea id="monsterDescription"></textarea>
+            </div>
+            
+            <div class="input-group">
+                <label>Imagen Principal:</label>
+                <input type="text" id="monsterImage" placeholder="URL de la imagen">
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Variantes:</label>
+                <button type="button" onclick="addVariant()">Añadir Variante</button>
+                <div id="variantsContainer"></div>
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Galería:</label>
+                <button type="button" onclick="addGalleryImage()">Añadir Imagen</button>
+                <div id="galleryContainer"></div>
+            </div>
+            
+            <div class="input-group full-width">
+                <label>Materiales:</label>
+                <button type="button" onclick="addMaterial()">Añadir Material</button>
+                <div id="materialsContainer"></div>
+            </div>
+			
+			<div class="input-group full-width">
+                <label>Partes:</label>
+                <button type="button" onclick="addPart()">Añadir Parte</button>
+                <div id="partsContainer"></div>
+            </div>
+        </div>
+        
+        <button onclick="generateJSON()" class="generate-btn">GENERAR MONSTRUOS</button>
+    </div>
+    
+    <pre id="jsonOutput"></pre>
+
+    <script>
+        function addVariant() {
+            const container = document.getElementById('variantsContainer');
+            const variantDiv = document.createElement('div');
+            variantDiv.className = 'item-container variant-item';
+            variantDiv.innerHTML = `
+                <input type="text" placeholder="Nombre de Variante" class="variant-name">
+                <input type="text" placeholder="URL de Imagen" class="variant-image">
+                <button type="button" class="delete-btn" onclick="this.parentNode.remove()">Eliminar</button>
+            `;
+            container.appendChild(variantDiv);
+        }
+
+        function addGalleryImage() {
+            const container = document.getElementById('galleryContainer');
+            const imageInput = document.createElement('div');
+            imageInput.className = 'item-container gallery-item';
+            imageInput.innerHTML = `
+                <input type="text" placeholder="URL de Imagen" class="gallery-image">
+                <button type="button" class="delete-btn" onclick="this.parentNode.remove()">Eliminar</button>
+            `;
+            container.appendChild(imageInput);
+        }
+
+        function addMaterial() {
+            const container = document.getElementById('materialsContainer');
+            const materialDiv = document.createElement('div');
+            materialDiv.className = 'item-container material-grid material-item';
+            materialDiv.innerHTML = `
+                <input type="text" placeholder="Nombre" class="material-name">
+                <input type="number" placeholder="Rareza (1-7)" class="material-rarity" min="1" max="7">
+                <input type="number" placeholder="Drop %" class="material-droprate" min="0" max="100">
+                <input type="text" placeholder="Parte" class="material-source">
+                <button type="button" class="delete-btn" onclick="this.parentNode.remove()">Eliminar</button>
+            `;
+            container.appendChild(materialDiv);
+        }
+
+        function addPart() {
+            const container = document.getElementById('partsContainer');
+            const partDiv = document.createElement('div');
+            partDiv.className = 'item-container part-item';
+            partDiv.innerHTML = `
+                <div class="parts-grid">
+                    <input type="text" placeholder="Nombre de la parte" class="part-name">
+                    <div style="display: flex; align-items: center;">
+                        <label style="margin-right: 8px;">Rompible:</label>
+                        <input type="checkbox" class="part-breakable">
+                    </div>
+                    <div class="damage-type-group">
+                        <div class="damage-type-item">
+                            <label>Corte:</label>
+                            <select class="part-slash">
+                                <option value="0">-</option>
+                                <option value="1">★</option>
+                                <option value="2">★★</option>
+                                <option value="3">★★★</option>
+                            </select>
+                        </div>
+                        <div class="damage-type-item">
+                            <label>Contundente:</label>
+                            <select class="part-blunt">
+                                <option value="0">-</option>
+                                <option value="1">★</option>
+                                <option value="2">★★</option>
+                                <option value="3">★★★</option>
+                            </select>
+                        </div>
+                        <div class="damage-type-item">
+                            <label>Perforante:</label>
+                            <select class="part-pierce">
+                                <option value="0">-</option>
+                                <option value="1">★</option>
+                                <option value="2">★★</option>
+                                <option value="3">★★★</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="delete-btn" onclick="this.parentNode.parentNode.remove()">Eliminar</button>
+                </div>
+            `;
+            container.appendChild(partDiv);
+        }
+
+        function generateJSON() {
+            const variants = Array.from(document.querySelectorAll('.variant-item')).map(item => ({
+                name: item.querySelector('.variant-name').value,
+                image: item.querySelector('.variant-image').value
+            }));
+
+            const gallery = Array.from(document.querySelectorAll('.gallery-item'))
+                .map(item => item.querySelector('.gallery-image').value);
+
+            const materials = Array.from(document.querySelectorAll('.material-item')).map(item => ({
+                name: item.querySelector('.material-name').value,
+                rarity: parseInt(item.querySelector('.material-rarity').value),
+                dropRate: parseInt(item.querySelector('.material-droprate').value),
+                source: item.querySelector('.material-source').value
+            }));
+
+            const parts = Array.from(document.querySelectorAll('.part-item')).map(item => ({
+                name: item.querySelector('.part-name').value,
+                breakable: item.querySelector('.part-breakable').checked,
+                weaknesses: {
+                    slash: parseInt(item.querySelector('.part-slash').value),
+                    blunt: parseInt(item.querySelector('.part-blunt').value),
+                    pierce: parseInt(item.querySelector('.part-pierce').value)
+                }
+            }));
+
+            const weaknesses = {};
+            document.querySelectorAll('.weakness').forEach(select => {
+                weaknesses[select.dataset.element] = parseInt(select.value);
+            });
+
+            const jsonObject = {
+				id: parseInt(document.getElementById('monsterId').value) || null,
+				name: document.getElementById('monsterName').value,
+				type: document.getElementById('monsterType').value,
+				threat: parseInt(document.getElementById('monsterThreat').value),
+				locale: Array.from(document.querySelectorAll('input[name="locale"]:checked')).map(cb => cb.value),
+				variants: variants,
+				game: Array.from(document.querySelectorAll('input[name="games"]:checked')).map(cb => cb.value),
+				image: document.getElementById('monsterImage').value,
+				gallery: gallery,
+				description: document.getElementById('monsterDescription').value,
+				weaknesses: weaknesses,
+				materials: materials,
+				parts: parts
+			};
+
+			// Función personalizada para formatear el JSON
+			function customStringify(obj, indent = 4) {
+				const space = ' '.repeat(indent);
+				
+				// Función para determinar si un array debe ir en una línea o múltiples
+				const formatArray = (arr, key) => {
+					if (arr.length === 0) return '[]';
+					
+					// Arrays simples (locale y game) en una línea
+					if (['locale', 'game'].includes(key)) {
+						return `[${arr.map(item => JSON.stringify(item)).join(', ')}]`;
+					}
+					
+					// Gallery en múltiples líneas pero valores simples
+					if (key === 'gallery') {
+						return `[\n${space}${space}    ${arr.map(item => JSON.stringify(item)).join(',\n' + space + space + '    ')}\n${space}${space}]`;
+					}
+					
+					// Arrays de objetos (variants, materials, parts) en múltiples líneas
+					return `[\n${space}${space}    ${arr.map(item => JSON.stringify(item)).join(',\n' + space + space + '    ')}\n${space}${space}]`;
+				};
+
+				// Función para formatear objetos
+				const formatObject = (obj, key) => {
+					// Formato especial para weaknesses
+					if (key === 'weaknesses' || (key === 'weaknesses' && obj.hasOwnProperty('slash'))) {
+						return `${JSON.stringify(obj)}`;
+						return JSON.stringify(obj);
+					}
+					
+					const entries = Object.entries(obj);
+					if (entries.length === 0) return '{}';
+					
+					return `{\n${space}    ${entries.map(([k, v]) => {
+						const formatted = Array.isArray(v) ? formatArray(v, k) :
+							typeof v === 'object' && v !== null ? formatObject(v, k) :
+							JSON.stringify(v);
+						return `"${k}": ${formatted}`;
+					}).join(',\n' + space + '    ')}\n${space}}`;
+				};
+
+				return formatObject(obj, '');
+			}
+
+			document.getElementById('jsonOutput').textContent = customStringify(jsonObject);
+		}
+    </script>
+</body>
+</html>
