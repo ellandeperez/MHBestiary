@@ -21,7 +21,7 @@
     ]
   },
   {
-    "id": null,
+    "id": 2,
     "name": "",
     "type": "",
     "threat": 1,
@@ -48,5 +48,20 @@
         "knock": 1
     },
     "materials": []
+},
+{
+        "id": 3,
+        "name": "",
+        "type": "Temnoceran",
+        "threat": 1,
+        "locale": [],
+        "variants": [],
+        "game": [],
+        "image": "",
+        "gallery": [],
+        "description": "",
+        "weaknesses": {"fire":0,"water":0,"thunder":0,"ice":0,"dragon":0,"blast":0,"poison":0,"paralisis":0,"sleep":0,"knock":0},
+        "materials": [],
+        "parts": []
 }
 ]
