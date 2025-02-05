@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BESTIARIO MONSTER HUNTER</title>
+    <title>BESTIARIO</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/297/297837.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent Marker">
@@ -63,6 +63,7 @@
 
             <div id="filterContainer" class="filter-container">
 				<button class="close-filters-btn" onclick="toggleFilters()">×</button>
+				<button class="close-filters-btn2"><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img></button>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-lg">
                     <div>
                         <label class="block text-sm font-medium mb-2">Tipo de Monstruo</label>
@@ -477,7 +478,7 @@
 									</div>
 								</div>								
                                 <div>
-                                    <h3 class="font-semibold mb-2">Materiales</h3>
+									${monster.materials && monster.materials.length > 0 ? `<h3 class="font-semibold mb-2">Materiales</h3>` : ''}
                                     ${createMaterialsList(monster.materials)}
                                 </div>
 								<div>
@@ -495,7 +496,7 @@
                                 </div>
 
                                 <div>
-                                    <h3 class="font-semibold mb-2">Galeria</h3>
+									${monster.gallery && monster.gallery.length > 0 ? `<h3 class="font-semibold mb-2">Galeria</h3>` : ''}
                                     <div class="grid grid-cols-3 gap-2">
                                         ${monster.gallery.map(image => `
                                             <img src="${image}" 
@@ -905,7 +906,7 @@
 
 .close-filters-btn {
     position: absolute;
-    top: 3px;
+    top: 0;
     right: 5px;
     width: 20px;
     height: 20px;
@@ -918,11 +919,27 @@
 	display: none;
 }
 
+.close-filters-btn2 {
+    position: absolute;
+    top: 4px;
+    right: 48%;
+    width: 20px;
+    height: 20px;
+	display: none;
+}
+
 /* Ajustes específicos para móvil */
 @media (max-width: 768px) {
 	.close-filters-btn {
 		display: block;
 		font-size: 35px;
+	}
+	.close-filters-btn2 {
+		display: inline;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
 	}
     .filter-container {
         position: fixed;
