@@ -8,11 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent Marker">
 </head>
-<body class="min-h-screen p-4 md:p-6">
+<body style="font-family:'Albertus MT Std Regular';" class="min-h-screen p-4 md:p-6">
     <div class="container mx-auto max-w-6x1">
         <div class="fixed top-0 left-0 right-0 px-10 py-10 shadow-lg z-50 topcoso">
             <div class="relative flex justify-between items-center mb-6">
-                <h1 class="absolute left-1/2 transform -translate-x-1/2 text-3xl sm:text-3xl md:text-6xl" style="font-family: 'Permanent Marker'">BESTIARIO</h1>
+                <h1 class="font-semibold mb-2 absolute left-1/2 transform -translate-x-1/2 text-3xl sm:text-3xl md:text-6xl">MONSTER HUNTER</h1>
                 <button 
                     onclick="toggleTheme()"
                     class="px-3 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
@@ -612,6 +612,13 @@
     </script>
 </body>
 <style>
+	@font-face {
+			font-family: 'Albertus MT Std Regular';
+			font-style: normal;
+			font-weight: normal;
+			src: local('Albertus MT Std Regular'), url('fonts/FuenteMH.woff') format('woff');
+		}
+		
     .dark .debilidadestilo{
 		color:white;
 		background-color: DimGray;
