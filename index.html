@@ -469,7 +469,7 @@
                                 <!-- Parts Section -->
                                 ${monster.parts && monster.parts.length > 0 ? `
                                     <div>
-                                        <h3 class="font-semibold mb-2">Partes del Monstruo</h3>
+                                        ${monster.parts && monster.parts.length > 0 ? `<h3 class="font-semibold mb-2">Partes del Monstruo</h3>` : ''}
                                         <div class="grid gap-2 columnitas">
                                             ${monster.parts.map(part => `
                                                 <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
