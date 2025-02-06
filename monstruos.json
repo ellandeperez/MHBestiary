@@ -28,28 +28,5 @@
       {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
       {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
     ]
-  },
-  {
-    "id": 2,
-    "name": "",
-    "type": "Temnoceran",
-    "threat": 1,
-    "locale": [],
-    "variants": [
-        {"name":"","image":""}
-    ],
-    "game": [],
-    "image": "",
-    "gallery": [
-        ""
-    ],
-    "description": "",
-    "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
-    "materials": [
-        {"name":"","rarity":null,"dropRate":null,"source":"","icon":""}
-    ],
-    "parts": [
-        {"name":"","breakable":false,"cortable":false,"weaknesses":{"slash":0,"blunt":0,"pierce":0}}
-    ]
   }
 ]
