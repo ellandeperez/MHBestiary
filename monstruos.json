@@ -44,7 +44,7 @@
         ""
     ],
     "description": "",
-    "weaknesses": {"fire":0,"water":0,"thunder":0,"ice":0,"dragon":0,"blast":0,"poison":0,"paralisis":0,"sleep":0,"knock":0},
+    "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
     "materials": [
         {"name":"","rarity":null,"dropRate":null,"source":"","icon":""}
     ],
