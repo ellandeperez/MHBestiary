@@ -418,6 +418,15 @@
         function createMonsterCard(monster, isListView = false) {
             const isExpanded = expandedCards.has(monster.id);
             
+            // Helper function to create star ratings for part weaknesses
+            const createWeaknessStars = (value) => `
+                <div class="flex gap-1">
+                    ${Array.from({length: 3}).map((_, i) => `
+                        <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                    `).join('')}
+                </div>
+            `;
+            
             return `
                 <div id="monster-${monster.id}" class="card ${isExpanded ? 'expanded' : ''}" onclick="toggleMonsterDetails(${monster.id}, event)">
                     <div class="p-4">
@@ -456,53 +465,90 @@
                         <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-4">
                             ${!isListView ? `<p class="mb-4">${monster.description}</p>` : ''}
                             
-                            <div class="space-y-6">                                
+                            <div class="space-y-6">
+                                <!-- Parts Section -->
+                                ${monster.parts && monster.parts.length > 0 ? `
+                                    <div>
+                                        <h3 class="font-semibold mb-2">Partes del Monstruo</h3>
+                                        <div class="grid gap-2 columnitas">
+                                            ${monster.parts.map(part => `
+                                                <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <span class="font-medium">${part.name}</span>
+                                                        ${part.breakable ? `
+                                                            <span class="text-xs px-2 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full">
+                                                                Rompible
+                                                            </span>
+                                                        ` : ''}
+                                                    </div>
+                                                    <div class="space-y-2">
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-sm">Cortante</span>
+                                                            ${createWeaknessStars(part.weaknesses.slash)}
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-sm">Contundente</span>
+                                                            ${createWeaknessStars(part.weaknesses.blunt)}
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span class="text-sm">Perforante</span>
+                                                            ${createWeaknessStars(part.weaknesses.pierce)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                
+                                <!-- Existing Sections -->
                                 <div>
-									<h3 class="font-semibold mb-2">Debilidades</h3>
-									<div class="grid gap-2 columnitas">
-										${Object.entries(monster.weaknesses).map(([element, value]) => `
-											<div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
-												<div class="flex items-center">
-													<span class="element-icon">
-														<img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
-													</span>
-													<span class="capitalize">${element}</span>
-												</div>
-												<div class="flex gap-1">
-													${Array.from({length: 3}).map((_, i) => `
-														<span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
-													`).join('')}
-												</div>
-											</div>
-										`).join('')}
-									</div>
-								</div>								
+                                    <h3 class="font-semibold mb-2">Debilidades</h3>
+                                    <div class="grid gap-2 columnitas">
+                                        ${Object.entries(monster.weaknesses).map(([element, value]) => `
+                                            <div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
+                                                <div class="flex items-center">
+                                                    <span class="element-icon">
+                                                        <img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
+                                                    </span>
+                                                    <span class="capitalize">${element}</span>
+                                                </div>
+                                                <div class="flex gap-1">
+                                                    ${Array.from({length: 3}).map((_, i) => `
+                                                        <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
                                 <div>
-									${monster.materials && monster.materials.length > 0 ? `<h3 class="font-semibold mb-2">Materiales</h3>` : ''}
+                                    ${monster.materials && monster.materials.length > 0 ? `<h3 class="font-semibold mb-2">Materiales</h3>` : ''}
                                     ${createMaterialsList(monster.materials)}
                                 </div>
-								<div>
-									${monster.variants && monster.variants.length > 0 ? `<h3 class="font-semibold mb-2">Variantes</h3>` : ''}
+                                <div>
+                                    ${monster.variants && monster.variants.length > 0 ? `<h3 class="font-semibold mb-2">Variantes</h3>` : ''}
                                     <div class="grid grid-cols-2 gap-2">
                                         ${monster.variants.map(variant => `
-											<div class="relative group cursor-pointer" onclick="event.stopPropagation(); openModal('${variant.image}')">
-												<img src="${variant.image}" alt="${variant.name}" class="h-24 object-cover rounded-lg mx-auto imagenmonstro2">
-												<div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
-													<span class="text-white text-sm">${variant.name}</span>
-												</div>
-											</div>
-										`).join('')}
+                                            <div class="relative group cursor-pointer" onclick="event.stopPropagation(); openModal('${variant.image}')">
+                                                <img src="${variant.image}" alt="${variant.name}" class="h-24 object-cover rounded-lg mx-auto imagenmonstro2">
+                                                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                                                    <span class="text-white text-sm">${variant.name}</span>
+                                                </div>
+                                            </div>
+                                        `).join('')}
                                     </div>
                                 </div>
 
                                 <div>
-									${monster.gallery && monster.gallery.length > 0 ? `<h3 class="font-semibold mb-2">Galeria</h3>` : ''}
+                                    ${monster.gallery && monster.gallery.length > 0 ? `<h3 class="font-semibold mb-2">Galeria</h3>` : ''}
                                     <div class="grid grid-cols-3 gap-2">
                                         ${monster.gallery.map(image => `
                                             <img src="${image}" 
-                                                 alt="Monster gallery image" 
-                                                 class="gallery-image"
-                                                 onclick="openModal('${image}')">
+                                                alt="Monster gallery image" 
+                                                class="gallery-image"
+                                                onclick="openModal('${image}')">
                                         `).join('')}
                                     </div>
                                 </div>
@@ -893,7 +939,7 @@
     .dark .selected-element {
         background-color: #2563eb;
     }
-	}
+	
 	.filter-container {
     background-color: #f0f0f0;
     border-radius: 12px;
