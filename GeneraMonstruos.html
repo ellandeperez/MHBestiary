@@ -134,7 +134,7 @@
         }
         .material-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr;
+            grid-template-columns: 2fr 1fr 2fr;
             gap: 0.5rem;
             align-items: center;
         }
@@ -163,6 +163,73 @@
         
         .damage-type-item select {
             width: 70px;
+        }
+
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .custom-select:hover {
+            border-color: #888;
+        }
+
+        .options-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 2px;
+            display: none;
+            z-index: 1000;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .option {
+            padding: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .arrow {
+            border: solid #666;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            margin-left: 8px;
         }
         @media (max-width: 768px) {
             .parts-grid {
@@ -433,9 +500,142 @@
                 <input type="number" placeholder="Rareza (1-7)" class="material-rarity" min="1" max="7">
                 <input type="number" placeholder="Drop (Sin '%')" class="material-droprate" min="0" max="100">
                 <input type="text" placeholder="Parte de monstruo" class="material-source">
+                <div class="custom-select-container">
+                    <label>Icono de Material:</label>
+                    <div class="custom-select" onclick="toggleOptions(this)">
+                        <span class="selected-value">Selecciona un icono</span>
+                        <input type="hidden" class="selected-image-url" value="">
+                        <span class="arrow"></span>
+                    </div>
+                    <div class="options-container">
+                        <div class="option" data-value="Manto" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true" alt="Manto">
+                            <span>Manto</span>
+                        </div>
+                        <div class="option" data-value="Gema" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true" alt="Gema">
+                            <span>Gema</span>
+                        </div>
+                        <div class="option" data-value="Cabeza" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_head.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_head.png?raw=true" alt="Cabeza">
+                            <span>Cabeza</span>
+                        </div>
+                        <div class="option" data-value="Cuerpo" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_body.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_body.png?raw=true" alt="Cuerpo">
+                            <span>Cuerpo</span>
+                        </div>
+                        <div class="option" data-value="Hueso" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_bone.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_bone.png?raw=true" alt="Hueso">
+                            <span>Hueso</span>
+                        </div>
+                        <div class="option" data-value="Piel" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_skin.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_skin.png?raw=true" alt="Piel">
+                            <span>Piel</span>
+                        </div>
+                        <div class="option" data-value="Cola" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_tail.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_tail.png?raw=true" alt="Cola">
+                            <span>Cola</span>
+                        </div>
+                        <div class="option" data-value="Ala" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_wing.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_wing.png?raw=true" alt="Ala">
+                            <span>Ala</span>
+                        </div>
+                        <div class="option" data-value="Cuerno" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_horn.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_horn.png?raw=true" alt="Cuerno">
+                            <span>Cuerno/Colmillo</span>
+                        </div>
+                        <div class="option" data-value="Placa" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true" alt="Placa">
+                            <span>Placa</span>
+                        </div>
+                        <div class="option" data-value="Escama" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scale.png?raw=true?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scale.png?raw=true?raw=true" alt="Escama">
+                            <span>Escama</span>
+                        </div>
+                        <div class="option" data-value="Cortex" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_cortex.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_cortex.png?raw=true" alt="Cortex">
+                            <span>Cortex</span>
+                        </div>
+                        <div class="option" data-value="Saco" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_sac.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_sac.png?raw=true" alt="Saco">
+                            <span>Saco</span>
+                        </div>
+                        <div class="option" data-value="Fluido" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_drink.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_drink.png?raw=true" alt="Fluido">
+                            <span>Fluido</span>
+                        </div>
+                        <div class="option" data-value="Webbing" data-image="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_webbing.png?raw=true" onclick="selectOption(this)">
+                            <img style="width:30px;height:30px" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_webbing.png?raw=true" alt="Webbing">
+                            <span>Webbing</span>
+                        </div>
+                    </div>
+                </div>
                 <button type="button" class="delete-btn" onclick="this.parentNode.remove()">Eliminar</button>
             `;
             container.appendChild(materialDiv);
+        }
+
+        function toggleOptions(selectElement) {
+            if (!selectElement) return;
+
+            const optionsContainer = selectElement.nextElementSibling;
+            if (!optionsContainer) return;
+
+            optionsContainer.classList.toggle('show');
+            
+            // Cerrar al hacer clic fuera
+            function closeOptions(e) {
+                if (!selectElement.contains(e.target)) {
+                    optionsContainer.classList.remove('show');
+                    document.removeEventListener('click', closeOptions);
+                }
+            }
+
+            document.addEventListener('click', closeOptions);
+        }
+
+        // Funciones auxiliares para el select personalizado
+        function selectOption(option) {
+            // Verificaciones de seguridad
+            if (!option) {
+                console.error('No option selected');
+                return;
+            }
+
+            // Buscar los elementos necesarios
+            const selectContainer = option.closest('.custom-select-container');
+            if (!selectContainer) {
+                console.error('Could not find select container');
+                return;
+            }
+
+            const selectedValue = selectContainer.querySelector('.selected-value');
+            const selectedImageUrl = selectContainer.querySelector('.selected-image-url');
+            const optionsContainer = selectContainer.querySelector('.options-container');
+            const customSelect = selectContainer.querySelector('.custom-select');
+
+            // Verificar que todos los elementos existan
+            if (!selectedValue || !selectedImageUrl || !optionsContainer || !customSelect) {
+                console.error('Missing required elements', {
+                    selectedValue, 
+                    selectedImageUrl, 
+                    optionsContainer,
+                    customSelect
+                });
+                return;
+            }
+
+            // Obtener el texto y la imagen de la opción
+            const optionText = option.querySelector('span') ? option.querySelector('span').textContent : option.textContent;
+            const optionImage = option.dataset.image || '';
+
+            // Actualizar los valores
+            selectedValue.innerHTML = `
+                ${optionImage ? `<img src="${optionImage}" style="width:20px; margin-right:8px;" alt="${optionText}">` : ''}
+                ${optionText}
+            `;
+            selectedImageUrl.value = optionImage;
+            optionsContainer.classList.remove('show');
         }
 
         function addPart() {
@@ -501,7 +701,8 @@
                 name: item.querySelector('.material-name').value,
                 rarity: parseInt(item.querySelector('.material-rarity').value),
                 dropRate: parseInt(item.querySelector('.material-droprate').value),
-                source: item.querySelector('.material-source').value
+                source: item.querySelector('.material-source').value,
+                icon: item.querySelector('.selected-image-url').value // Añadimos el icono al JSON
             }));
 
             const parts = Array.from(document.querySelectorAll('.part-item')).map(item => ({

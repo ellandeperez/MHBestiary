@@ -19,9 +19,9 @@
     "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
     "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
     "materials": [
-      {"name":"Tigrex Scale+","rarity":6,"dropRate":72,"source":"Body Carve"},
-      {"name":"Tigrex Claw+","rarity":6,"dropRate":60,"source":"Part Break"},
-      {"name":"Tigrex Gem","rarity":7,"dropRate":3,"source":"Tail Carve"}
+      {"name":"Tigrex Scale+","rarity":6,"dropRate":72,"source":"Body Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scale.png?raw=true?raw=true"},
+      {"name":"Tigrex Claw+","rarity":6,"dropRate":60,"source":"Part Break","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_horn.png?raw=true"},
+      {"name":"Tigrex Gem","rarity":7,"dropRate":3,"source":"Tail Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"}
     ],
     "parts": [
       {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},

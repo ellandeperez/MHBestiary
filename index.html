@@ -178,16 +178,16 @@
         let selectedElement = null;
 		
 		const weaknessImages = {
-			fuego: "https://cdn-icons-png.flaticon.com/128/482/482103.png",
-			agua: "https://cdn-icons-png.flaticon.com/128/606/606797.png",
-			rayo: "https://cdn-icons-png.flaticon.com/128/248/248053.png",
-			hielo: "https://cdn-icons-png.flaticon.com/128/3654/3654729.png",
-			dragon: "https://cdn-icons-png.flaticon.com/128/5998/5998689.png",
-			nitro: "https://cdn-icons-png.flaticon.com/128/3047/3047036.png",
-			veneno: "https://cdn-icons-png.flaticon.com/128/12556/12556527.png",
-			paralisis: "https://cdn-icons-png.flaticon.com/128/478/478855.png",
-			sueño: "https://cdn-icons-png.flaticon.com/128/594/594550.png",
-			stun: "https://cdn-icons-png.flaticon.com/128/4208/4208410.png"
+			fuego: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/fire.png?raw=true",
+			agua: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/water.png?raw=true",
+			rayo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/thunder.png?raw=true",
+			hielo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/ice.png?raw=true",
+			dragon: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/dragon.png?raw=true",
+			nitro: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/blast.png?raw=true",
+			veneno: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/poison.png?raw=true",
+			paralisis: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/paralisis.png?raw=true",
+			sueño: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/sleep.png?raw=true",
+			stun: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/stun.png?raw=true"
 		};
 
         // Aplicar tema inicial
@@ -285,9 +285,12 @@
                 <div class="space-y-2">
                     ${materials.map(material => `
                         <div class="debilidadestilo flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                            <div>
-                                <span class="font-medium debilidadestilotexto text-gray-700 dark:text-gray-300">${material.name}</span>
-                                <span class="text-sm debilidadestilotexto text-gray-500 dark:text-gray-400 block">${material.source}</span>
+                            <div class="flex items-center gap-2">
+                                <img style="width:30px;" src="${material.icon}"></img>                                    
+                                <div>
+                                    <span class="font-medium debilidadestilotexto text-gray-700 dark:text-gray-300">${material.name}</span>
+                                    <span class="text-sm debilidadestilotexto text-gray-500 dark:text-gray-400 block">${material.source}</span>
+                                </div>
                             </div>
                             <div class="text-right">
                                 <span class="debilidadestilotexto text-sm text-gray-600 dark:text-gray-400">Rate: ${material.dropRate}%</span>
@@ -489,14 +492,17 @@
                                                     <div class="space-y-2">
                                                         <div class="flex justify-between items-center">
                                                             <span class="text-sm">Cortante</span>
+                                                            <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/slash.png?raw=true"></img></span>
                                                             ${createWeaknessStars(part.weaknesses.slash)}
                                                         </div>
                                                         <div class="flex justify-between items-center">
                                                             <span class="text-sm">Contundente</span>
+                                                            <span><img style="width:20px" alt="Contundente" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/blunt.png?raw=true"></img></span>
                                                             ${createWeaknessStars(part.weaknesses.blunt)}
                                                         </div>
                                                         <div class="flex justify-between items-center">
                                                             <span class="text-sm">Perforante</span>
+                                                            <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/m_pierce.png?raw=true"></img></span>
                                                             ${createWeaknessStars(part.weaknesses.pierce)}
                                                         </div>
                                                     </div>
