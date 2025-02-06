@@ -24,9 +24,9 @@
       {"name":"Tigrex Gem","rarity":7,"dropRate":3,"source":"Tail Carve"}
     ],
     "parts": [
-      {"name":"Cabeza","breakable":true,"cut":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},
-      {"name":"Patas","breakable":true,"cut":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
-      {"name":"Cola","breakable":false,"cut":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},
+      {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
     ]
   }
 ]
