@@ -140,7 +140,7 @@
         }
 		.parts-grid {
             display: grid;
-            grid-template-columns: 2fr 2fr;
+            grid-template-columns: 3fr 2fr 2fr;
             gap: 0.5rem;
             align-items: center;
         }
@@ -446,8 +446,12 @@
                 <div class="parts-grid">
                     <input type="text" placeholder="Nombre de la parte" class="part-name">
                     <div style="display: flex; align-items: center;">
-                        <label style="margin-right: 8px;">Rompible:</label>
-                        <input type="checkbox" class="part-breakable">
+                        <label>Rompible:</label>
+                        <input type="radio" name="part" class="part-breakable">
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <label>Cortable:</label>
+                        <input type="radio" name="part" class="part-cortable">
                     </div>
                     <div class="damage-type-group">
                         <div class="damage-type-item">
@@ -503,6 +507,7 @@
             const parts = Array.from(document.querySelectorAll('.part-item')).map(item => ({
                 name: item.querySelector('.part-name').value,
                 breakable: item.querySelector('.part-breakable').checked,
+                cortable: item.querySelector('.part-cortable').checked,
                 weaknesses: {
                     slash: parseInt(item.querySelector('.part-slash').value),
                     blunt: parseInt(item.querySelector('.part-blunt').value),
