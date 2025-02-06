@@ -4,64 +4,29 @@
     "name": "Tigrex",
     "type": "Flying Wyvern",
     "threat": 5,
-    "locale": ["Snow", "Desert", "Normal"],
+    "locale": ["Normal", "Snow", "Desert"],
     "variants": [
-		{"name": "Brute Tigrex","image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKC71xNY4hdGrPgf0yWGAEyCMwLz0Mxxvaw&s"},
-		{"name": "Molten Tigrex","image": "https://static.wikia.nocookie.net/fanonmonsterhunter/images/a/a3/Molten_Tigrex_Fanon_World_Icon.png/revision/latest?cb=20220110143042"}
+      {"name":"Brute Tigrex","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKC71xNY4hdGrPgf0yWGAEyCMwLz0Mxxvaw&s"},
+      {"name":"Molten Tigrex","image":"https://static.wikia.nocookie.net/fanonmonsterhunter/images/a/a3/Molten_Tigrex_Fanon_World_Icon.png/revision/latest?cb=20220110143042"}
     ],
     "game": ["MH2", "MH FREEDOM UNITE", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
     "image": "https://i.pinimg.com/564x/a3/2c/ef/a32cefd67ab381619669606025fd2a86.jpg",
-    "gallery": ["https://static.wikia.nocookie.net/monsterhunterespanol/images/1/10/MHRise-Render_Tigrex.png/revision/latest/scale-to-width-down/1200?cb=20210316081929&path-prefix=es","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8iqeV5UlBdrLb1orfPsONmpMKX1MfyAdQQ&s","https://i.ytimg.com/vi/jW5vJEDprlA/maxresdefault.jpg"],
-    "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
-    "weaknesses": {"fire": 1,"water": 2,"thunder": 3,"ice": 2,"dragon": 1,"blast": 1,"poison": 2,"paralisis": 3,"sleep": 2,"knock": 1},
-    "materials": [
-		{"name": "Tigrex Scale+","rarity": 6,"dropRate": 72,"source": "Body Carve"},
-		{"name": "Tigrex Claw+","rarity": 6,"dropRate": 60,"source": "Part Break"},
-		{"name": "Tigrex Gem","rarity": 7,"dropRate": 3,"source": "Tail Carve"}
-    ]
-  },
-  {
-    "id": 2,
-    "name": "",
-    "type": "",
-    "threat": 1,
-    "locale": [
-        "Normal",
-        "Water",
-        "Volcano"
+    "gallery": [
+      "https://static.wikia.nocookie.net/monsterhunterespanol/images/1/10/MHRise-Render_Tigrex.png/revision/latest/scale-to-width-down/1200?cb=20210316081929&path-prefix=es",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8iqeV5UlBdrLb1orfPsONmpMKX1MfyAdQQ&s",
+      "https://i.ytimg.com/vi/jW5vJEDprlA/maxresdefault.jpg"
     ],
-    "variants": [],
-    "game": [],
-    "image": "",
-    "gallery": [],
-    "description": "",
-    "weaknesses": {
-        "fire": 1,
-        "water": 1,
-        "thunder": 1,
-        "ice": 0,
-        "dragon": 1,
-        "blast": 1,
-        "poison": 1,
-        "paralisis": 1,
-        "sleep": 1,
-        "knock": 1
-    },
-    "materials": []
-},
-{
-        "id": 3,
-        "name": "",
-        "type": "Temnoceran",
-        "threat": 1,
-        "locale": [],
-        "variants": [],
-        "game": [],
-        "image": "",
-        "gallery": [],
-        "description": "",
-        "weaknesses": {"fire":0,"water":0,"thunder":0,"ice":0,"dragon":0,"blast":0,"poison":0,"paralisis":0,"sleep":0,"knock":0},
-        "materials": [],
-        "parts": []
-}
+    "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
+    "weaknesses": {"fire":1,"water":2,"thunder":3,"ice":2,"dragon":1,"blast":1,"poison":2,"paralisis":3,"sleep":2,"knock":1},
+    "materials": [
+      {"name":"Tigrex Scale+","rarity":6,"dropRate":72,"source":"Body Carve"},
+      {"name":"Tigrex Claw+","rarity":6,"dropRate":60,"source":"Part Break"},
+      {"name":"Tigrex Gem","rarity":7,"dropRate":3,"source":"Tail Carve"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},
+      {"name":"Patas","breakable":true,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+    ]
+  }
 ]
