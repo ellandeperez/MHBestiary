@@ -15,13 +15,13 @@
                 <h1 class="font-semibold mb-2 absolute left-1/2 transform -translate-x-1/2 text-3xl sm:text-3xl md:text-6xl">MONSTER HUNTER</h1>
                 <button 
                     onclick="toggleTheme()"
-                    class="px-3 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                    <img src="https://cdn-icons-png.flaticon.com/128/606/606807.png" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                    class="botonDark px-3 py-2 rounded-lg transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/ticket_dark.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
                 </button>                
                 <a 
                     href="https://ellandeperez.github.io/MHBestiary/GeneraMonstruos.html"
-                    class="px-3 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
-                    <img src="https://cdn-icons-png.flaticon.com/128/8832/8832898.png" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                    class="botonDark px-3 py-2 rounded-lg transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/book_blue.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
                 </a>
             </div>
             
@@ -121,23 +121,23 @@
                     <label class="block text-sm font-medium mb-2">Debilidad Elemental</label>
                     <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
                         <button onclick="filterByElement('fuego')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="fuego">
-						<img src="https://cdn-icons-png.flaticon.com/128/482/482103.png" class="h-6 w-6" alt="fuego">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/fire.png?raw=true" class="h-6 w-6" alt="fuego">
 						<span>Fuego</span>
 					</button>
 					<button onclick="filterByElement('agua')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="agua">
-						<img src="https://cdn-icons-png.flaticon.com/128/606/606797.png" class="h-6 w-6" alt="agua">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/water.png?raw=true" class="h-6 w-6" alt="agua">
 						<span>Agua</span>
 					</button>
 					<button onclick="filterByElement('rayo')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="rayo">
-						<img src="https://cdn-icons-png.flaticon.com/128/248/248053.png" class="h-6 w-6" alt="rayo">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/thunder.png?raw=true" class="h-6 w-6" alt="rayo">
 						<span>Trueno</span>
 					</button>
 					<button onclick="filterByElement('hielo')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="hielo">
-						<img src="https://cdn-icons-png.flaticon.com/128/3654/3654729.png" class="h-6 w-6" alt="hielo">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/ice.png?raw=true" class="h-6 w-6" alt="hielo">
 						<span>Hielo</span>
 					</button>
 					<button onclick="filterByElement('dragon')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="dragon">
-						<img src="https://cdn-icons-png.flaticon.com/128/5998/5998689.png" class="h-6 w-6" alt="dragon">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/dragon.png?raw=true" class="h-6 w-6" alt="dragon">
 						<span>Dragón</span>
 					</button>
                     </div>
@@ -150,7 +150,7 @@
                     <input 
                         type="text" 
                         id="materialSearchInput"
-                        placeholder="Buscar materiales..." 
+                        placeholder="Buscar materiales o monstruos..." 
                         class="w-full p-2 rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-blue-200 outline-none search-input"
                         oninput="searchMaterials()">
                     <div id="materialSearchResults" class="mt-4 space-y-2"></div>
@@ -324,6 +324,11 @@
             monsters.forEach(monster => {
                 monster.materials.forEach(material => {
                     if (material.name.toLowerCase().includes(searchTerm)) {
+                        materialMatches.push({
+                            monsterName: monster.name,
+                            material: material
+                        });
+                    }else if (monster.name.toLowerCase().includes(searchTerm)) {
                         materialMatches.push({
                             monsterName: monster.name,
                             material: material
@@ -1004,6 +1009,16 @@
     height: 20px;
 	display: none;
 }
+
+.botonDark{
+    background-color: #c6ccd8;
+}
+.botonDark:hover{
+    background-color: #6f737a;
+}
+
+
+bg-blue-500 text-white rounded-lg hover:bg-blue-600';
 
 /* Ajustes específicos para móvil */
 @media (max-width: 768px) {
