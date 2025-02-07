@@ -313,7 +313,7 @@
                     <label><input type="checkbox" name="games" value="MH2"> MH2</label>
                     <label><input type="checkbox" name="games" value="MH3"> MH3</label>
                     <label><input type="checkbox" name="games" value="MH4"> MH4</label>
-                    <label><input type="checkbox" name="games" value="MH FRONTIERS"> MH GENERATIONS</label>
+                    <label><input type="checkbox" name="games" value="MH FRONTIERS"> MH FRONTIERS</label>
                     <label><input type="checkbox" name="games" value="MH GENERATIONS"> MH GENERATIONS</label>
                     <label><input type="checkbox" name="games" value="MH WORLD"> MH WORLD</label>
                     <label><input type="checkbox" name="games" value="MH RISE"> MH RISE</label>
@@ -648,12 +648,13 @@
                 <div class="parts-grid">
                     <input type="text" placeholder="Nombre de la parte" class="part-name">
                     <div style="display: flex; align-items: center;">
-                        <label>Rompible:</label>
-                        <input type="radio" name="part" class="part-breakable">
+                        <label style="color:red;">*SLECCIONA SOLO UNA DE LAS DOS*</label>
                     </div>
                     <div style="display: flex; align-items: center;">
                         <label>Cortable:</label>
-                        <input type="radio" name="part" class="part-cortable">
+                        <input type="checkbox" class="part-cortable">
+                        <label>Rompible:</label>
+                        <input type="checkbox" class="part-breakable">
                     </div>
                     <div class="damage-type-group">
                         <div class="damage-type-item">

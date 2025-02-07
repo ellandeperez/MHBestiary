@@ -28,5 +28,36 @@
       {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
       {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
     ]
+  },
+  {
+    "id": 2,
+    "name": "Lagiacrus",
+    "type": "Leviathan",
+    "threat": 5,
+    "locale": ["Normal", "Water"],
+    "variants": [
+        {"name":"Ivory Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Ivory.png?raw=true"},
+        {"name":"Abyssal Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Abyssal.png?raw=true"},
+        {"name":"Landconquest Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Landconquest.png?raw=true"}
+    ],
+    "game": ["MH1", "MH GENERATIONS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon.png?raw=true",
+    "gallery": [
+        "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_1.png?raw=true",
+        "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_2.png?raw=true",
+        "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_3.png?raw=true"
+    ],
+    "description": "Señor de los Mares -Wyvern Marino-",
+    "weaknesses": {"fuego":3,"agua":1,"rayo":1,"hielo":2,"dragon":2,"nitro":2,"veneno":2,"paralisis":1,"sueño":2,"stun":1},
+    "materials": [
+        {"name":"Lagia Sapphire","rarity":5,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+        {"name":"Lagiacrus Plate","rarity":4,"dropRate":8,"source":"Cola, Captura, Drop","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+        {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":1}},
+        {"name":"Espalda","breakable":true,"cortable":false,"weaknesses":{"slash":1,"blunt":2,"pierce":3}},
+        {"name":"Garras Frontales","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":1}},
+        {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":1,"pierce":2}}
+    ]
   }
 ]
