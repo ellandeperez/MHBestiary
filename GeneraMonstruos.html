@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
 	<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/8832/8832898.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>GENERADOR</title>
     <style>
         * { box-sizing: border-box; }
@@ -140,7 +141,7 @@
         }
 		.parts-grid {
             display: grid;
-            grid-template-columns: 3fr 2fr 2fr;
+            grid-template-columns: 1fr;
             gap: 0.5rem;
             align-items: center;
         }
@@ -231,17 +232,8 @@
             transform: rotate(45deg);
             margin-left: 8px;
         }
+
         @media (max-width: 768px) {
-            .parts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .damage-type-group {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
             .grid-weaknesses {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -250,6 +242,48 @@
             }
             .material-grid {
                 grid-template-columns: 1fr;
+            }
+            body {
+                margin: 1rem;
+                padding: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-weaknesses {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+            }
+
+            .checkbox-group {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+            }
+
+            .damage-type-group {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            input, select, textarea {
+                font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+                padding: 0.4rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-section {
+                padding: 1rem;
+            }
+
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
