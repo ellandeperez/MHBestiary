@@ -9,27 +9,27 @@
         * { box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0px;
             max-width: 1100px;
-            margin: 2rem auto;
             padding: 20px;
+            padding-top: 0px;
             background: #f5f5f5;
             color: #333;
         }
         h1 {
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 2rem;
         }
         .form-section {
             background: white;
-            padding: 2rem;
+            padding: 1rem;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 0.5rem;
         }
         .full-width {
             grid-column: 1 / -1;
@@ -233,6 +233,13 @@
             margin-left: 8px;
         }
 
+        
+        .topimagen{
+                position:absolute;
+                left:10;
+                top:10;
+            }
+
         @media (max-width: 768px) {
             .grid-weaknesses {
                 grid-template-columns: repeat(2, 1fr);
@@ -243,9 +250,17 @@
             .material-grid {
                 grid-template-columns: 1fr;
             }
+            .topcoso{
+                padding-top:30px;
+            }
+            .topimagen{
+                position:absolute;
+                left:5;
+                top:5;
+            }
             body {
-                margin: 1rem;
                 padding: 10px;
+                padding-top: 5px;
             }
 
             .form-grid {
@@ -289,12 +304,12 @@
     </style>
 </head>
 <body>
-	<div style="display:flex;justify-content:left;align-items:left;text-align: center;">
+	<div class="topimagen">
 		<a href="https://ellandeperez.github.io/MHBestiary/" style="padding:5px;">
-			<img style="width:50px;height:50px;" src="https://cdn-icons-png.flaticon.com/128/9283/9283458.png" alt="Alternar Modo Oscuro">
+			<img style="width:40px;height:40px;" src="https://cdn-icons-png.flaticon.com/128/9283/9283458.png" alt="Alternar Modo Oscuro">
 		</a>
 	</div>
-    <h1>GENERADOR DE MONSTRUOS</h1>
+    <h1 class="topcoso">GENERADOR DE MONSTRUOS</h1>
 	<div class="form-section">
         <div class="form-grid">
             <div class="input-group">
