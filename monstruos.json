@@ -50,8 +50,9 @@
     "description": "Señor de los Mares -Wyvern Marino-",
     "weaknesses": {"fuego":3,"agua":1,"rayo":1,"hielo":2,"dragon":2,"nitro":2,"veneno":2,"paralisis":1,"sueño":2,"stun":1},
     "materials": [
+        {"name":"Lagiacrus Mantle","rarity":7,"dropRate":2,"source":"Cola, Captura, Cabeza","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
         {"name":"Lagia Sapphire","rarity":5,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
-        {"name":"Lagiacrus Plate","rarity":4,"dropRate":8,"source":"Cola, Captura, Drop","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+        {"name":"Lagiacrus Plate","rarity":4,"dropRate":8,"source":"Cola, Captura, Cabeza, Drop","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
     ],
     "parts": [
         {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":1}},
