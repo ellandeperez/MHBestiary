@@ -11,8 +11,8 @@
 <body style="font-family:'Albertus MT Std Regular';" class="min-h-screen p-4 md:p-6">
     <div class="container mx-auto max-w-6x1">
         <div class="fixed top-0 left-0 right-0 pr-7 pl-7 pt-5 pb-2 shadow-lg z-50 topcoso">
-            <div class="relative flex justify-between items-center mb-4">
-                <h1 class="font-semibold mb-2 absolute left-1/2 transform -translate-x-1/2 text-3xl sm:text-3xl md:text-6xl">MONSTER HUNTER</h1>
+            <div class="relative flex justify-between items-center mb-2">
+                <h1 class="font-semibold absolute left-1/2 transform -translate-x-1/2 text-center text-2xl sm:text-2xl md:text-4xl lg:text-6xl">MONSTER HUNTER</h1>
                 <button 
                     onclick="toggleTheme()"
                     class="botonDark px-2 py-2 rounded-lg transition-colors">
@@ -600,11 +600,11 @@
             const listBtn = document.getElementById('listBtn');
 
             if (view === 'grid') {
-                container.className = 'grid-view pt-56';
+                container.className = 'grid-view pt-36';
                 gridBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600';
                 listBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600';
             } else {
-                container.className = 'list-view pt-56';
+                container.className = 'list-view pt-36';
                 listBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600';
                 gridBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600';
             }
