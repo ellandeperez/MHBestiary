@@ -68,11 +68,11 @@
     "threat": 5,
     "locale": ["Normal", "Volcano"],
     "variants": [
-        {"name":"Rathalos Celeste","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon_Azure.png?raw=true"},
-        {"name":"Rathalos Plateado","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon_Silver.png?raw=true"}
+        {"name":"Rathalos Celeste","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon_Azure.png?raw=true"},
+        {"name":"Rathalos Plateado","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon_Silver.png?raw=true"}
     ],
     "game": ["MH1", "MH2", "MH3", "MH4", "MH FRONTIERS", "MH GENERATIONS", "MH WORLD", "MH RISE", "MH WILDS"],
-    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon.png?raw=true",
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon.png?raw=true",
     "gallery": [],
     "description": "Amo de los cielos. Wyvern volador",
     "weaknesses": {"fuego":0,"agua":1,"rayo":2,"hielo":1,"dragon":3,"nitro":1,"veneno":1,"paralisis":2,"sueño":2,"stun":2},
