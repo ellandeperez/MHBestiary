@@ -6,11 +6,11 @@
     "threat": 5,
     "locale": ["Normal", "Snow", "Desert"],
     "variants": [
-      {"name":"Brute Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Brute.png"},
-      {"name":"Molten Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Molten.png"}
+      {"name":"Brute Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Brute.png?raw=true"},
+      {"name":"Molten Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Molten.png?raw=true"}
     ],
     "game": ["MH2", "MH FREEDOM UNITE", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
-    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon.png",
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon.png?raw=true",
     "gallery": [],
     "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
     "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
