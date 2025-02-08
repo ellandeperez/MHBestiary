@@ -6,16 +6,12 @@
     "threat": 5,
     "locale": ["Normal", "Snow", "Desert"],
     "variants": [
-      {"name":"Brute Tigrex","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUKC71xNY4hdGrPgf0yWGAEyCMwLz0Mxxvaw&s"},
-      {"name":"Molten Tigrex","image":"https://static.wikia.nocookie.net/fanonmonsterhunter/images/a/a3/Molten_Tigrex_Fanon_World_Icon.png/revision/latest?cb=20220110143042"}
+      {"name":"Brute Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Brute.png"},
+      {"name":"Molten Tigrex","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon_Molten.png"}
     ],
     "game": ["MH2", "MH FREEDOM UNITE", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
-    "image": "https://i.pinimg.com/564x/a3/2c/ef/a32cefd67ab381619669606025fd2a86.jpg",
-    "gallery": [
-      "https://static.wikia.nocookie.net/monsterhunterespanol/images/1/10/MHRise-Render_Tigrex.png/revision/latest/scale-to-width-down/1200?cb=20210316081929&path-prefix=es",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8iqeV5UlBdrLb1orfPsONmpMKX1MfyAdQQ&s",
-      "https://i.ytimg.com/vi/jW5vJEDprlA/maxresdefault.jpg"
-    ],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Tigrex/Icon.png",
+    "gallery": [],
     "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
     "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
     "materials": [
