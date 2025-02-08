@@ -60,5 +60,31 @@
         {"name":"Garras Frontales","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":1}},
         {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":1,"pierce":2}}
     ]
+  },
+  {
+    "id": 3,
+    "name": "Rathalos",
+    "type": "Flying Wyvern",
+    "threat": 5,
+    "locale": ["Normal", "Volcano"],
+    "variants": [
+        {"name":"Rathalos Celeste","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon_Azure.png?raw=true"},
+        {"name":"Rathalos Plateado","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon_Silver.png?raw=true"}
+    ],
+    "game": ["MH1", "MH2", "MH3", "MH4", "MH FRONTIERS", "MH GENERATIONS", "MH WORLD", "MH RISE", "MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/icon.png?raw=true",
+    "gallery": [],
+    "description": "Amo de los cielos. Wyvern volador",
+    "weaknesses": {"fuego":0,"agua":1,"rayo":2,"hielo":1,"dragon":3,"nitro":1,"veneno":1,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [
+        {"name":"Manto de Rathalos","rarity":7,"dropRate":2,"source":"Cabeza, Lomo, Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+        {"name":"Rubí de Rathalos","rarity":7,"dropRate":2,"source":"Cabeza, Lomo, Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+        {"name":"Placa de Rathalos","rarity":7,"dropRate":5,"source":"Corte, Lomo, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+        {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},
+        {"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":3}},
+        {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}
+    ]
   }
 ]
