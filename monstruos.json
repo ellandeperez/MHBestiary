@@ -113,7 +113,7 @@
     "name": "Zinogre",
     "type": "Fanged Wyvern",
     "threat": 5,
-    "locale": ["Normal", "Cold"],
+    "locale": ["Normal", "Snow"],
     "variants": [
       {"name":"Stygian Zinogre","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Zinogre/Icon_Stygian.png?raw=true"}
     ],
