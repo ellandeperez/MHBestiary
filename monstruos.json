@@ -132,5 +132,178 @@
       {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
       {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":3}}
     ]
-  }  
+  },
+  {
+    "id": 6,
+    "name": "Brachydios",
+    "type": "Brute Wyvern",
+    "threat": 5,
+    "locale": ["Volcano"],
+    "variants": [
+      {"name":"Brachydios Colerico","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Brachydios/Icon_Raging.png?raw=true"}
+    ],
+    "game": ["MH3", "MH4", "MH GENERATIONS", "MH WORLD"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Brachydios/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un wyvern brutal cubierto de un limo explosivo que detona al impactar.",
+    "weaknesses": {"fuego":1,"agua":3,"rayo":2,"hielo":3,"dragón":2,"nitro":1,"veneno":2,"parálisis":2,"sueño":2,"stun":2},
+    "materials": [
+      {"name":"Manto de Brachydios","rarity":7,"dropRate":3,"source":"Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Brachydios","rarity":7,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Brachydios","rarity":6,"dropRate":6,"source":"Cuerpo","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":2}},
+      {"name":"Brazos","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":3}}
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Diablos",
+    "type": "Flying Wyvern",
+    "threat": 5,
+    "locale": ["Desert"],
+    "variants": [
+      {"name":"Diablos Negro","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Diablos/Icon_Black.png?raw=true"}
+    ],
+    "game": ["MH1", "MH2", "MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Diablos/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un wyvern feroz del desierto que ataca con embestidas y potentes gritos.",
+    "weaknesses": {"fuego":1,"agua":2,"rayo":2,"hielo":3,"dragón":1,"nitro":2,"veneno":2,"parálisis":3,"sueño":2,"stun":2},
+    "materials": [
+      {"name":"Manto de Diablos","rarity":7,"dropRate":3,"source":"Captura, Cuerpo","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Diablos","rarity":7,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Diablos","rarity":6,"dropRate":6,"source":"Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cuernos","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":2}},
+      {"name":"Espalda","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":1,"pierce":3}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Gore Magala",
+    "type": "Dragón Anciano",
+    "threat": 7,
+    "locale": ["Desconocido"],
+    "variants": [
+      {"name": "Shagaru Magala", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Shagaru.png?raw=true"},
+      {"name": "Gore Magala Caotico", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Caotic.png?raw=true"}
+    ],
+    "game": ["MH4", "MH GENERATIONS", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un dragón anciano que esparce un virus misterioso y se vuelve más agresivo al enojarse.",
+    "weaknesses": {"fuego": 3, "agua": 1, "rayo": 2, "hielo": 1, "dragón": 3, "nitro": 2, "veneno": 1, "parálisis": 3, "sueño": 2, "stun": 2},
+    "materials": [
+      {"name": "Manto de Gore Magala", "rarity": 7, "dropRate": 3, "source": "Cuerpo, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name": "Gema de Gore Magala", "rarity": 7, "dropRate": 4, "source": "Cola, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name": "Placa de Gore Magala", "rarity": 6, "dropRate": 6, "source": "Cuerpo, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},
+      {"name": "Antenas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},
+      {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 3}},
+      {"name": "Cola", "breakable": true, "cortable": true, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 2}}
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Rajang",
+    "type": "Fanged Beast",
+    "threat": 5,
+    "locale": ["Normal", "Volcano"],
+    "variants": [
+      {"name":"Rajang Furioso","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rajang/Icon_Raging.png?raw=true"}
+    ],
+    "game": ["MH2", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rajang/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Una bestia feroz con una fuerza y agilidad inigualables. Puede entrar en modo dorado al enfurecerse.",
+    "weaknesses": {"fuego":1,"agua":3,"rayo":0,"hielo":3,"dragon":2,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":3},
+    "materials": [
+      {"name":"Manto de Rajang","rarity":7,"dropRate":3,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Rajang","rarity":7,"dropRate":4,"source":"Tail Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Rajang","rarity":6,"dropRate":6,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Brazos","breakable":true,"cortable":false,"weaknesses":{"slash":1,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":3}}
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Seregios",
+    "type": "Flying Wyvern",
+    "threat": 5,
+    "locale": ["Normal", "Desert"],
+    "variants": [],
+    "game": ["MH4", "MH GENERATIONS", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Seregios/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un wyvern extremadamente agresivo con escamas afiladas que puede lanzar para causar sangrado.",
+    "weaknesses": {"fuego":2,"agua":1,"rayo":3,"hielo":2,"dragon":1,"nitro":2,"veneno":2,"paralisis":3,"sueño":2,"stun":2},
+    "materials": [
+      {"name":"Manto de Seregios","rarity":7,"dropRate":3,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Seregios","rarity":7,"dropRate":4,"source":"Tail Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Seregios","rarity":6,"dropRate":6,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":3}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Valstrax",
+    "type": "Elder Dragon",
+    "threat": 6,
+    "locale": ["Unknown"],
+    "variants": [
+      {"name":"Valstrax Carmesí","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Valstrax/Icon_Crimson.png?raw=true"}
+    ],
+    "game": ["MH GENERATIONS", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Valstrax/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un dragón anciano misterioso con la capacidad de propulsarse con energía dracónica.",
+    "weaknesses": {"fuego":2,"agua":1,"rayo":3,"hielo":2,"dragon":3,"nitro":1,"veneno":2,"paralisis":2,"sueño":2,"stun":3},
+    "materials": [
+      {"name":"Manto de Valstrax","rarity":7,"dropRate":3,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Valstrax","rarity":7,"dropRate":4,"source":"Tail Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Valstrax","rarity":6,"dropRate":6,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":3}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Teostra",
+    "type": "Elder Dragon",
+    "threat": 6,
+    "locale": ["Normal", "Volcano"],
+    "variants": [],
+    "game": ["MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Teostra/Icon.png?raw=true",
+    "gallery": [],
+    "description": "El rey del fuego. Un dragón anciano cuyo aliento abrasador arrasa todo a su paso.",
+    "weaknesses": {"fuego":0,"agua":2,"rayo":1,"hielo":3,"dragón":3,"nitro":1,"veneno":2,"parálisis":1,"sueño":3,"stun":2},
+    "materials": [
+      {"name":"Manto de Teostra","rarity":7,"dropRate":2,"source":"Cabeza, Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Teostra","rarity":7,"dropRate":4,"source":"Cola, Cabeza, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Teostra","rarity":6,"dropRate":6,"source":"Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":3}},
+      {"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":2}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":3}}
+    ]
+  }
 ]
