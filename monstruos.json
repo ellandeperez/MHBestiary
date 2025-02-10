@@ -146,7 +146,7 @@
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Brachydios/Icon.png?raw=true",
     "gallery": [],
     "description": "Un wyvern brutal cubierto de un limo explosivo que detona al impactar.",
-    "weaknesses": {"fuego":1,"agua":3,"rayo":2,"hielo":3,"dragón":2,"nitro":1,"veneno":2,"parálisis":2,"sueño":2,"stun":2},
+    "weaknesses": {"fuego":1,"agua":3,"rayo":2,"hielo":3,"dragon":2,"nitro":1,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
     "materials": [
       {"name":"Manto de Brachydios","rarity":7,"dropRate":3,"source":"Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
       {"name":"Gema de Brachydios","rarity":7,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
@@ -171,7 +171,7 @@
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Diablos/Icon.png?raw=true",
     "gallery": [],
     "description": "Un wyvern feroz del desierto que ataca con embestidas y potentes gritos.",
-    "weaknesses": {"fuego":1,"agua":2,"rayo":2,"hielo":3,"dragón":1,"nitro":2,"veneno":2,"parálisis":3,"sueño":2,"stun":2},
+    "weaknesses": {"fuego":1,"agua":2,"rayo":2,"hielo":3,"dragon":1,"nitro":2,"veneno":2,"paralisis":3,"sueño":2,"stun":2},
     "materials": [
       {"name":"Manto de Diablos","rarity":7,"dropRate":3,"source":"Captura, Cuerpo","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
       {"name":"Gema de Diablos","rarity":7,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
@@ -197,7 +197,7 @@
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon.png?raw=true",
     "gallery": [],
     "description": "Un dragón anciano que esparce un virus misterioso y se vuelve más agresivo al enojarse.",
-    "weaknesses": {"fuego": 3, "agua": 1, "rayo": 2, "hielo": 1, "dragón": 3, "nitro": 2, "veneno": 1, "parálisis": 3, "sueño": 2, "stun": 2},
+    "weaknesses": {"fuego": 3, "agua": 1, "rayo": 2, "hielo": 1, "dragon": 3, "nitro": 2, "veneno": 1, "paralisis": 3, "sueño": 2, "stun": 2},
     "materials": [
       {"name": "Manto de Gore Magala", "rarity": 7, "dropRate": 3, "source": "Cuerpo, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
       {"name": "Gema de Gore Magala", "rarity": 7, "dropRate": 4, "source": "Cola, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
@@ -294,7 +294,7 @@
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Teostra/Icon.png?raw=true",
     "gallery": [],
     "description": "El rey del fuego. Un dragón anciano cuyo aliento abrasador arrasa todo a su paso.",
-    "weaknesses": {"fuego":0,"agua":2,"rayo":1,"hielo":3,"dragón":3,"nitro":1,"veneno":2,"parálisis":1,"sueño":3,"stun":2},
+    "weaknesses": {"fuego":0,"agua":2,"rayo":1,"hielo":3,"dragon":3,"nitro":1,"veneno":2,"paralisis":1,"sueño":3,"stun":2},
     "materials": [
       {"name":"Manto de Teostra","rarity":7,"dropRate":2,"source":"Cabeza, Cuerpo, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
       {"name":"Gema de Teostra","rarity":7,"dropRate":4,"source":"Cola, Cabeza, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
