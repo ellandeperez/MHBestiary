@@ -188,7 +188,7 @@
     "name": "Gore Magala",
     "type": "Elder Dragon",
     "threat": 7,
-    "locale": ["Desconocido"],
+    "locale": ["Unknown"],
     "variants": [
       {"name": "Shagaru Magala", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Shagaru.png?raw=true"},
       {"name": "Gore Magala Caotico", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Caotic.png?raw=true"}
@@ -207,7 +207,7 @@
       {"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},
       {"name": "Antenas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},
       {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 3}},
-      {"name": "Cola", "breakable": true, "cortable": true, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 2}}
+      {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 2}}
     ]
   },
   {
