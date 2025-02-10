@@ -15,9 +15,9 @@
     "description": "A ferocious and relentless wyvern, known for its deafening roar and destructive charge.",
     "weaknesses": {"fuego":1,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":1,"veneno":2,"paralisis":3,"sueño":2,"stun":1},
     "materials": [
-      {"name":"Tigrex Scale+","rarity":6,"dropRate":72,"source":"Body Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scale.png?raw=true?raw=true"},
-      {"name":"Tigrex Claw+","rarity":6,"dropRate":60,"source":"Part Break","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_horn.png?raw=true"},
-      {"name":"Tigrex Gem","rarity":7,"dropRate":3,"source":"Tail Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"}
+      {"name":"Escama de Tigrex+","rarity":6,"dropRate":72,"source":"Body Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scale.png?raw=true?raw=true"},
+      {"name":"Garra de Tigrex+","rarity":6,"dropRate":60,"source":"Part Break","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_horn.png?raw=true"},
+      {"name":"Gema de Tigrex","rarity":7,"dropRate":3,"source":"Tail Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"}
     ],
     "parts": [
       {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},
@@ -32,8 +32,8 @@
     "threat": 5,
     "locale": ["Normal", "Water"],
     "variants": [
-        {"name":"Ivory Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Ivory.png?raw=true"},
-        {"name":"Abyssal Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Abyssal.png?raw=true"},
+        {"name":"Lagiacrus Marmoreo","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Ivory.png?raw=true"},
+        {"name":"Lagiacrus Abyssal","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Abyssal.png?raw=true"},
         {"name":"Landconquest Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Landconquest.png?raw=true"}
     ],
     "game": ["MH1", "MH GENERATIONS"],
@@ -46,9 +46,9 @@
     "description": "Señor de los Mares -Wyvern Marino-",
     "weaknesses": {"fuego":3,"agua":1,"rayo":1,"hielo":2,"dragon":2,"nitro":2,"veneno":2,"paralisis":1,"sueño":2,"stun":1},
     "materials": [
-        {"name":"Lagiacrus Mantle","rarity":7,"dropRate":2,"source":"Cola, Captura, Cabeza","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
-        {"name":"Lagia Sapphire","rarity":5,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
-        {"name":"Lagiacrus Plate","rarity":4,"dropRate":8,"source":"Cola, Captura, Cabeza, Drop","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+        {"name":"Manto de Lagiacrus","rarity":7,"dropRate":2,"source":"Cola, Captura, Cabeza","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+        {"name":"Safiro Lagia","rarity":5,"dropRate":4,"source":"Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+        {"name":"Placa de Lagiacrus","rarity":4,"dropRate":8,"source":"Cola, Captura, Cabeza, Drop","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
     ],
     "parts": [
         {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":1}},
@@ -82,5 +82,55 @@
         {"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":3}},
         {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}
     ]
-  }
+  },
+  {
+    "id": 4,
+    "name": "Nargacuga",
+    "type": "Flying Wyvern",
+    "threat": 5,
+    "locale": ["Normal"],
+    "variants": [
+      {"name":"Lucent Nargacuga","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Nargacuga/Icon_Lucent.png?raw=true"}
+    ],
+    "game": ["MH3", "MH4", "MH GENERATIONS", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Nargacuga/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un depredador silencioso y ágil, conocido por las mortíferas puntas de su cola.",
+    "weaknesses": {"fuego":2,"agua":1,"rayo":3,"hielo":2,"dragon":1,"nitro":2,"veneno":1,"paralisis":3,"sueño":2,"stun":2},
+    "materials": [
+      {"name":"Manto Narga","rarity":7,"dropRate":3,"source":"Head, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Gema de Nargacuga","rarity":7,"dropRate":4,"source":"Tail Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Nargacuga","rarity":6,"dropRate":6,"source":"Body Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":3}},
+      {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":2,"pierce":2}}
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Zinogre",
+    "type": "Fanged Wyvern",
+    "threat": 5,
+    "locale": ["Normal", "Cold"],
+    "variants": [
+      {"name":"Stygian Zinogre","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Zinogre/Icon_Stygian.png?raw=true"}
+    ],
+    "game": ["MH3", "MH4", "MH GENERATIONS", "MH WORLD", "MH RISE"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Zinogre/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Un wyvern poderoso y electrizante, capaz de convocar Thunderbugs para cargar sus ataques.",
+    "weaknesses": {"fuego":1,"agua":3,"rayo":0,"hielo":3,"dragon":2,"nitro":2,"veneno":1,"paralisis":2,"sueño":3,"stun":2},
+    "materials": [
+      {"name":"Manto de Zinogre","rarity":7,"dropRate":3,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_mantle.png?raw=true"},
+      {"name":"Jaspe de Zinogre","rarity":7,"dropRate":4,"source":"Tail Carve","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"},
+      {"name":"Placa de Zinogre","rarity":6,"dropRate":6,"source":"Body Carve, Capture","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_plate.png?raw=true"}
+    ],
+    "parts": [
+      {"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},
+      {"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":3}}
+    ]
+  }  
 ]
