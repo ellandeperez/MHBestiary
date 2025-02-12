@@ -21,7 +21,7 @@
                 <a 
                     href="https://ellandeperez.github.io/MHBestiary/GeneraMonstruos.html"
                     class="botonDark px-1 py-1 rounded-lg transition-colors">
-                    <img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/book_blue.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                    <img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/book_blue.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
                 </a>
             </div>
             
@@ -39,12 +39,12 @@
 					<button 
 						onclick="toggleFilters()"
 						class="sm:px-2 sm:py-0.5 px-1 py-1 bg-gray-400 rounded-lg hover:bg-gray-500 text-white transition-colors">
-						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/binoculars.png?raw=true" class="h-7 w-7" alt="Filtro">
+						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/binoculars.png?raw=true" class="h-7 w-7" alt="Filtro">
 					</button>
 					<button 
 						onclick="toggleMaterialSearch()"
 						class="sm:px-2 sm:py-0.5 px-1 py-1 bg-gray-400 rounded-lg hover:bg-gray-500 text-white transition-colors">
-						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_scrap.png?raw=true" class="h-7 w-7" alt="Buscar Materiales">
+						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_scrap.png?raw=true" class="h-7 w-7" alt="Buscar Materiales">
 					</button>
 					<button 
 						onclick="setView('grid')" 
@@ -121,23 +121,23 @@
                     <label class="block text-sm font-medium mb-2">Debilidad Elemental</label>
                     <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
                         <button onclick="filterByElement('fuego')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="fuego">
-						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/fire.png?raw=true" class="h-6 w-6" alt="fuego">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/fire.png?raw=true" class="h-6 w-6" alt="fuego">
 						<span>Fuego</span>
 					</button>
 					<button onclick="filterByElement('agua')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="agua">
-						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/water.png?raw=true" class="h-6 w-6" alt="agua">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/water.png?raw=true" class="h-6 w-6" alt="agua">
 						<span>Agua</span>
 					</button>
 					<button onclick="filterByElement('rayo')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="rayo">
-						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/thunder.png?raw=true" class="h-6 w-6" alt="rayo">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/thunder.png?raw=true" class="h-6 w-6" alt="rayo">
 						<span>Trueno</span>
 					</button>
 					<button onclick="filterByElement('hielo')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="hielo">
-						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/ice.png?raw=true" class="h-6 w-6" alt="hielo">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ice.png?raw=true" class="h-6 w-6" alt="hielo">
 						<span>Hielo</span>
 					</button>
 					<button onclick="filterByElement('dragon')" class="element-filter p-2 rounded-lg flex items-center gap-2" data-element="dragon">
-						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/dragon.png?raw=true" class="h-6 w-6" alt="dragon">
+						<img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/dragon.png?raw=true" class="h-6 w-6" alt="dragon">
 						<span>Dragón</span>
 					</button>
                     </div>
@@ -189,16 +189,16 @@
         let selectedElement = null;
 		
 		const weaknessImages = {
-			fuego: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/fire.png?raw=true",
-			agua: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/water.png?raw=true",
-			rayo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/thunder.png?raw=true",
-			hielo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/ice.png?raw=true",
-			dragon: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/dragon.png?raw=true",
-			nitro: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/blast.png?raw=true",
-			veneno: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/poison.png?raw=true",
-			paralisis: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/paralisis.png?raw=true",
-			sueño: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/sleep.png?raw=true",
-			stun: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/stun.png?raw=true"
+			fuego: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/fire.png?raw=true",
+			agua: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/water.png?raw=true",
+			rayo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/thunder.png?raw=true",
+			hielo: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ice.png?raw=true",
+			dragon: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/dragon.png?raw=true",
+			nitro: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blast.png?raw=true",
+			veneno: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/poison.png?raw=true",
+			paralisis: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/paralisis.png?raw=true",
+			sueño: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/sleep.png?raw=true",
+			stun: "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/stun.png?raw=true"
 		};
 
         // Aplicar tema inicial
@@ -510,17 +510,17 @@
                                                     </div>
                                                     <div class="space-y-2">
                                                         <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/slash.png?raw=true"></img></span>
+                                                            <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
                                                             <span class="text-xs">Cortante</span>                                                            
                                                             ${createWeaknessStars(part.weaknesses.slash)}
                                                         </div>
                                                         <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/blunt.png?raw=true"></img></span>
+                                                            <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
                                                             <span class="text-xs">Contundente</span>                                                            
                                                             ${createWeaknessStars(part.weaknesses.blunt)}
                                                         </div>
                                                         <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/m_pierce.png?raw=true"></img></span>
+                                                            <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
                                                             <span class="text-xs">Perforante</span>                                                            
                                                             ${createWeaknessStars(part.weaknesses.pierce)}
                                                         </div>
