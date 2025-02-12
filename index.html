@@ -222,10 +222,10 @@
                 4: 'bg-yellow-300',
                 5: 'bg-yellow-400',
                 6: 'bg-yellow-500',
-                7: 'bg-organge-300',
-                8: 'bg-organge-400',
+                7: 'bg-yellow-600',
+                8: 'bg-yellow-700',
                 9: 'bg-red-500',
-                10: 'bg-black-500'
+                10: 'bg-red-900'
             };
             return colors[threat] || 'bg-gray-500';
         }
@@ -491,100 +491,132 @@
                         <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-4">
                             ${!isListView ? `<p class="mb-4">${monster.description}</p>` : ''}
                             
-                            <div class="space-y-6">
+                            <div class="space-y-2">
                                 <!-- Parts Section -->
                                 ${monster.parts && monster.parts.length > 0 ? `
-                                    <div>
-                                        ${monster.parts && monster.parts.length > 0 ? `<h3 class="font-semibold mb-2">Partes del Monstruo</h3>` : ''}
-                                        <div class="grid gap-2 columnitas">
-                                            ${monster.parts.map(part => `
-                                                <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
-                                                    <div class="flex justify-between items-center mb-2">
-                                                        <span class="font-medium">${part.name}</span>
-                                                        ${part.breakable ? `
-                                                            <span class="text-xs px-2 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full">
-                                                                Rompible
-                                                            </span>
-                                                        ` : ''}
-                                                        ${part.cortable ? `
-                                                            <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-200 rounded-full">
-                                                                Cortable
-                                                            </span>
-                                                        ` : ''}
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Partes del Monstruo</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid gap-2 columnitas">
+                                                ${monster.parts.map(part => `
+                                                    <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
+                                                        <div class="flex justify-between items-center mb-2">
+                                                            <span class="font-medium">${part.name}</span>
+                                                            ${part.breakable ? `
+                                                                <span class="text-xs px-2 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full">
+                                                                    Rompible
+                                                                </span>
+                                                            ` : ''}
+                                                            ${part.cortable ? `
+                                                                <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-200 rounded-full">
+                                                                    Cortable
+                                                                </span>
+                                                            ` : ''}
+                                                        </div>
+                                                        <div class="space-y-2">
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
+                                                                <span class="text-xs">Cortante</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.slash)}
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
+                                                                <span class="text-xs">Contundente</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.blunt)}
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
+                                                                <span class="text-xs">Perforante</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.pierce)}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="space-y-2">
-                                                        <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
-                                                            <span class="text-xs">Cortante</span>                                                            
-                                                            ${createWeaknessStars(part.weaknesses.slash)}
-                                                        </div>
-                                                        <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
-                                                            <span class="text-xs">Contundente</span>                                                            
-                                                            ${createWeaknessStars(part.weaknesses.blunt)}
-                                                        </div>
-                                                        <div class="flex justify-between items-center">
-                                                            <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
-                                                            <span class="text-xs">Perforante</span>                                                            
-                                                            ${createWeaknessStars(part.weaknesses.pierce)}
-                                                        </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                
+                                <div class="collapsible-section">
+                                    <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                        <h3 class="font-semibold">Debilidades</h3>
+                                        <span class="collapsible-icon">+</span>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="grid gap-2 columnitas">
+                                            ${Object.entries(monster.weaknesses).map(([element, value]) => `
+                                                <div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
+                                                    <div class="flex items-center">
+                                                        <span class="element-icon">
+                                                            <img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
+                                                        </span>
+                                                        <span class="capitalize">${element}</span>
+                                                    </div>
+                                                    <div class="flex gap-1">
+                                                        ${Array.from({length: 3}).map((_, i) => `
+                                                            <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                                                        `).join('')}
                                                     </div>
                                                 </div>
                                             `).join('')}
                                         </div>
                                     </div>
+                                </div>
+                                
+                                ${monster.materials && monster.materials.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Materiales</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            ${createMaterialsList(monster.materials)}
+                                        </div>
+                                    </div>
                                 ` : ''}
                                 
-                                <div>
-                                    <h3 class="font-semibold mb-2">Debilidades</h3>
-                                    <div class="grid gap-2 columnitas">
-                                        ${Object.entries(monster.weaknesses).map(([element, value]) => `
-                                            <div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
-                                                <div class="flex items-center">
-                                                    <span class="element-icon">
-                                                        <img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
-                                                    </span>
-                                                    <span class="capitalize">${element}</span>
-                                                </div>
-                                                <div class="flex gap-1">
-                                                    ${Array.from({length: 3}).map((_, i) => `
-                                                        <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
-                                                    `).join('')}
-                                                </div>
+                                ${monster.variants && monster.variants.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Variantes</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid grid-cols-2 gap-2">
+                                                ${monster.variants.map(variant => `
+                                                    <div class="relative group cursor-pointer" onclick="event.stopPropagation(); openModal('${variant.image}')">
+                                                        <img src="${variant.image}" alt="${variant.name}" class="h-24 object-cover rounded-lg mx-auto imagenmonstro2">
+                                                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                                                            <span class="text-white text-sm">${variant.name}</span>
+                                                        </div>
+                                                    </div>
+                                                `).join('')}
                                             </div>
-                                        `).join('')}
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div>
-                                    ${monster.materials && monster.materials.length > 0 ? `<h3 class="font-semibold mb-2">Materiales</h3>` : ''}
-                                    ${createMaterialsList(monster.materials)}
-                                </div>
-                                <div>
-                                    ${monster.variants && monster.variants.length > 0 ? `<h3 class="font-semibold mb-2">Variantes</h3>` : ''}
-                                    <div class="grid grid-cols-2 gap-2">
-                                        ${monster.variants.map(variant => `
-                                            <div class="relative group cursor-pointer" onclick="event.stopPropagation(); openModal('${variant.image}')">
-                                                <img src="${variant.image}" alt="${variant.name}" class="h-24 object-cover rounded-lg mx-auto imagenmonstro2">
-                                                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
-                                                    <span class="text-white text-sm">${variant.name}</span>
-                                                </div>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
+                                ` : ''}
 
-                                <div>
-                                    ${monster.gallery && monster.gallery.length > 0 ? `<h3 class="font-semibold mb-2">Galeria</h3>` : ''}
-                                    <div class="grid grid-cols-3 gap-2">
-                                        ${monster.gallery.map(image => `
-                                            <img src="${image}" 
-                                                alt="Monster gallery image" 
-                                                class="gallery-image"
-                                                onclick="openModal('${image}')">
-                                        `).join('')}
+                                ${monster.gallery && monster.gallery.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Galería</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid grid-cols-3 gap-2">
+                                                ${monster.gallery.map(image => `
+                                                    <img src="${image}" 
+                                                        alt="Monster gallery image" 
+                                                        class="gallery-image"
+                                                        onclick="event.stopPropagation(); openModal('${image}')">
+                                                `).join('')}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                ` : ''}
                             </div>
                         </div>
                         
@@ -653,6 +685,10 @@
 			).join('');
 		}
 
+        function toggleSection(element) {
+            const section = element.closest('.collapsible-section');
+            section.classList.toggle('active');
+        }
 
         // Event listener para cerrar el modal con la tecla Escape
         document.addEventListener('keydown', (event) => {
@@ -903,7 +939,58 @@
 		color: black !important;
 	}
 	
+	.collapsible-section {
+		border: 1px solid #e5e7eb;
+		border-radius: 0.5rem;
+		margin-bottom: 0.5rem;
+		overflow: hidden;
+	}
 
+	.dark .collapsible-section {
+		border-color: #4b5563;
+	}
+
+	.collapsible-header {
+		padding: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		cursor: pointer;
+		background-color: #f9fafb;
+		transition: background-color 0.2s ease;
+	}
+
+	.dark .collapsible-header {
+		background-color: #374151;
+	}
+
+	.collapsible-header:hover {
+		background-color: #f3f4f6;
+	}
+
+	.dark .collapsible-header:hover {
+		background-color: #4b5563;
+	}
+
+	.collapsible-content {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.3s ease-out;
+		padding: 0 0.5rem;
+	}
+
+	.collapsible-section.active .collapsible-content {
+		max-height: 2000px;
+		padding: 0.5rem;
+	}
+
+	.collapsible-icon {
+		transition: transform 0.3s ease;
+	}
+
+	.collapsible-section.active .collapsible-icon {
+		transform: rotate(45deg);
+	}
 	
 	-------------------------------------------------------------
 	@media (orientation: landscape) and (max-height: 600px) {
