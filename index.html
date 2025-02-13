@@ -369,16 +369,16 @@
                                     <img class="h-48 object-cover rounded-lg mx-auto imagenmonstro" src="${monster.image}" alt="${monster.name}">
                                 </div>
                                 <div class="selectable-content">
-                                    <h2 class="text-xl" style="font-family: 'Permanent Marker'">${monster.name}</h2>                                    
-                                    <p>${monster.type}</p>
+                                    <h2 class="text-xl" style="font-family: 'Permanent Marker'">${monster.name}</h2>
                                     ${isListView ? `<p>${monster.description}</p>` : ''}
                                 </div>
                             </div>
 
                         </div>
                         
-                        <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-1 selectable-content">                            
-                            <div class="flex flex-wrap gap-1 mb-1 selectable-content">
+                        <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-1 selectable-content">      
+                            <p>${monster.type}</p>                    
+                            <div class="flex flex-wrap gap-1 mb-4 selectable-content">
                                 ${monster.game.map(game => `
                                     <span class="cartita px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded-md">
                                         ${game}
@@ -514,9 +514,8 @@
                                     </div>
                                 ` : ''}
                             </div>
-                        </div>
-                        
-                        <div class="mt-2 flex justify-center cursor-pointer rounded-lg" onclick="toggleMonsterDetails(${monster.id}, event)">
+                        </div>                        
+                        <div class="mt-1 flex justify-center cursor-pointer rounded-lg" onclick="toggleMonsterDetails(${monster.id}, event)">
                             <svg class=" expand-indicator h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
