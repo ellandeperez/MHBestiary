@@ -15,7 +15,7 @@
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Cuerpo", "breakable": true, "cortable": false, "weaknesses": {"slash": 1, "blunt": 1, "pierce": 1}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}]
   },
   {
-    "id": 9,
+    "id": 7,
     "name": "Alatreon",
     "type": "Elder Dragon",
     "threat": 9,

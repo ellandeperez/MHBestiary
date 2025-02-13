@@ -42,22 +42,11 @@
 						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/binoculars.png?raw=true" class="h-7 w-7" alt="Filtro">
 					</button>
 					<button 
-						onclick="toggleMaterialSearch()"
-						class="sm:px-2 sm:py-0.5 px-1 py-1 bg-gray-400 rounded-lg hover:bg-gray-500 text-white transition-colors">
-						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_scrap.png?raw=true" class="h-7 w-7" alt="Buscar Materiales">
-					</button>
-					<button 
-						onclick="setView('grid')" 
-						id="gridBtn"
-						class="sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-						Grid
-					</button>
-					<button 
-						onclick="setView('list')" 
-						id="listBtn"
-						class="sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 text-white bg-gray-500 rounded-lg hover:bg-gray-600">
-						Lista
-					</button>
+                        onclick="toggleView()" 
+                        id="viewToggleBtn"
+                        class="sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                        <span id="viewToggleText">Lista</span>
+                    </button>
 				</div>
             </div>
 
@@ -144,19 +133,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Nuevo buscador de materiales -->
-            <div id="materialSearchContainer" class="material-search-container">
-                <div class="pr-4 pl-4 pt-4 pb-1">
-                    <input 
-                        type="text" 
-                        id="materialSearchInput"
-                        placeholder="Buscar materiales o monstruos..." 
-                        class="w-full p-2 rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-blue-200 outline-none search-input"
-                        oninput="searchMaterials()">
-                    <div id="materialSearchResults" class="mt-4 space-y-2"></div>
-                </div>
-            </div>
         </div>
 
         <div id="monstersContainer" class="grid-view pt-36"></div>
@@ -225,48 +201,28 @@
                 7: 'bg-yellow-600',
                 8: 'bg-yellow-700',
                 9: 'bg-red-500',
-                10: 'bg-red-900'
+                10: 'bg-black'
             };
             return colors[threat] || 'bg-gray-500';
         }
-
-		function toggleMaterialSearch() {
-			const materialSearchContainer = document.getElementById('materialSearchContainer');
-			const filterContainer = document.getElementById('filterContainer');
-			
-			// Si los filtros están visibles, ocultarlos
-			if (filterContainer.classList.contains('show')) {
-				filterContainer.classList.remove('show');
-			}
-			
-			// Alternar visibilidad del buscador de materiales
-			materialSearchContainer.classList.toggle('show');
-			
-			// Limpiar resultados al ocultar
-			if (!materialSearchContainer.classList.contains('show')) {
-				document.getElementById('materialSearchInput').value = '';
-				document.getElementById('materialSearchResults').innerHTML = '';
-			}
-		}
 		
         function toggleFilters() {
-            const filterContainer = document.getElementById('filterContainer');
-			const materialSearchContainer = document.getElementById('materialSearchContainer');
-			
-			// Si el buscador de materiales está visible, ocultarlo
-			if (materialSearchContainer.classList.contains('show')) {
-				materialSearchContainer.classList.remove('show');
-				document.getElementById('materialSearchInput').value = '';
-				document.getElementById('materialSearchResults').innerHTML = '';
-			}
-			
+            const filterContainer = document.getElementById('filterContainer');('materialSearchContainer');
+						
 			// Alternar visibilidad de los filtros
 			filterContainer.classList.toggle('show');
         }
 
+        
+
         function toggleMonsterDetails(monsterId, event) {
-            if (event.target.classList.contains('gallery-image')) {
-                return; // No expandir/colapsar si se hace clic en una imagen de la galería
+            // Solo proceder si el clic viene de la imagen o el indicador de expansión
+            const isClickableElement = event.target.closest('.expand-indicator') || 
+                                     event.target.closest('.imagenmonstro') ||
+                                     event.target.closest('div[onclick*="toggleMonsterDetails"]');
+            
+            if (!isClickableElement) {
+                return;
             }
             
             const detailsElement = document.querySelector(`#monster-${monsterId} .monster-details`);
@@ -316,58 +272,6 @@
                 </div>
             `;
         }
-		
-		function searchMaterials() {
-            const searchTerm = document.getElementById('materialSearchInput').value.toLowerCase();
-            const resultsContainer = document.getElementById('materialSearchResults');
-            resultsContainer.innerHTML = '';
-
-            if (searchTerm.length < 1) return;
-
-            const materialMatches = [];
-            monsters.forEach(monster => {
-                monster.materials.forEach(material => {
-                    if (material.name.toLowerCase().includes(searchTerm)) {
-                        materialMatches.push({
-                            monsterName: monster.name,
-                            material: material
-                        });
-                    }else if (monster.name.toLowerCase().includes(searchTerm)) {
-                        materialMatches.push({
-                            monsterName: monster.name,
-                            material: material
-                        });
-                    }
-                });
-            });
-
-            if (materialMatches.length === 0) {
-                resultsContainer.innerHTML = '<p class="text-gray-500 dark:text-gray-400">No se encontraron materiales.</p>';
-                return;
-            }
-
-            materialMatches.forEach(match => {
-                const materialCard = document.createElement('div');
-                materialCard.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow';
-                materialCard.innerHTML = `
-                    <div class="flex justify-between items-start">                      
-                        <div class="flex items-center gap-2">    
-                            <img style="width:30px;" src="${match.material.icon}"></img>
-                            <div>
-                                <h3 class="font-medium text-gray-900 dark:text-white">${match.material.name}</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Monstruo: ${match.monsterName}</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Fuente: ${match.material.source}</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-yellow-500">★${match.material.rarity}</span>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">${match.material.dropRate}%</p>
-                        </div>
-                    </div>
-                `;
-                resultsContainer.appendChild(materialCard);
-            });
-        }
 
         // Filtrado por elementos
         function filterByElement(element) {
@@ -391,6 +295,7 @@
 
         // Actualizar la función filterMonsters para incluir los nuevos filtros
         function filterMonsters() {
+            const currentView = 'grid';
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const typeFilter = document.getElementById('typeFilter').value;
             const threatFilter = document.getElementById('threatFilter').value;
@@ -444,7 +349,6 @@
         function createMonsterCard(monster, isListView = false) {
             const isExpanded = expandedCards.has(monster.id);
             
-            // Helper function to create star ratings for part weaknesses
             const createWeaknessStars = (value) => `
                 <div class="flex gap-1">
                     ${Array.from({length: 3}).map((_, i) => `
@@ -454,45 +358,37 @@
             `;
             
             return `
-                <div id="monster-${monster.id}" class="card ${isExpanded ? 'expanded' : ''}" onclick="toggleMonsterDetails(${monster.id}, event)">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start">
-                            <div class="flex-1">
-                                <div class="relative mb-4">
+                <div id="monster-${monster.id}" class="card ${isExpanded ? 'expanded' : ''}">
+                    <div class="p-2">
+                        <div class="flex justify-between items-start p-1">
+                            <div class="flex-1">                                
+                                <div class="relative cursor-pointer" onclick="toggleMonsterDetails(${monster.id}, event)">  
+                                    <div class="${getThreatColor(monster.threat)} text-white font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-sm absolute top-2 left-2">
+                                        ${monster.threat}
+                                    </div>
                                     <img class="h-48 object-cover rounded-lg mx-auto imagenmonstro" src="${monster.image}" alt="${monster.name}">
                                 </div>
-                                <h2 class="text-xl" style="font-family: 'Permanent Marker'">${monster.name}</h2>
-                                <p>${monster.type}</p>
-                                ${isListView ? `
-                                    <div class="flex flex-wrap gap-1 mt-1">
-                                        ${monster.game.map(game => `
-                                            <span class="cartita px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded-md text-gray-700 dark:text-gray-300">
-                                                ${game}
-                                            </span>
-                                        `).join('')}
-                                    </div>
-                                ` : ''}
-                                ${isListView ? `<p>${monster.description}</p>` : ''}
+                                <div class="selectable-content">
+                                    <h2 class="text-xl" style="font-family: 'Permanent Marker'">${monster.name}</h2>                                    
+                                    <p>${monster.type}</p>
+                                    ${isListView ? `<p>${monster.description}</p>` : ''}
+                                </div>
                             </div>
-                            <div class="${getThreatColor(monster.threat)} text-white font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
-                                ${monster.threat}
-                            </div>
+
                         </div>
-                        ${!isListView ? `
-                            <div class="flex flex-wrap gap-1 mt-1">
+                        
+                        <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-1 selectable-content">                            
+                            <div class="flex flex-wrap gap-1 mb-1 selectable-content">
                                 ${monster.game.map(game => `
                                     <span class="cartita px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded-md">
                                         ${game}
                                     </span>
                                 `).join('')}
                             </div>
-                        ` : ''}
-                        
-                        <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-4">
                             ${!isListView ? `<p class="mb-4">${monster.description}</p>` : ''}
                             
                             <div class="space-y-2">
-                                <!-- Parts Section -->
+                                <!-- El resto del contenido de monster-details permanece igual -->
                                 ${monster.parts && monster.parts.length > 0 ? `
                                     <div class="collapsible-section">
                                         <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
@@ -620,8 +516,8 @@
                             </div>
                         </div>
                         
-                        <div class="mt-4 flex justify-center">
-                            <svg class="expand-indicator h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="mt-2 flex justify-center cursor-pointer rounded-lg" onclick="toggleMonsterDetails(${monster.id}, event)">
+                            <svg class=" expand-indicator h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
@@ -629,23 +525,33 @@
                 </div>
             `;
         }
-		function setView(view) {
-            currentView = view;
-            const container = document.getElementById('monstersContainer');
-            const gridBtn = document.getElementById('gridBtn');
-            const listBtn = document.getElementById('listBtn');
 
-            if (view === 'grid') {
-                container.className = 'grid-view pt-36';
-                gridBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600';
-                listBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600';
-            } else {
+        function toggleView() {
+            const container = document.getElementById('monstersContainer');
+            const toggleBtn = document.getElementById('viewToggleBtn');
+            const toggleText = document.getElementById('viewToggleText');
+            
+            if (currentView === 'grid') {
+                // Cambiar a vista lista
+                currentView = 'list';
                 container.className = 'list-view pt-36';
-                listBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600';
-                gridBtn.className = 'sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600';
+                toggleText.textContent = 'Grid';
+            } else {
+                // Cambiar a vista grid
+                currentView = 'grid';
+                container.className = 'grid-view pt-36';
+                toggleText.textContent = 'Lista';
             }
+            
             filterMonsters();
         }
+
+        // Asegúrate de que la vista inicial es correcta
+        document.addEventListener("DOMContentLoaded", () => {
+            loadMonsters();
+            // Establecer el texto inicial del botón
+            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'Lista' : 'Grid';
+        });
 
         function filterMonsters() {
 			const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -757,6 +663,10 @@
 		background-color: #1a1a1a;
 		color: #ffffff;
 	}
+    .selectable-content {
+        user-select: text;
+        cursor: text;
+    }
 	.card {
 		background-color: white;
 		border-radius: 12px;
@@ -772,6 +682,24 @@
 		transform: translateY(-2px);
 		box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 	}
+
+    .card .imagenmonstro,
+    .card .expand-indicator {
+        cursor: pointer;
+    }
+
+    .monster-details {
+        user-select: text;
+        cursor: text;
+    }
+    .cursor-pointer{
+        padding:5px;
+        background-color: rgb(243, 243, 243);
+        border-radius: 20px;
+    }
+    .dark .cursor-pointer{
+        background-color: rgb(71, 71, 71);
+    }
 	.grid-view {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -800,8 +728,7 @@
 	.filter-container {
 		background-color: #f0f0f0;
 		border-radius: 12px;
-		overflow: hidden;
-		transition: max-height 0.3s ease;
+			overflow-y: auto; /* Permitir scroll vertical */
 		max-height: 0;
 		transition: all 0.3s ease;
 	}
@@ -890,24 +817,6 @@
 	.topcoso{background-color: #f5f5f5;}
 	.dark .topcoso{background-color: #232323;}
 	.columnitas {grid-template-columns: repeat(2, 1fr);}
-	.material-search-container {
-		background-color: #f0f0f0;
-		border-radius: 12px;
-		overflow: hidden;
-		transition: all 0.3s ease;
-		max-height: 0;
-		opacity: 0;
-		margin-top: 1rem;
-	}
-
-	.dark .material-search-container {
-		background-color: #444444;
-	}
-
-	.material-search-container.show {
-		max-height: 500px;
-		opacity: 1;
-	}
 	button:active {
 		transform: scale(0.95);
 	}
@@ -992,7 +901,6 @@
 		transform: rotate(45deg);
 	}
 	
-	-------------------------------------------------------------
 	@media (orientation: landscape) and (max-height: 600px) {
     .topcoso{
 	 padding:0.5rem 1rem 0 1rem;
@@ -1107,9 +1015,6 @@
 .botonDark:hover{
     background-color: #6f737a;
 }
-
-
-bg-blue-500 text-white rounded-lg hover:bg-blue-600';
 
 /* Ajustes específicos para móvil */
 @media (max-width: 768px) {
