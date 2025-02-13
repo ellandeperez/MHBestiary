@@ -135,7 +135,7 @@
             </div>
         </div>
 
-        <div id="monstersContainer" class="grid-view pt-36"></div>
+        <div id="monstersContainer" class="grid-view pt-32"></div>
     </div>
 
     <!-- Modal para la galería de imágenes -->
@@ -360,17 +360,17 @@
             return `
                 <div id="monster-${monster.id}" class="card ${isExpanded ? 'expanded' : ''}">
                     <div class="p-2">
-                        <div class="flex justify-between items-start p-1">
-                            <div class="flex-1">                                
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <div class="selectable-content">
+                                    <h2 class="${isListView ? `` : 'mb-1'} text-xl flex items-center justify-center" style="font-family: 'Permanent Marker'">${monster.name}</h2>
+                                    ${isListView ? `<p class="mb-1">${monster.description}</p>` : ''}
+                                </div>       
                                 <div class="relative cursor-pointer" onclick="toggleMonsterDetails(${monster.id}, event)">  
                                     <div class="${getThreatColor(monster.threat)} text-white font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-sm absolute top-2 left-2">
                                         ${monster.threat}
                                     </div>
-                                    <img class="h-48 object-cover rounded-lg mx-auto imagenmonstro" src="${monster.image}" alt="${monster.name}">
-                                </div>
-                                <div class="selectable-content">
-                                    <h2 class="text-xl" style="font-family: 'Permanent Marker'">${monster.name}</h2>
-                                    ${isListView ? `<p>${monster.description}</p>` : ''}
+                                    <img class="h-40 object-cover rounded-lg mx-auto imagenmonstro" src="${monster.image}" alt="${monster.name}">
                                 </div>
                             </div>
 
@@ -533,12 +533,12 @@
             if (currentView === 'grid') {
                 // Cambiar a vista lista
                 currentView = 'list';
-                container.className = 'list-view pt-36';
+                container.className = 'list-view pt-32';
                 toggleText.textContent = 'Grid';
             } else {
                 // Cambiar a vista grid
                 currentView = 'grid';
-                container.className = 'grid-view pt-36';
+                container.className = 'grid-view pt-32';
                 toggleText.textContent = 'Lista';
             }
             
