@@ -32,7 +32,7 @@
                         id="searchInput"
                         placeholder="Busca meowstruos..." 
                         class="w-full p-2 rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:ring-blue-200 outline-none search-input"
-                        oninput="filterMonsters()">
+                        oninput="debouncedFilterMonsters()">
                 </div>
                 
                 <div class="flex sm:gap-2 gap-1">
@@ -293,58 +293,6 @@
 			filterMonsters(); // Filtrar monstruos después de cambiar selección
 		}
 
-        // Actualizar la función filterMonsters para incluir los nuevos filtros
-        function filterMonsters() {
-            const currentView = 'grid';
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const typeFilter = document.getElementById('typeFilter').value;
-            const threatFilter = document.getElementById('threatFilter').value;
-            const localeFilter = document.getElementById('localeFilter').value;
-
-            const filteredMonsters = monsters.filter(monster => {
-                // Filtro de favoritos
-
-                const matchesSearch = monster.name.toLowerCase().includes(searchTerm) || 
-                                    monster.type.toLowerCase().includes(searchTerm) ||
-                                    monster.description.toLowerCase().includes(searchTerm);
-                const matchesType = !typeFilter || monster.type === typeFilter;
-                
-                let matchesLocale = true;
-                if (localeFilter) {
-                    matchesLocale = monster.locale.includes(localeFilter);
-                }
-                
-                let matchesThreat = true;
-                if (threatFilter) {
-                    const [min, max] = threatFilter.split('-').map(Number);
-                    matchesThreat = monster.threat >= min && monster.threat <= max;
-                }
-
-                // Filtro elemental
-                let matchesElement = true;
-                if (selectedElement) {
-                    matchesElement = monster.weaknesses[selectedElement]?.value >= 2;
-                }
-
-                return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
-            });
-
-            const container = document.getElementById('monstersContainer');
-            container.innerHTML = filteredMonsters.map(monster => 
-                createMonsterCard(monster, currentView === 'list')
-            ).join('');
-
-            // Restaurar estado de expansión de las tarjetas
-            expandedCards.forEach(id => {
-                const detailsElement = document.querySelector(`#monster-${id} .monster-details`);
-                const cardElement = document.querySelector(`#monster-${id}`);
-                if (detailsElement && cardElement) {
-                    detailsElement.classList.add('expanded');
-                    cardElement.classList.add('expanded');
-                }
-            });
-        }
-
         // Actualizar createMonsterCard para incluir el botón de favoritos
         function createMonsterCard(monster, isListView = false) {
             const isExpanded = expandedCards.has(monster.id);
@@ -545,6 +493,77 @@
             filterMonsters();
         }
 
+        function filterMonsters() {
+            // Verificar que monsters esté cargado
+            if (!monsters || !Array.isArray(monsters)) {
+                console.log('Esperando carga de datos...');
+                return;
+            }
+
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            const typeFilter = document.getElementById('typeFilter')?.value || '';
+            const threatFilter = document.getElementById('threatFilter')?.value || '';
+            const localeFilter = document.getElementById('localeFilter')?.value || '';
+
+            const filteredMonsters = monsters.filter(monster => {
+                // Verificar que el monstruo tenga las propiedades necesarias
+                if (!monster) return false;
+
+                // Buscar en el nombre, tipo y descripción
+                const basicSearch = 
+                    (monster.name || '').toLowerCase().includes(searchTerm) || 
+                    (monster.type || '').toLowerCase().includes(searchTerm) ||
+                    (monster.description || '').toLowerCase().includes(searchTerm);
+
+                // Buscar en materiales
+                const materialsSearch = monster.materials?.some(material => 
+                    (material.name || '').toLowerCase().includes(searchTerm) ||
+                    (material.source || '').toLowerCase().includes(searchTerm)
+                ) || false;
+
+                // Buscar en juegos
+                const gamesSearch = monster.game?.some(game => 
+                    (game || '').toLowerCase().includes(searchTerm)
+                ) || false;
+
+                // Combinar todas las búsquedas
+                const matchesSearch = basicSearch || materialsSearch || gamesSearch;
+
+                // Resto de filtros con comprobaciones null-safe
+                const matchesType = !typeFilter || monster.type === typeFilter;
+                const matchesLocale = !localeFilter || (monster.locale && monster.locale.includes(localeFilter));
+                const matchesThreat = !threatFilter || ((() => {
+                    if (!monster.threat) return false;
+                    const [min, max] = threatFilter.split('-').map(Number);
+                    return monster.threat >= min && monster.threat <= max;
+                })());
+
+                // Filtro elemental con comprobación null-safe
+                const matchesElement = !selectedElement || 
+                    (monster.weaknesses && monster.weaknesses[selectedElement] >= 2);
+
+                return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
+            });
+
+            // Renderizar resultados con comprobación null-safe
+            const container = document.getElementById('monstersContainer');
+            if (container) {
+                container.innerHTML = filteredMonsters.map(monster => 
+                    createMonsterCard(monster, currentView === 'list')
+                ).join('');
+
+                // Restaurar expansiones
+                expandedCards.forEach(id => {
+                    const detailsElement = document.querySelector(`#monster-${id} .monster-details`);
+                    const cardElement = document.querySelector(`#monster-${id}`);
+                    if (detailsElement && cardElement) {
+                        detailsElement.classList.add('expanded');
+                        cardElement.classList.add('expanded');
+                    }
+                });
+            }
+        }
+
         // Asegúrate de que la vista inicial es correcta
         document.addEventListener("DOMContentLoaded", () => {
             loadMonsters();
@@ -552,44 +571,7 @@
             document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'Lista' : 'Grid';
         });
 
-        function filterMonsters() {
-			const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-			const typeFilter = document.getElementById('typeFilter').value;
-			const threatFilter = document.getElementById('threatFilter').value;
-			const localeFilter = document.getElementById('localeFilter').value;
-
-			const filteredMonsters = monsters.filter(monster => {
-				const matchesSearch = monster.name.toLowerCase().includes(searchTerm) || 
-									  monster.type.toLowerCase().includes(searchTerm);
-
-				const matchesType = !typeFilter || monster.type === typeFilter;
-				
-				let matchesLocale = true;
-				if (localeFilter) {
-					matchesLocale = monster.locale.includes(localeFilter);
-				}
-				
-				let matchesThreat = true;
-				if (threatFilter) {
-					const [min, max] = threatFilter.split('-').map(Number);
-					matchesThreat = monster.threat >= min && monster.threat <= max;
-				}
-
-				// ✅ FILTRO POR ELEMENTO (solo muestra monstruos con debilidad 3 en ese elemento)
-				let matchesElement = true;
-				if (selectedElement) {
-					matchesElement = monster.weaknesses[selectedElement] === 3;
-				}
-
-				return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
-			});
-
-			const container = document.getElementById('monstersContainer');
-			container.innerHTML = filteredMonsters.map(monster => 
-				createMonsterCard(monster, currentView === 'list')
-			).join('');
-		}
-
+        
         function toggleSection(element) {
             const section = element.closest('.collapsible-section');
             section.classList.toggle('active');
@@ -629,6 +611,23 @@
 				toggleFilters();
 			}
 		}
+
+        // Función debounce que espera a que el usuario deje de escribir
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func.apply(this, args);
+                }, wait);
+            };
+        }
+
+        // Aplicar debounce al filtrado
+        const debouncedFilterMonsters = debounce(filterMonsters, 200);
+
+        // Modificar el input para usar el debounce
+        document.getElementById('searchInput').oninput = debouncedFilterMonsters;
     </script>
 </body>
 <style>
