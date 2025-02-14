@@ -45,7 +45,7 @@
                         onclick="toggleView()" 
                         id="viewToggleBtn"
                         class="sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                        <span id="viewToggleText">Lista</span>
+                        <span id="viewToggleText">Super Grid</span>
                     </button>
 				</div>
             </div>
@@ -148,7 +148,7 @@
     <script>
         let monsters = [];
         let currentPage = 1;
-        const monstersPerPage = 5;
+        let monstersPerPage = 5; // Cambiado de const a let para poder modificarlo
         let isLoading = false;
 
 		async function loadMonsters() {
@@ -163,7 +163,7 @@
 
 		document.addEventListener("DOMContentLoaded", loadMonsters);
 
-        let currentView = 'grid';
+        let currentView = 'grid';  // Solo 'grid' o 'supergrid'
         let expandedCards = new Set();
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let selectedElement = null;
@@ -298,6 +298,14 @@
 
         // Actualizar createMonsterCard para incluir el botón de favoritos
         function createMonsterCard(monster, isListView = false) {
+            if (currentView === 'supergrid') {
+                return `
+                    <div class="super-grid-card p-1 bg-white rounded-lg" onclick="showMonsterModal('${monster.id}')">
+                        <img class="w-18 h-18 object-cover" src="${monster.image}" alt="${monster.name}">
+                    </div>
+                `;
+            }
+            
             const isExpanded = expandedCards.has(monster.id);
             
             const createWeaknessStars = (value) => `
@@ -481,17 +489,19 @@
             const toggleText = document.getElementById('viewToggleText');
             
             if (currentView === 'grid') {
-                // Cambiar a vista lista
-                currentView = 'list';
-                container.className = 'list-view pt-32';
-                toggleText.textContent = 'Grid';
+                currentView = 'supergrid';
+                container.className = 'super-grid-view pt-32';
+                toggleText.textContent = 'GRID';
+                monstersPerPage = 10; // Cambiar a 15 en modo supergrid
             } else {
-                // Cambiar a vista grid
                 currentView = 'grid';
                 container.className = 'grid-view pt-32';
-                toggleText.textContent = 'Lista';
+                toggleText.textContent = 'SUPER GRID';
+                monstersPerPage = 5; // Volver a 5 en modo grid
             }
             
+            // Resetear la página actual y volver a cargar
+            currentPage = 1;
             filterMonsters();
         }
 
@@ -687,7 +697,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             loadMonsters();
             setupInfiniteScroll();
-            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'Lista' : 'Grid';
+            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'SUPER GRID' : 'GRID';
         });
 
         
@@ -747,6 +757,36 @@
 
         // Modificar el input para usar el debounce
         document.getElementById('searchInput').oninput = debouncedFilterMonsters;
+
+        // Añadir función para mostrar modal con detalles del monstruo
+        function showMonsterModal(monsterId) {
+            const monster = monsters.find(m => m.id === parseInt(monsterId));
+            if (!monster) return;
+
+            const modalHtml = `
+                <div id="monsterDetailModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-90vh overflow-y-auto relative">
+                        <button onclick="closeMonsterModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                        ${createMonsterCard(monster, false)}
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMonsterModal() {
+            const modal = document.getElementById('monsterDetailModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        }
     </script>
 </body>
 <style>
@@ -822,11 +862,26 @@
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 0.5rem;
 	}
-	.list-view {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
+	.super-grid-view {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.25rem;
+    }
+
+    .super-grid-card {
+        transition: all 0.3s ease;
+        border: 3px outset;
+    }
+    
+    .super-grid-card:hover {
+        border: 6px outset;
+    }
+
+    @media (min-width: 1024px) {
+        .super-grid-view {
+            grid-template-columns: repeat(10, 1fr);
+        }
+    }
 	.monster-details {
 		opacity: 0;
 		transform: translateY(-20px);
