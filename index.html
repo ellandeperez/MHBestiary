@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BESTIARIO</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/297/297837.png">
+    <link rel="icon" type="image/png" href="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent Marker">
 </head>
@@ -339,7 +339,6 @@
                             ${!isListView ? `<p class="mb-4">${monster.description}</p>` : ''}
                             
                             <div class="space-y-2">
-                                <!-- El resto del contenido de monster-details permanece igual -->
                                 ${monster.parts && monster.parts.length > 0 ? `
                                     <div class="collapsible-section">
                                         <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
@@ -347,7 +346,7 @@
                                             <span class="collapsible-icon">+</span>
                                         </div>
                                         <div class="collapsible-content">
-                                            <div class="grid gap-2 columnitas">
+                                            <div class="grid gap-1 columnitas">
                                                 ${monster.parts.map(part => `
                                                     <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
                                                         <div class="flex justify-between items-center mb-2">
@@ -366,17 +365,17 @@
                                                         <div class="space-y-2">
                                                             <div class="flex justify-between items-center">
                                                                 <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
-                                                                <span class="text-xs">Cortante</span>                                                            
+                                                                <span class="text-xs">Cortar</span>                                                            
                                                                 ${createWeaknessStars(part.weaknesses.slash)}
                                                             </div>
                                                             <div class="flex justify-between items-center">
                                                                 <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
-                                                                <span class="text-xs">Contundente</span>                                                            
+                                                                <span class="text-xs">Impacto</span>                                                            
                                                                 ${createWeaknessStars(part.weaknesses.blunt)}
                                                             </div>
                                                             <div class="flex justify-between items-center">
                                                                 <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
-                                                                <span class="text-xs">Perforante</span>                                                            
+                                                                <span class="text-xs">Perforar</span>                                                            
                                                                 ${createWeaknessStars(part.weaknesses.pierce)}
                                                             </div>
                                                         </div>
