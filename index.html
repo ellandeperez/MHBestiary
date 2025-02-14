@@ -147,6 +147,9 @@
 
     <script>
         let monsters = [];
+        let currentPage = 1;
+        const monstersPerPage = 4;
+        let isLoading = false;
 
 		async function loadMonsters() {
 			try {
@@ -494,7 +497,6 @@
         }
 
         function filterMonsters() {
-            // Verificar que monsters esté cargado
             if (!monsters || !Array.isArray(monsters)) {
                 console.log('Esperando carga de datos...');
                 return;
@@ -545,12 +547,29 @@
                 return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
             });
 
-            // Renderizar resultados con comprobación null-safe
+            // Paginar resultados
+            const startIndex = 0;
+            const endIndex = monstersPerPage;
+            const paginatedMonsters = filteredMonsters.slice(startIndex, endIndex);
+
+            // Renderizar resultados
             const container = document.getElementById('monstersContainer');
             if (container) {
-                container.innerHTML = filteredMonsters.map(monster => 
+                // Limpiar contenedor solo si es una nueva búsqueda
+                container.innerHTML = '';
+                
+                // Renderizar primeros monstruos
+                const newContent = paginatedMonsters.map(monster => 
                     createMonsterCard(monster, currentView === 'list')
                 ).join('');
+                
+                container.insertAdjacentHTML('beforeend', newContent);
+
+                // Guardar los monstruos filtrados para el scroll infinito
+                container.dataset.filteredMonsters = JSON.stringify(filteredMonsters);
+                
+                // Resetear la página actual
+                currentPage = 1;
 
                 // Restaurar expansiones
                 expandedCards.forEach(id => {
@@ -561,13 +580,114 @@
                         cardElement.classList.add('expanded');
                     }
                 });
+
+                // Actualizar el sentinel para infinite scroll
+                if (typeof setupInfiniteScroll === 'function') {
+                    setupInfiniteScroll();
+                }
             }
+        }
+
+        // Añadir función para cargar más monstruos
+        function loadMoreMonsters() {
+            if (isLoading) return;
+
+            const container = document.getElementById('monstersContainer');
+            const filteredMonsters = JSON.parse(container.dataset.filteredMonsters || '[]');
+            
+            const startIndex = currentPage * monstersPerPage;
+            const endIndex = startIndex + monstersPerPage;
+            const nextMonsters = filteredMonsters.slice(startIndex, endIndex);
+
+            if (nextMonsters.length > 0) {
+                isLoading = true;
+                
+                // Añadir indicador de carga
+                const loadingIndicator = document.createElement('div');
+                loadingIndicator.className = 'loading-indicator';
+                loadingIndicator.innerHTML = `
+                    <div class="flex justify-center items-center p-4">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
+                    </div>
+                `;
+                container.appendChild(loadingIndicator);
+
+                // Simular carga con delay
+                setTimeout(() => {
+                    // Remover indicador de carga
+                    loadingIndicator.remove();
+                    
+                    // Añadir nuevos monstruos
+                    const newContent = nextMonsters.map(monster => 
+                        createMonsterCard(monster, currentView === 'list')
+                    ).join('');
+                    
+                    container.insertAdjacentHTML('beforeend', newContent);
+                    
+                    currentPage++;
+                    isLoading = false;
+                }, 500);
+            }
+        }
+
+        // Modificar la función setupInfiniteScroll
+        function setupInfiniteScroll() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !isLoading) {
+                        loadMoreMonsters();
+                    }
+                });
+            }, {
+                rootMargin: '100px',
+                threshold: 0.1
+            });
+
+            // Crear un elemento sentinel para observar
+            function createSentinel() {
+                const sentinel = document.createElement('div');
+                sentinel.className = 'scroll-sentinel';
+                sentinel.style.height = '10px';
+                return sentinel;
+            }
+
+            // Función para actualizar el sentinel
+            function updateSentinel() {
+                const container = document.getElementById('monstersContainer');
+                let sentinel = container.querySelector('.scroll-sentinel');
+                
+                // Remover sentinel existente si hay uno
+                if (sentinel) {
+                    sentinel.remove();
+                }
+
+                // Añadir nuevo sentinel
+                sentinel = createSentinel();
+                container.appendChild(sentinel);
+                
+                // Observar el nuevo sentinel
+                observer.observe(sentinel);
+            }
+
+            // Modificar loadMoreMonsters para actualizar el sentinel
+            const originalLoadMore = loadMoreMonsters;
+            loadMoreMonsters = function() {
+                if (isLoading) return;
+
+                originalLoadMore();
+                
+                // Actualizar sentinel después de cargar nuevos monstruos
+                setTimeout(updateSentinel, 600); // Después del delay de carga
+            };
+
+            // Inicializar sentinel
+            updateSentinel();
         }
 
         // Asegúrate de que la vista inicial es correcta
         document.addEventListener("DOMContentLoaded", () => {
             loadMonsters();
-            // Establecer el texto inicial del botón
+            setupInfiniteScroll();
             document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'Lista' : 'Grid';
         });
 
@@ -1100,6 +1220,31 @@
 
 .dark .filter-container::-webkit-scrollbar-thumb {
     background: #555;
+}
+
+/* Añadir estos estilos al final de tu sección de estilos */
+.loading-indicator {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+.scroll-sentinel {
+    width: 100%;
+    height: 10px;
+    margin-top: 20px;
+    visibility: hidden;
 }
 </style>
 </html>
