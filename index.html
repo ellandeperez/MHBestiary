@@ -145,17 +145,37 @@
         </div>
     </div>
 
+    <!-- Añadir justo antes del cierre del body -->
+    <div id="superGridModal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 flex items-center justify-center">
+            <div class="bg-white dark:bg-gray-800 w-full max-w-4xl rounded-lg relative">
+                <!-- Botón de cerrar -->
+                <button onclick="closeSuperGridModal()" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700 dark:text-gray-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                
+                <!-- Contenido del modal -->
+                <div id="superGridModalContent" class="p-6"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let monsters = [];
         let currentPage = 1;
-        let monstersPerPage = 5; // Cambiado de const a let para poder modificarlo
+        let monstersPerPage = 10; // Cambiado de const a let para poder modificarlo
         let isLoading = false;
 
 		async function loadMonsters() {
 			try {
 				const response = await fetch('https://raw.githubusercontent.com/ellandeperez/MHBestiary/refs/heads/main/monstruos.json');
 				monsters = await response.json();
-				filterMonsters(); // Llama a la función para mostrar los monstruos en pantalla
+				// Importante: aquí solo llamamos una vez a filterMonsters
+				const container = document.getElementById('monstersContainer');
+				container.innerHTML = ''; // Limpiar el contenedor antes de la primera carga
+				filterMonsters();
 			} catch (error) {
 				console.error('Error cargando los monstruos:', error);
 			}
@@ -300,8 +320,8 @@
         function createMonsterCard(monster, isListView = false) {
             if (currentView === 'supergrid') {
                 return `
-                    <div class="super-grid-card p-1 bg-white rounded-lg" onclick="showMonsterModal('${monster.id}')">
-                        <img class="w-18 h-18 object-cover" src="${monster.image}" alt="${monster.name}">
+                    <div class="super-grid-card p-1 rounded-lg cursor-pointer" onclick="showSuperGridModal('${monster.id}')">
+                        <img class="w-full h-full object-cover rounded-lg" src="${monster.image}" alt="${monster.name}">
                     </div>
                 `;
             }
@@ -483,25 +503,41 @@
             `;
         }
 
+        // Añadir una variable para controlar las cargas pendientes
+        let loadingTimeout = null;
+
         function toggleView() {
+            // Cancelar cualquier carga pendiente
+            if (loadingTimeout) {
+                clearTimeout(loadingTimeout);
+                loadingTimeout = null;
+            }
+            
+            // Resetear el estado
+            currentPage = 1;
+            isLoading = false;
+            expandedCards.clear();
+            
             const container = document.getElementById('monstersContainer');
             const toggleBtn = document.getElementById('viewToggleBtn');
             const toggleText = document.getElementById('viewToggleText');
+            
+            // Limpiar el contenedor antes de cambiar la vista
+            container.innerHTML = '';
             
             if (currentView === 'grid') {
                 currentView = 'supergrid';
                 container.className = 'super-grid-view pt-32';
                 toggleText.textContent = 'GRID';
-                monstersPerPage = 10; // Cambiar a 15 en modo supergrid
+                monstersPerPage = 20;
             } else {
                 currentView = 'grid';
                 container.className = 'grid-view pt-32';
                 toggleText.textContent = 'SUPER GRID';
-                monstersPerPage = 5; // Volver a 5 en modo grid
+                monstersPerPage = 10;
             }
             
-            // Resetear la página actual y volver a cargar
-            currentPage = 1;
+            // Aplicar los filtros actuales a la nueva vista
             filterMonsters();
         }
 
@@ -551,7 +587,7 @@
 
                 // Filtro elemental con comprobación null-safe
                 const matchesElement = !selectedElement || 
-                    (monster.weaknesses && monster.weaknesses[selectedElement] >= 2);
+                    (monster.weaknesses && monster.weaknesses[selectedElement] >= 3);
 
                 return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
             });
@@ -621,8 +657,15 @@
                 `;
                 container.appendChild(loadingIndicator);
 
-                // Simular carga con delay
-                setTimeout(() => {
+                // Guardar referencia al timeout actual
+                loadingTimeout = setTimeout(() => {
+                    // Si la vista ha cambiado, no cargar los monstruos
+                    if (loadingTimeout === null) {
+                        loadingIndicator.remove();
+                        isLoading = false;
+                        return;
+                    }
+
                     // Remover indicador de carga
                     loadingIndicator.remove();
                     
@@ -635,6 +678,12 @@
                     
                     currentPage++;
                     isLoading = false;
+                    loadingTimeout = null;
+
+                    // Actualizar sentinel después de cargar nuevos monstruos
+                    if (typeof updateSentinel === 'function') {
+                        updateSentinel();
+                    }
                 }, 500);
             }
         }
@@ -760,24 +809,65 @@
 
         // Añadir función para mostrar modal con detalles del monstruo
         function showMonsterModal(monsterId) {
-            const monster = monsters.find(m => m.id === parseInt(monsterId));
-            if (!monster) return;
-
+            // Mostrar un loader mientras se carga la información
             const modalHtml = `
                 <div id="monsterDetailModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-90vh overflow-y-auto relative">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-4 m-4">
                         <button onclick="closeMonsterModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
-                        ${createMonsterCard(monster, false)}
+                        <div class="flex justify-center items-center h-32">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
+                        </div>
                     </div>
                 </div>
             `;
-
+            
             document.body.insertAdjacentHTML('beforeend', modalHtml);
             document.body.style.overflow = 'hidden';
+
+            // Obtener el monstruo específico por ID
+            const monster = monsters.find(m => m.id === parseInt(monsterId));
+            
+            if (!monster) {
+                closeMonsterModal();
+                return;
+            }
+
+            // Crear toda la tarjeta del monstruo como si fuera modo grid
+            const monsterCard = createMonsterCard(monster, false);
+
+            // Reemplazar el contenido del modal con los detalles del monstruo
+            setTimeout(() => {
+                const modal = document.getElementById('monsterDetailModal');
+                if (modal) {
+                    const modalContent = `
+                        <div class="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-4 m-4">
+                            <button onclick="closeMonsterModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <div class="card expanded">
+                                ${monsterCard}
+                            </div>
+                        </div>
+                    `;
+                    
+                    modal.innerHTML = modalContent;
+
+                    // Expandir automáticamente todas las secciones
+                    const modalElement = document.getElementById('monsterDetailModal');
+                    if (modalElement) {
+                        modalElement.querySelectorAll('.collapsible-section').forEach(section => {
+                            section.classList.add('active');
+                        });
+                        modalElement.querySelector('.monster-details').classList.add('expanded');
+                    }
+                }
+            }, 300);
         }
 
         function closeMonsterModal() {
@@ -787,6 +877,348 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // Añadir un event listener para la tecla Escape
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeMonsterModal();
+            }
+        });
+        
+            
+        const createWeaknessStars = (value) => `
+                <div class="flex gap-1">
+                    ${Array.from({length: 3}).map((_, i) => `
+                        <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                    `).join('')}
+                </div>
+            `;
+
+        // Función para mostrar el modal del supergrid
+        function showSuperGridModal(monsterId) {
+            const monster = monsters.find(m => m.id === parseInt(monsterId));
+            if (!monster) return;
+
+            const modalContent = `
+                <div class="flex flex-col gap-6">
+                    <!-- Sección principal -->
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Columna izquierda con imagen y stats básicos -->
+                        <div class="md:w-1/2">
+                            <div class="relative mb-2 flex items-center justify-center">
+                                <img src="${monster.image}" alt="${monster.name}" class="w-72 rounded-lg">
+                                <div class="absolute top-2 left-2 ${getThreatColor(monster.threat)} w-10 h-10 rounded-full flex items-center justify-center text-white font-bold">
+                                    ${monster.threat}
+                                </div>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-2 text-center dark:text-white" style="font-family: 'Permanent Marker'">${monster.name}</h2>
+                            <div class="flex flex-wrap gap-2 justify-center mb-2">
+                                <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm">${monster.type}</span>
+                                ${monster.game.map(game => `
+                                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 rounded-full text-sm">${game}</span>
+                                `).join('')}
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 text-center mb-2">${monster.description}</p>
+
+                            
+                            <!-- Sección de Variantes si existen -->
+                            ${monster.variants && monster.variants.length > 0 ? `
+                                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-2">
+                                    <h3 class="text-lg font-semibold dark:text-white">Variantes</h3>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                        ${monster.variants.map(variant => `
+                                            <div class="relative group" onclick="openModal('${variant.image}')">
+                                                <img src="${variant.image}" alt="${variant.name}" class="w-24 h-24 object-cover rounded-lg">
+                                                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                                                    <span class="text-white font-bold text-md font-medium">${variant.name}</span>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+
+                            <!-- Sección de Galería si existe -->
+                            ${monster.gallery && monster.gallery.length > 0 ? `
+                                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mt-4">
+                                    <h3 class="text-lg font-semibold mb-3 dark:text-white">Galería</h3>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        ${monster.gallery.map(image => `
+                                            <div class="relative group" onclick="openModal('${image}')">
+                                                <img src="${image}" alt="Gallery image" class="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            ` : ''}
+                            
+                        </div>
+
+                        <!-- Columna derecha con debilidades y stats -->
+                        <div class="md:w-1/2">
+                            <div class="space-y-2">
+                                ${monster.parts && monster.parts.length > 0 ? `
+                                    <h3 class="font-semibold">Partes del Monstruo</h3>
+                                        <div class="grid gap-1 columnitas">
+                                            ${monster.parts.map(part => `
+                                                <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <span class="font-medium text-md">${part.name}</span>
+                                                        ${part.breakable ? `
+                                                            <span class="text-md px-2 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full">
+                                                                Rompible
+                                                            </span>
+                                                        ` : ''}
+                                                        ${part.cortable ? `
+                                                            <span class="text-md px-2 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-200 rounded-full">
+                                                                Cortable
+                                                            </span>
+                                                        ` : ''}
+                                                    </div>
+                                                    <div class="space-y-2">
+                                                        <div class="flex justify-between items-center">
+                                                            <span><img style="width:25px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
+                                                            <span class="text-md">Cortar</span>                                                            
+                                                            ${createWeaknessStars(part.weaknesses.slash)}
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span><img style="width:25px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
+                                                            <span class="text-md">Impacto</span>                                                            
+                                                            ${createWeaknessStars(part.weaknesses.blunt)}
+                                                        </div>
+                                                        <div class="flex justify-between items-center">
+                                                            <span><img style="width:25px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
+                                                            <span class="text-md">Perforar</span>                                                            
+                                                            ${createWeaknessStars(part.weaknesses.pierce)}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                ` : ''}
+                            </div>       
+                            <h3 class="font-semibold">Debilidades</h3>
+                            <div class="grid gap-2 columnitas">
+                                ${Object.entries(monster.weaknesses).map(([element, value]) => `
+                                    <div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
+                                        <div class="flex items-center">
+                                            <span class="element-icon">
+                                                <img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
+                                            </span>
+                                            <span class="capitalize">${element}</span>
+                                        </div>
+                                        <div class="flex gap-1">
+                                            ${Array.from({length: 3}).map((_, i) => `
+                                                <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>                     
+                            ${monster.materials && monster.materials.length > 0 ? `
+                                <h3 class="font-semibold">Materiales</h3>
+                                ${createMaterialsList(monster.materials)}
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('superGridModalContent').innerHTML = modalContent;
+            document.getElementById('superGridModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuperGridModal() {
+            document.getElementById('superGridModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Actualizar la función createMonsterCard solo para el supergrid
+        function createMonsterCard(monster, isListView = false) {
+            if (currentView === 'supergrid') {
+                return `
+                    <div class="super-grid-card p-1 rounded-lg cursor-pointer" onclick="showSuperGridModal('${monster.id}')">
+                        <img class="w-full h-full object-cover rounded-lg" src="${monster.image}" alt="${monster.name}">
+                    </div>
+                `;
+            }
+            
+            const isExpanded = expandedCards.has(monster.id);
+            
+            return `
+                <div id="monster-${monster.id}" class="card ${isExpanded ? 'expanded' : ''}">
+                    <div class="p-2">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <div class="selectable-content">
+                                    <h2 class="${isListView ? `` : 'mb-1'} text-xl flex items-center justify-center" style="font-family: 'Permanent Marker'">${monster.name}</h2>
+                                    ${isListView ? `<p class="mb-1">${monster.description}</p>` : ''}
+                                </div>       
+                                <div class="relative cursor-pointer" onclick="toggleMonsterDetails(${monster.id}, event)">  
+                                    <div class="${getThreatColor(monster.threat)} text-white font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-sm absolute top-2 left-2">
+                                        ${monster.threat}
+                                    </div>
+                                    <img class="h-40 object-cover rounded-lg mx-auto imagenmonstro" src="${monster.image}" alt="${monster.name}">
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="monster-details ${isExpanded ? 'expanded' : ''} mt-1 selectable-content">      
+                            <p>${monster.type}</p>                    
+                            <div class="flex flex-wrap gap-1 mb-4 selectable-content">
+                                ${monster.game.map(game => `
+                                    <span class="cartita px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs rounded-md">
+                                        ${game}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            ${!isListView ? `<p class="mb-4">${monster.description}</p>` : ''}
+                            
+                            <div class="space-y-2">
+                                ${monster.parts && monster.parts.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Partes del Monstruo</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid gap-1 columnitas">
+                                                ${monster.parts.map(part => `
+                                                    <div class="debilidadestilo p-2 rounded-lg bg-gray-50">
+                                                        <div class="flex justify-between items-center mb-2">
+                                                            <span class="font-medium">${part.name}</span>
+                                                            ${part.breakable ? `
+                                                                <span class="text-xs px-2 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-200 rounded-full">
+                                                                    Rompible
+                                                                </span>
+                                                            ` : ''}
+                                                            ${part.cortable ? `
+                                                                <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-200 rounded-full">
+                                                                    Cortable
+                                                                </span>
+                                                            ` : ''}
+                                                        </div>
+                                                        <div class="space-y-2">
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Cortante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true"></img></span>
+                                                                <span class="text-xs">Cortar</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.slash)}
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Stun" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/blunt.png?raw=true"></img></span>
+                                                                <span class="text-xs">Impacto</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.blunt)}
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span><img style="width:20px" alt="Perforante" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/m_pierce.png?raw=true"></img></span>
+                                                                <span class="text-xs">Perforar</span>                                                            
+                                                                ${createWeaknessStars(part.weaknesses.pierce)}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                
+                                <div class="collapsible-section">
+                                    <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                        <h3 class="font-semibold">Debilidades</h3>
+                                        <span class="collapsible-icon">+</span>
+                                    </div>
+                                    <div class="collapsible-content">
+                                        <div class="grid gap-2 columnitas">
+                                            ${Object.entries(monster.weaknesses).map(([element, value]) => `
+                                                <div class="debilidadestilo flex justify-between items-center p-2 rounded-lg bg-gray-50">
+                                                    <div class="flex items-center">
+                                                        <span class="element-icon">
+                                                            <img src="${weaknessImages[element] || 'https://cdn-icons-png.flaticon.com/128/1828/1828774.png'}" class="h-6 w-6" alt="${element} icon">
+                                                        </span>
+                                                        <span class="capitalize">${element}</span>
+                                                    </div>
+                                                    <div class="flex gap-1">
+                                                        ${Array.from({length: 3}).map((_, i) => `
+                                                            <span class="weakness-star h-2 w-2 rounded-full ${i < value ? 'bg-yellow-400' : 'bg-gray-200 dark:bg-gray-700'}"></span>
+                                                        `).join('')}
+                                                    </div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                ${monster.materials && monster.materials.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Materiales</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            ${createMaterialsList(monster.materials)}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                                
+                                ${monster.variants && monster.variants.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Variantes</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid grid-cols-2 gap-2">
+                                                ${monster.variants.map(variant => `
+                                                    <div class="relative group cursor-pointer" onclick="event.stopPropagation(); openModal('${variant.image}')">
+                                                        <img src="${variant.image}" alt="${variant.name}" class="h-24 object-cover rounded-lg mx-auto imagenmonstro2">
+                                                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                                                            <span class="text-white text-sm">${variant.name}</span>
+                                                        </div>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+
+                                ${monster.gallery && monster.gallery.length > 0 ? `
+                                    <div class="collapsible-section">
+                                        <div class="collapsible-header" onclick="event.stopPropagation(); toggleSection(this)">
+                                            <h3 class="font-semibold">Galería</h3>
+                                            <span class="collapsible-icon">+</span>
+                                        </div>
+                                        <div class="collapsible-content">
+                                            <div class="grid grid-cols-3 gap-2">
+                                                ${monster.gallery.map(image => `
+                                                    <img src="${image}" 
+                                                        alt="Monster gallery image" 
+                                                        class="gallery-image"
+                                                        onclick="event.stopPropagation(); openModal('${image}')">
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>                        
+                        <div class="mt-1 flex justify-center cursor-pointer rounded-lg" onclick="toggleMonsterDetails(${monster.id}, event)">
+                            <svg class=" expand-indicator h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Añadir evento para cerrar con Escape
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeSuperGridModal();
+            }
+        });
     </script>
 </body>
 <style>
@@ -869,12 +1301,23 @@
     }
 
     .super-grid-card {
-        transition: all 0.3s ease;
-        border: 3px outset;
+        transition: all 0.2s ease;
+        border: 3px outset white;
+        background-color: white;
+    }
+
+    .dark .super-grid-card{
+        transition: all 0.2s ease;
+        background-color: #1a1a1a;
+        border: 3px outset #303030;
     }
     
     .super-grid-card:hover {
-        border: 6px outset;
+        border: 6px outset white;
+    }
+    
+    .dark .super-grid-card:hover {
+        border: 6px outset #303030;
     }
 
     @media (min-width: 1024px) {
@@ -1188,6 +1631,7 @@
     background-color: #6f737a;
 }
 
+
 /* Ajustes específicos para móvil */
 @media (max-width: 768px) {
 	.close-filters-btn {
@@ -1299,6 +1743,53 @@
     height: 10px;
     margin-top: 20px;
     visibility: hidden;
+}
+
+/* Añadir estos estilos para el modal de imagen */
+#monsterDetailModal img {
+    transition: transform 0.3s ease;
+}
+
+#monsterDetailModal img:hover {
+    transform: scale(0.95);
+}
+
+/* Estilos específicos para el modal */
+#monsterDetailModal {
+    overscroll-behavior: contain;
+}
+
+#monsterDetailModal .card {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+#monsterDetailModal .card:hover {
+    transform: none !important;
+}
+
+/* Estilos específicos para el nuevo modal */
+#superGridModal {
+    backdrop-filter: blur(5px);
+}
+
+#superGridModal .bg-white {
+    transition: background-color 0.3s ease;
+}
+
+.dark #superGridModal .bg-white {
+    background-color: #2d2d2d;
+}
+
+#superGridModalContent img {
+    max-height: 400px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    #superGridModalContent {
+        padding: 1rem;
+    }
 }
 </style>
 </html>
