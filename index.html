@@ -41,11 +41,29 @@
 						class="sm:px-2 sm:py-0.5 px-1 py-1 bg-gray-400 rounded-lg hover:bg-gray-500 text-white transition-colors">
 						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/binoculars.png?raw=true" class="h-7 w-7" alt="Filtro">
 					</button>
-					<button 
+                    <button 
                         onclick="toggleView()" 
                         id="viewToggleBtn"
-                        class="sm:block hidden view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                        <span id="viewToggleText">Super Grid</span>
+                        class="view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center">
+                        <svg id="supergridIcon" class="w-8 h-8" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- Grid de 4 (cuadrados más grandes y más separados) -->
+                            <rect x="2" y="2" width="9" height="9" rx="2" />
+                            <rect x="13" y="2" width="9" height="9" rx="2" />
+                            <rect x="2" y="13" width="9" height="9" rx="2" />
+                            <rect x="13" y="13" width="9" height="9" rx="2" />
+                        </svg>
+                        <svg id="gridIcon" class="w-8 h-8" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2">
+                            <!-- Grid de 9 (cuadrados más grandes y más separados) -->
+                            <rect x="1" y="1" width="8" height="8" rx="1" />
+                            <rect x="11" y="1" width="8" height="8" rx="1" />
+                            <rect x="21" y="1" width="8" height="8" rx="1" />
+                            <rect x="1" y="11" width="8" height="8" rx="1" />
+                            <rect x="11" y="11" width="8" height="8" rx="1" />
+                            <rect x="21" y="11" width="8" height="8" rx="1" />
+                            <rect x="1" y="21" width="8" height="8" rx="1" />
+                            <rect x="11" y="21" width="8" height="8" rx="1" />
+                            <rect x="21" y="21" width="8" height="8" rx="1" />
+                        </svg>
                     </button>
 				</div>
             </div>
@@ -145,19 +163,20 @@
         </div>
     </div>
 
-    <!-- Añadir justo antes del cierre del body -->
-    <div id="superGridModal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto">
+    <!-- Modificar el modal del supergrid -->
+    <div id="superGridModal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 overflow-y-auto" onclick="handleModalClick(event)">
         <div class="min-h-screen px-4 flex items-center justify-center">
-            <div class="bg-white dark:bg-gray-800 w-full max-w-4xl rounded-lg relative">
-                <!-- Botón de cerrar -->
-                <button onclick="closeSuperGridModal()" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700 dark:text-gray-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                
+            <div class="bg-white dark:bg-gray-800 w-full max-w-4xl rounded-lg relative m-4">
                 <!-- Contenido del modal -->
-                <div id="superGridModalContent" class="p-6"></div>
+                <div id="superGridModalContent" class="p-4"></div>
+
+                <!-- Botón de cerrar inferior -->
+                <div class="flex justify-center pb-2">
+                    <button onclick="closeSuperGridModal()" 
+                        class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-lg">
+                        Cerrar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -528,12 +547,14 @@
             if (currentView === 'grid') {
                 currentView = 'supergrid';
                 container.className = 'super-grid-view pt-32';
-                toggleText.textContent = 'GRID';
+                document.getElementById('gridIcon').style.display = 'none';
+                document.getElementById('supergridIcon').style.display = 'block';
                 monstersPerPage = 20;
             } else {
                 currentView = 'grid';
                 container.className = 'grid-view pt-32';
-                toggleText.textContent = 'SUPER GRID';
+                document.getElementById('gridIcon').style.display = 'block';
+                document.getElementById('supergridIcon').style.display = 'none';
                 monstersPerPage = 10;
             }
             
@@ -746,7 +767,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             loadMonsters();
             setupInfiniteScroll();
-            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'SUPER GRID' : 'GRID';
+            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'GRID 2' : 'GRID';
         });
 
         
@@ -1039,7 +1060,7 @@
             if (currentView === 'supergrid') {
                 return `
                     <div class="super-grid-card p-1 rounded-lg cursor-pointer" onclick="showSuperGridModal('${monster.id}')">
-                        <img class="w-full h-full object-cover rounded-lg" src="${monster.image}" alt="${monster.name}">
+                        <img class="object-cover rounded-lg" src="${monster.image}" alt="${monster.name}">
                     </div>
                 `;
             }
@@ -1219,6 +1240,13 @@
                 closeSuperGridModal();
             }
         });
+
+        function handleModalClick(event) {
+            // Si el clic fue directo en el fondo oscuro (superGridModal) y no en su contenido
+            if (event.target.id === 'superGridModal') {
+                closeSuperGridModal();
+            }
+        }
     </script>
 </body>
 <style>
@@ -1790,6 +1818,64 @@
     #superGridModalContent {
         padding: 1rem;
     }
+}
+
+/* Mejorar el botón inferior en móvil */
+#superGridModal button[onclick="closeSuperGridModal()"] {
+    width: auto;
+    padding: .5rem 2rem;
+    font-size: 1.1rem;
+    margin: .5rem 0;
+}
+
+/* Asegurar que el botón siempre esté por encima del contenido */
+#superGridModal button[onclick="closeSuperGridModal()"] {
+    z-index: 60;
+}
+
+.view-toggle-btn svg {
+    transition: transform 0.3s ease;
+    scale: 1.3;
+}
+
+.view-toggle-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.view-toggle-btn {
+    padding: 0.5rem;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+/* Estilos para el icono del botón de cambio de vista */
+#gridIcon path, #supergridIcon path {
+    fill: white;  /* Relleno blanco para los cuadrados */
+}
+
+/* Estilos para los cuadrados del icono */
+#gridIcon, #supergridIcon {
+    padding: 2px;  /* Espacio interno para los cuadrados */
+}
+
+/* Modificar los path para que tengan bordes redondeados */
+#gridIcon path {
+    rx: 2;  /* Radio de borde para los cuadrados grandes */
+    ry: 2;
+}
+
+#supergridIcon path {
+    rx: 1;  /* Radio de borde para los cuadrados pequeños */
+    ry: 1;
+}
+
+/* Estilos para los SVG en el botón */
+.view-toggle-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.view-toggle-btn:hover svg {
+    transform: scale(1.1);
 }
 </style>
 </html>

@@ -1,0 +1,58 @@
+[
+    {
+    "tipo": "racion",
+    "name": "Carne",
+    "effect": "Ataque +2",
+    "description": "Aumenta el ataque en 2 puntos.",
+    "icon": "carne"
+    },
+    {
+    "tipo": "toque",
+    "name": "Chile de monstruo",
+    "effect": "Menú sabroso",
+    "description": "Niega los efectos del calor y del frio, adicionalmente aumenta la defensa en dichos climas.",
+    "icon": "chile"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Gamba de lodo",
+    "effect": "Menú de vaso (B)",
+    "description": "Incrementa ligeramente la ventana de inmunidad al esquivar.",
+    "icon": "gamba"
+    },
+    {
+    "tipo": "toque",
+    "name": "Hierba salvaje",
+    "effect": "Menú inmunizador",
+    "description": "Disminuye el efecto de los venenos y enfermedades.",
+    "icon": "hierba"
+    },
+    {
+    "tipo": "toque",
+    "name": "Miel del este",
+    "effect": "Menú médico",
+    "description": "Aumenta la cantidad de vida recuperada al curarse",
+    "icon": "miel"
+    },
+    {
+    "tipo": "racion",
+    "name": "Pescado",
+    "effect": "Defensa +4",
+    "description": "Aumenta la defensa en 4 puntos.",
+    "icon": "pescado"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Seta babosa",
+    "effect": "Menú de cinto negro (B)",
+    "description": "Disminuye el consumo de stamina al realizar movimientos que la consuman ej.(esquivar)",
+    "icon": "seta"
+    },
+    {
+    "tipo": "racion",
+    "name": "Verduras",
+    "effect": "Defensa +2 Defensa.E +3",
+    "description": "Aumenta la defensa en 2 puntos y la defensa elemental en 3.",
+    "icon": "verduras"
+    }
+]
