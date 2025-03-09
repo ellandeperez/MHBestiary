@@ -160,7 +160,7 @@
             </div>
         </div>
 
-        <div id="monstersContainer" class="grid-view pt-32"></div>
+        <div id="monstersContainer" class="super-grid-view pt-32"></div>
     </div>
 
     <!-- Modal para la galería de imágenes -->
@@ -191,7 +191,7 @@
     <script>
         let monsters = [];
         let currentPage = 1;
-        let monstersPerPage = 10; // Cambiado de const a let para poder modificarlo
+        let monstersPerPage = 20; // Cambiado a 20 para la vista supergrid inicial
         let isLoading = false;
 
 		async function loadMonsters() {
@@ -209,7 +209,7 @@
 
 		document.addEventListener("DOMContentLoaded", loadMonsters);
 
-        let currentView = 'grid';  // Solo 'grid' o 'supergrid'
+        let currentView = 'supergrid';  // Cambiado a 'supergrid' como vista inicial
         let expandedCards = new Set();
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
         let selectedElement = null;
@@ -774,7 +774,12 @@
         document.addEventListener("DOMContentLoaded", () => {
             loadMonsters();
             setupInfiniteScroll();
-            document.getElementById('viewToggleText').textContent = currentView === 'grid' ? 'GRID 2' : 'GRID';
+            // Configurar visualización inicial del botón
+            document.getElementById('gridIcon').style.display = 'none';
+            document.getElementById('supergridIcon').style.display = 'block';
+            // Asegurar que el contenedor tenga la clase correcta
+            const container = document.getElementById('monstersContainer');
+            container.className = 'super-grid-view pt-32';
         });
 
         
