@@ -12,9 +12,9 @@
         }
 
         h1{
-            text-shadow: 0px 0px 10px #000000;
+            text-shadow: 0px 0px 20px #f0b675;
             font-size: 75px;
-            color: #ffffff;
+            color: #000000;
             margin:0;
         }
 
@@ -44,7 +44,7 @@
         .ingredients-section {
             flex: 1;
             margin-bottom: 0;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(83, 59, 36, 0.5);
             border-radius: 8px;
             padding: 0;
             overflow: hidden;
@@ -61,12 +61,12 @@
             border: none;
             font-size: 16px;
             font-weight: bold;
-            background: #dbdbdb;
+            background: #c5976f;
             flex: 1;
         }
 
         .tab.active {
-            background: #ffffff;
+            background: #ebb98e;
         }
 
         .ingredient-type {
@@ -114,7 +114,7 @@
         .selected-ingredients {
             width: 450px;
             position: sticky;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(83, 59, 36, 0.5);
             padding: 20px;
             padding-top: 10px;
             border-radius: 8px;
@@ -133,7 +133,7 @@
             width: 75px;
             margin: 0;
             height: 75px;
-            border: 5px dashed #8f8f8f;
+            border: 5px dashed #e2cdbb;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -167,7 +167,7 @@
             width: 75px;
             height: 75px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(43, 26, 11, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,14 +176,15 @@
             border: none;
         }
 
-        .nav-button:hover {
-            transform: scale(1.05);
-        }
-
         .nav-button img {
             width: 50px;
             height: 50px;
-            filter: drop-shadow(0px 0px 2px #000000);
+            filter: drop-shadow(0px 0px 2px #c79345);
+            transition: transform 0.2s;
+        }
+
+        .nav-button img:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -199,9 +200,9 @@
         <div class="main-content">
             <div class="ingredients-section">
                 <div class="tabs">
-                    <button class="tab active" onclick="showTab('racion')">RACION</button>
-                    <button class="tab" onclick="showTab('adicional')">ADICIONAL</button>
-                    <button class="tab" onclick="showTab('toque')">TOQUE FINAL</button>
+                    <button style="font-family:'Albertus MT Std Regular';" class="tab active" onclick="showTab('racion')">RACION</button>
+                    <button style="font-family:'Albertus MT Std Regular';" class="tab" onclick="showTab('adicional')">ADICIONAL</button>
+                    <button style="font-family:'Albertus MT Std Regular';" class="tab" onclick="showTab('toque')">TOQUE FINAL</button>
                 </div>
 
                 <div class="ingredient-type active" id="racion-type">
