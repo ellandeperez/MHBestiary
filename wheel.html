@@ -1,0 +1,273 @@
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WHEEL</title>
+    <link rel="icon" type="image/png" href="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/question.png?raw=true">
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    @font-face {
+        font-family: 'Albertus MT Std Regular';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Albertus MT Std Regular'), url('fonts/FuenteMH.woff') format('woff');
+    }
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    }
+    body {
+    height: 100vh;
+    background-image: url('https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/background.jpg?raw=true');
+    background-size: cover;
+    background-repeat: repeat;
+    }
+    .wrapper {
+    width: 100%;
+    max-width: 42em;
+    max-height: 90vh;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 3em;
+    border-radius: 1em;
+    }
+    .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    }
+    #wheel {
+    max-height: inherit;
+    width: inherit;
+    top: 0;
+    padding: 0;
+    }
+    @keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+    #spin-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 18%;
+    width: 18%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0;
+    background: radial-gradient(#e09e68 50%, #63380f 85%);
+    color: #3b2b1a;
+    text-transform: uppercase;
+    font-size: 1.6em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    }
+    img {
+    position: absolute;
+    width: 4em;
+    top: 45%;
+    right: -8%;
+    }
+    #final-value {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 1.5em;
+    color: #202020;
+    font-weight: 500;
+    }
+    @media screen and (max-width: 768px) {
+    .wrapper {
+        font-size: 12px;
+    }
+    img {
+        right: -5%;
+    }
+    }
+    .nav-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #995a29;
+      border: 2px solid #2e1a0b;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s;
+      z-index: 1000;
+    }
+
+    .nav-button:hover {
+      transform: scale(1.1);
+      background-color: #b0805b;
+    }
+
+    .nav-button img {
+      width: 40px;
+      height: 40px;
+      position: static;
+    }
+  </style>
+  <body>
+    <a href="https://ellandeperez.github.io/MHBestiary/" class="nav-button">
+      <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true" alt="Home">
+    </a>
+    <div class="wrapper">
+      <div class="container">
+        <canvas id="wheel"></canvas>
+        <button style="font-family:'Albertus MT Std Regular';font-weight: bold;" id="spin-btn">Spin</button>
+        <img style="transform: rotate(-90deg);width:75px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true" alt="spinner arrow" />
+      </div>
+      <div id="final-value" >
+        <p style="font-family:'Albertus MT Std Regular';font-weight: bold;">¡GIRA!</p>
+      </div>
+    </div>
+    <!-- Chart JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Chart JS Plugin for displaying text over chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <!-- Script -->
+    <script src="script.js"></script>
+  </body>
+  <script>
+    const wheel = document.getElementById("wheel");
+    const spinBtn = document.getElementById("spin-btn");
+    const finalValue = document.getElementById("final-value");
+
+    const monsters = [
+        'Chatacabra', 'Quematrice', 'Lala Barina', 'Congalala', 'Balahara',
+        'Doshaguma', 'Uth Duna', 'Rompopolo', 'Rey Dau', 'Nerscylla',
+        'Hirabami', 'Ajarakan', 'Nu Udra', 'Doshaguma G', 'Rathalos G',
+        'Jin Dahaad', 'Odogaron E.G', 'Xu Wu', 'Arkveld G', 'Zoh Sia',
+        'Kut Ku', 'Gypceeros', 'Rathian', 'Anjanath F.G', 'Rathalos',
+        'Gravios', 'Blangonga', 'Gore Magala', 'Arkveld'
+    ];
+
+    // Crear un array con el mismo valor para cada sección
+    const data = Array(monsters.length).fill(100/monsters.length);
+
+    // Generar colores alternados
+    const pieColors = monsters.map((_, index) => {
+        return index % 2 === 0 ? '#b0805b' : '#995a29';
+    });
+
+    // Calcular los valores de rotación
+    const rotationValues = monsters.map((_, index) => {
+        const sectionSize = 360 / monsters.length;
+        return {
+            minDegree: index * sectionSize,
+            maxDegree: (index + 1) * sectionSize,
+            value: monsters[index]
+        };
+    });
+
+    let myChart = new Chart(wheel, {
+        plugins: [ChartDataLabels],
+        type: "pie",
+        data: {
+            labels: monsters,
+            datasets: [{
+                backgroundColor: pieColors,
+                borderColor:'#2e1a0b',
+                data: data,
+            }],
+        },
+        options: {
+            responsive: true,
+            animation: { duration: 0 },
+            plugins: {
+                tooltip: false,
+                legend: {
+                    display: false,
+                },
+                datalabels: {
+                    color: "#ffffff",
+                    formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+                    font: { 
+                        size: 16,
+                        weight: 'bold',
+                        family: 'Albertus MT Std Regular'
+                    },
+                    align: 'end',
+                    anchor: 'center',
+                    offset: -10,
+                    textStrokeColor: 'black',
+                    textStrokeWidth: 4,
+                    rotation: (context) => {
+                        const angle = context.chart.options.rotation || 0;
+                        const sectionAngle = (360 / monsters.length);
+                        return (angle + (context.dataIndex * sectionAngle) + sectionAngle/2 + -90);
+                    }
+                },
+            },
+        },
+    });
+
+    const valueGenerator = (angleValue) => {
+        // La flecha apunta a la derecha (0 grados), necesitamos ajustar el ángulo
+        let normalizedAngle = (-angleValue + 90) % 360;
+        if (normalizedAngle < 0) normalizedAngle += 360;
+        
+        const sectionSize = 360 / monsters.length;
+        const index = Math.floor(normalizedAngle / sectionSize);
+        
+        finalValue.innerHTML = `<p style="font-family:'Albertus MT Std Regular';font-weight: bold;font-size:32px;">¡${monsters[index]}!</p>`;
+        spinBtn.disabled = false;
+    };
+
+    let count = 0;
+    let resultValue = 101;
+
+    spinBtn.addEventListener("click", () => {
+        spinBtn.disabled = true;
+        finalValue.innerHTML = `<p style="font-family:'Albertus MT Std Regular';font-weight: bold;font-size:32px;">¡Girando!</p>`;
+        
+        const sectionSize = 360 / monsters.length;
+        const randomSection = Math.floor(Math.random() * monsters.length);
+        const finalRotation = -((randomSection * sectionSize) + 90);
+        let currentRotation = 0;
+        let totalSpins = 0;
+        let rotationSpeed = 10; // Velocidad inicial más controlada
+        
+        let rotationInterval = window.setInterval(() => {
+            currentRotation -= rotationSpeed;
+            
+            // Normalizar la rotación actual
+            if (currentRotation <= -360) {
+                currentRotation = 0;
+                totalSpins++;
+                rotationSpeed = Math.max(3, rotationSpeed * 0.5); // Reducción gradual de velocidad
+            }
+
+            // Comprobar condición de parada
+            if (totalSpins >= 3 && rotationSpeed <= 3) {
+                currentRotation = finalRotation; // Forzar posición final exacta
+                myChart.options.rotation = currentRotation;
+                myChart.update();
+                valueGenerator(currentRotation);
+                clearInterval(rotationInterval);
+                spinBtn.disabled = false;
+                return;
+            }
+            
+            myChart.options.rotation = currentRotation;
+            myChart.update();
+        }, 20); // Intervalo más largo para mejor rendimiento
+    });
+  </script>
+</html>
