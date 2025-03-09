@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>MENU</title>
+    <link rel="icon" type="image/png" href="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/bbq.png?raw=true">
     <style>
+        body {
+            background-image: url('https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/background.jpg?raw=true');
+            background-size: cover;
+            background-repeat: repeat;
+        }
+
+        h1{
+            text-shadow: 0px 0px 10px #000000;
+            font-size: 75px;
+            color: #ffffff;
+            margin:0;
+        }
+
+        h2{            
+            margin:0;
+        }
+
         @font-face {
 			font-family: 'Albertus MT Std Regular';
 			font-style: normal;
@@ -26,7 +44,7 @@
         .ingredients-section {
             flex: 1;
             margin-bottom: 0;
-            background: #f5f5f5;
+            background-color: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
             padding: 0;
             overflow: hidden;
@@ -34,20 +52,21 @@
 
         .tabs {
             display: flex;
-            background: #e0e0e0;
+            width: 100%;
         }
 
         .tab {
             padding: 15px 30px;
             cursor: pointer;
-            background: #e0e0e0;
             border: none;
             font-size: 16px;
             font-weight: bold;
+            background: #dbdbdb;
+            flex: 1;
         }
 
         .tab.active {
-            background: #f5f5f5;
+            background: #ffffff;
         }
 
         .ingredient-type {
@@ -64,7 +83,6 @@
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 15px;
             padding: 15px;
-            background: #f5f5f5;
             border-radius: 8px;
         }
 
@@ -96,9 +114,9 @@
         .selected-ingredients {
             width: 450px;
             position: sticky;
-            top: 20px;
-            background: #f5f5f5;
+            background-color: rgba(255, 255, 255, 0.5);
             padding: 20px;
+            padding-top: 10px;
             border-radius: 8px;
             margin-bottom: 0;
         }
@@ -134,22 +152,56 @@
 
         .effects-panel {
             margin-top: 0px;
-            background: #f5f5f5;
             padding: 20px;
             border-radius: 8px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            width: 75px;
+            height: 75px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-button img {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0px 0px 2px #000000);
         }
     </style>
 </head>
 <body style="font-family:'Albertus MT Std Regular';">
     <div class="cooking-container">
-        <h1>MH WILDS MENU</h1>
+        <div class="header-container">
+            <h1>MH WILDS MENU</h1>
+            <a href="https://ellandeperez.github.io/MHBestiary/" class="nav-button">
+                <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true" alt="Home">
+            </a>
+        </div>
         
         <div class="main-content">
             <div class="ingredients-section">
                 <div class="tabs">
-                    <button class="tab active" onclick="showTab('racion')">Ración</button>
-                    <button class="tab" onclick="showTab('adicional')">Adicional</button>
-                    <button class="tab" onclick="showTab('toque')">Toque Final</button>
+                    <button class="tab active" onclick="showTab('racion')">RACION</button>
+                    <button class="tab" onclick="showTab('adicional')">ADICIONAL</button>
+                    <button class="tab" onclick="showTab('toque')">TOQUE FINAL</button>
                 </div>
 
                 <div class="ingredient-type active" id="racion-type">
@@ -166,7 +218,7 @@
             </div>
 
             <div class="selected-ingredients">
-                <h2>Ingredientes Seleccionados</h2>
+                <h2>INGREDIENTES</h2>
                 <div class="selection-slots">
                     <div id="racion-slot" class="slot">
                         <span>Ración</span>
@@ -179,7 +231,7 @@
                     </div>
                 </div>
                 <div class="effects-panel">
-                    <h2 id="effects-title" style="display: none;">Efectos del Menú</h2>
+                    <h2 id="effects-title" style="display: none;">EFECTOS</h2>
                     <div id="effects-list"></div>
                 </div>
             </div>
@@ -289,9 +341,14 @@
                 effects.push('Defensa elemental +5');
             }
             
+            // Add spacing before ingredient effects
+            if (selectedIngredients.racion) effects.push('<br>');
+            
             Object.values(selectedIngredients).forEach(ing => {
                 if (ing) {
-                    effects.push(`${ing.effect}: ${ing.description}`);
+                    effects.push(`${ing.effect.toUpperCase()}`);
+                    effects.push(`${ing.description}`);
+                    effects.push('<br>'); // Add spacing after each ingredient
                 }
             });
             

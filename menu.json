@@ -130,7 +130,7 @@
     "tipo": "racion",
     "name": "Verduras",
     "effect": "Defensa +2 Defensa.E +3",
-    "description": "Aumenta la defensa en 2 puntos y la defensa elemental en 3.",
+    "description": "Aumenta la defensa en 2 puntos y la elemental en 3.",
     "icon": "verduras"
     }
 ]
