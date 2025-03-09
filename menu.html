@@ -148,7 +148,7 @@
                 
                 grid.innerHTML = ingredients.map(ing => `
                     <div class="ingredient-item" onclick="selectIngredient('${tipo}', ${menuData.indexOf(ing)})">
-                        <img src="https://github.com/ellandeperez/MHBestiary/main/MHImages/0_Icons/food/m_${ing.icon}.png?raw=true" alt="${ing.name}">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/food/m_${ing.icon}.png?raw=true" alt="${ing.name}">
                         <div>${ing.name}</div>
                     </div>
                 `).join('');
@@ -174,7 +174,7 @@
                 const slot = document.getElementById(`${tipo}-slot`);
                 if (ing) {
                     slot.innerHTML = `
-                        <img src="https://github.com/ellandeperez/MHBestiary/main/MHImages/0_Icons/food/f_${ing.icon.replace(/\d+$/, '')}.png?raw=true" alt="${ing.name}">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/food/f_${ing.icon.replace(/\d+$/, '')}.png?raw=true" alt="${ing.name}">
                         <span>${ing.name}</span>
                     `;
                 } else {
