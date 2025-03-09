@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENU</title>
     <link rel="icon" type="image/png" href="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/bbq.png?raw=true">
     <style>
@@ -56,10 +57,10 @@
         }
 
         .tab {
-            padding: 15px 30px;
+            padding: 10px 30px;
             cursor: pointer;
             border: none;
-            font-size: 16px;
+            font-size: 24px;
             font-weight: bold;
             background: #c5976f;
             flex: 1;
@@ -71,7 +72,7 @@
 
         .ingredient-type {
             display: none;
-            padding: 20px;
+            padding: 10px;
         }
 
         .ingredient-type.active {
@@ -185,6 +186,109 @@
 
         .nav-button img:hover {
             transform: scale(1.1);
+        }
+
+        /* Estilos responsive para móvil */
+        @media (max-width: 768px) {
+            .cooking-container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .ingredients-section {
+                width: 100%;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .ingredient-item {
+                height: 50px;
+            }
+
+            .ingredient-item img {
+                width: 300px;
+                height: 60px;
+            }
+
+            .selected-ingredients {
+                width: -webkit-fill-available;
+                position: static;
+                margin-top: 5px;
+            }
+
+            .tabs {
+                flex-direction: row;
+            }
+
+            .tab {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .selection-slots {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .slot {
+                width: 60px;
+                height: 60px;
+            }
+
+            .slot img {
+                width: 200px;
+                height: 75px;
+                object-fit: contain;
+                filter: drop-shadow(0px 0px 5px #000000); 
+            }
+
+            .effects-panel {
+                margin-top: 20px;
+            }
+
+            .nav-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .nav-button img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Ajustes adicionales para pantallas muy pequeñas */
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .tab {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .ingredient-item img {
+                width: 250px;
+                height: 60px;
+            }
+
+            .slot {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
