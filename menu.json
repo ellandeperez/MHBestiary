@@ -1,4 +1,47 @@
 [
+    
+    {
+    "tipo": "adicional",
+    "name": "Ajo de Sild",
+    "effect": "Menú de sangre fría I",
+    "description": "Evita desmayos una vez al recibir mas daño de la salud restante.",
+    "icon": "ajo"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Ajo de Sild especial",
+    "effect": "Menú de sangre fría II",
+    "description": "Evita desmayos una vez al recibir mas daño de la salud restante y te cura un poco.",
+    "icon": "ajo2"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Quesso de Kunafa",
+    "effect": "Menú defensor I",
+    "description": "A veces reduce el daño recibido.",
+    "icon": "queso"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Quesso de Kunafa",
+    "effect": "Menú defensor II",
+    "description": "A menudo reduce el daño recibido.",
+    "icon": "queso2"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Huevo esponjoso",
+    "effect": "Menú de capricho I",
+    "description": "Activa varias mejoras de ataque en intervalos aleatorios.",
+    "icon": "huevo"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Huevo ligero",
+    "effect": "Menú de capricho II",
+    "description": "Activa varias grandes mejoras de ataque en intervalos aleatorios.",
+    "icon": "huevo2"
+    },
     {
     "tipo": "racion",
     "name": "Carne",
@@ -16,9 +59,16 @@
     {
     "tipo": "adicional",
     "name": "Gamba de lodo",
-    "effect": "Menú de vaso (B)",
+    "effect": "Menú de vaso I",
     "description": "Incrementa ligeramente la ventana de inmunidad al esquivar.",
     "icon": "gamba"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Gamba turbia",
+    "effect": "Menú de vaso II",
+    "description": "Incrementa la ventana de inmunidad al esquivar.",
+    "icon": "gamba2"
     },
     {
     "tipo": "toque",
@@ -44,9 +94,37 @@
     {
     "tipo": "adicional",
     "name": "Seta babosa",
-    "effect": "Menú de cinto negro (B)",
+    "effect": "Menú de cinto negro I",
     "description": "Disminuye el consumo de stamina al realizar movimientos que la consuman ej.(esquivar)",
     "icon": "seta"
+    },
+    {
+    "tipo": "adicional",
+    "name": "Champiñam",
+    "effect": "Menú de cinto negro II",
+    "description": "Disminuye mas el consumo de stamina al realizar movimientos que la consuman ej.(esquivar)",
+    "icon": "seta2"
+    },
+    {
+    "tipo": "toque",
+    "name": "Huevas salmonete de lujo",
+    "effect": "Menú nadador",
+    "description": "Aumenta el ataque al mojarse",
+    "icon": "huevas"
+    },
+    {
+    "tipo": "toque",
+    "name": "Aceite de semilla salvaje",
+    "effect": "Menú especialista",
+    "description": "Aumenta la potencia de los ataques de estados alterados.",
+    "icon": "aceite"
+    },
+    {
+    "tipo": "toque",
+    "name": "Trufa de Conga",
+    "effect": "Menú recolector",
+    "description": "A veces aumenta la cantidad de objetos que recolectas de huesos, minerales, etc.",
+    "icon": "trufa"
     },
     {
     "tipo": "racion",
