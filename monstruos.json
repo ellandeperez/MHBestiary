@@ -577,7 +577,7 @@
     "locale": ["Normal"],
     "variants": [],
     "game": ["MH WILDS"],
-    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lala%20Barina/icon.png?raw=true",
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lala Barina/Icon.png?raw=true",
     "gallery": [],
     "description": "Temnoceran autóctonos del Bosque Escarlata.\nRealizan piruetas características y sus fluidos\ncorporales contienen un agente neurálgico que,\ncombinado con agua, produce flósculos: una\nespecie de cerdas rojizas en forma de pétalos\nen el abdomen. Si se alteran, los Lala Barina\nabren estas cerdas como si se tratase de\nflores letales y con ellas paralizan todo lo\nque toquen.",
     "weaknesses": {"fuego":3,"agua":0,"rayo":1,"hielo":1,"dragon":0,"nitro":2,"veneno":2,"paralisis":1,"sueño":2,"stun":3},
