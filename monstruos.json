@@ -890,7 +890,7 @@
     "type": "Flying Wyvern",
     "threat": 5,
     "locale": ["Normal", "Volcano"],
-    "variants": [{"name":"Rathalos Celeste","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/AzureRathalos/Icon.png?raw=true"},{"name":"Rathalos Plateado","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/SilverRathalos/Icon.png?raw=true"}],
+    "variants": [{"name":"G. Rathalos","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/G. Rathalos/Icon.png?raw=true"},{"name":"Rathalos Celeste","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/AzureRathalos/Icon.png?raw=true"},{"name":"Rathalos Plateado","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/SilverRathalos/Icon.png?raw=true"}],
     "game": ["MH1", "MH2", "MH3", "MH4", "MH FRONTIERS", "MH GENERATIONS", "MH WORLD", "MH RISE", "MH WILDS"],
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon.png?raw=true",
     "gallery": [],
