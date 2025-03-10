@@ -236,7 +236,7 @@
     "gallery": [],
     "description": "Anfibios que emplean su larga lengua para\ncapturar y devorar a presas como los Bulaqchi.\nSu lengua segrega, además, una pegajosa\nsaliva con la que el Chatacabra recubre sus\nextremidades delanteras. Si se altera, el\nmonstruo restriega las patas contra el suelo\npara que se le adhieran rocas y piedras, lo que\naumenta el alcance y la potencia de sus golpes.",
     "weaknesses": {"fuego":1,"agua":1,"rayo":3,"hielo":2,"dragon":0,"nitro":2,"veneno":3,"paralisis":3,"sueño":2,"stun":3},
-    "materials": [{"name":"Mandibula de Chatacabra+","rarity":6,"dropRate":20,"source":"Despiece, Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_head.png?raw=true"},{"name":"Certificado","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Icons/particons/m_gem.png?raw=true"}],
+    "materials": [{"name":"Mandibula de Chatacabra+","rarity":6,"dropRate":20,"source":"Despiece, Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_head.png?raw=true"},{"name":"Certificado","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"}],
     "parts": [{"name":"Lengua","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Pata delantera","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Torso/Espalda","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}]
   },
   {
