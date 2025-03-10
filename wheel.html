@@ -212,19 +212,102 @@
     .close-modal:hover {
       color: #000;
     }
+
+    /* Eliminar los estilos antiguos de la imagen flecha y añadir los nuevos del indicador */
+    .wheel-indicator {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 20px solid #2e1a0b;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    }
+
+    /* Añadir un círculo decorativo en la base del triángulo */
+    .wheel-indicator::after {
+        content: '';
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: #995a29;
+        border: 2px solid #2e1a0b;
+        border-radius: 50%;
+    }
+
+    @media screen and (max-width: 768px) {
+        .wheel-indicator {
+            right: -15px;
+            border-left-width: 15px;
+            border-top-width: 15px;
+            border-bottom-width: 15px;
+        }
+
+        .wheel-indicator::after {
+            right: 12px;
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    /* Añadir estilos para el header */
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+        gap: 20px;
+    }
+
+    .header-title {
+        text-align: center;
+        font-family: 'Albertus MT Std Regular';
+        color: #000000;
+        text-shadow: 0px 0px 20px #ffb35d;
+        margin: 0;
+    }
+
+    .nav-button {
+        position: static; /* Cambiar de fixed a static */
+        margin-left: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .header-container {
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .header-title {
+            font-size: 1.5em;
+        }
+
+        .nav-button {
+            width: 50px;
+            height: 50px;
+        }
+    }
   </style>
   <body>
-    <a href="https://ellandeperez.github.io/MHBestiary/" class="nav-button">
-      <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true" alt="Home">
-    </a>
-    <h1 style="text-align: center; font-family: 'Albertus MT Std Regular'; color: #000000; text-shadow: 0px 0px 20px #ffb35d; top:25px; position: relative; z-index: 1;">
-      MH WILDS ROULETTE
-    </h1>
+    <div class="header-container">
+        <h1 class="header-title">MH WILDS ROULETTE</h1>
+        <a href="https://ellandeperez.github.io/MHBestiary/" class="nav-button">
+            <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true" alt="Home">
+        </a>
+    </div>
+
     <div class="wrapper">
       <div class="container">
         <canvas id="wheel"></canvas>
         <button style="font-family:'Albertus MT Std Regular';font-weight: bold;" id="spin-btn">Spin</button>
-        <img class="arrow" style="transform: rotate(-90deg);width:75px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true" alt="spinner arrow" />
+        <div class="wheel-indicator"></div>
       </div>
       <div id="final-value" >
         <p style="font-family:'Albertus MT Std Regular';font-weight: bold;">¡GIRA!</p>
@@ -280,7 +363,7 @@
     });
 
     function updateChartFontSize() {
-        const fontSize = window.innerWidth <= 768 ? 8 : 12;
+        const fontSize = window.innerWidth <= 768 ? 11: 18;
         if (myChart) {
             myChart.options.plugins.datalabels.font.size = fontSize;
             myChart.update();
