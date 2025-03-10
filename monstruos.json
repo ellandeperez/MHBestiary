@@ -75,6 +75,21 @@
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Cuerpo", "breakable": true, "cortable": false, "weaknesses": {"slash": 1, "blunt": 1, "pierce": 1}}, {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}]
   },
   {
+    "id": 80,
+    "name": "Balahara",
+    "type": "Temnoceran",
+    "threat": 3,
+    "locale": ["Desert"],
+    "variants": [],
+    "game": ["MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Balahara/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Leviatanes moradores del desierto con\ncaparazones formados con la fulgorita que crean\nlos rayos.",
+    "weaknesses": {"fuego":1,"agua":0,"rayo":3,"hielo":1,"dragon":1,"nitro":2,"veneno":2,"paralisis":3,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema de Wyvern","rarity":7,"dropRate":5,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Perla negra de Balahara","rarity":4,"dropRate":15,"source":"Recompensa, Despiece, Cabeza","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_scale.png?raw=true?raw=true"},{"name":"Certificado Balahara S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":2}},{"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":2}},{"name":"Patas Delanteras","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":1}},{"name":"Cuerpo","breakable":true,"cortable":false,"weaknesses":{"slash":1,"blunt":1,"pierce":1}}]
+  },
+  {
     "id": 11,
     "name": "Banbaro",
     "type": "Brute Wyvern",
@@ -238,6 +253,21 @@
     "weaknesses": {"fuego":1,"agua":1,"rayo":3,"hielo":2,"dragon":0,"nitro":2,"veneno":3,"paralisis":3,"sueño":2,"stun":3},
     "materials": [{"name":"Mandibula de Chatacabra+","rarity":6,"dropRate":20,"source":"Despiece, Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_head.png?raw=true"},{"name":"Certificado","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
     "parts": [{"name":"Lengua","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Pata delantera","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Torso/Espalda","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}]
+  },
+  {
+    "id": 79,
+    "name": "Congalala",
+    "type": "Fanged Beast",
+    "threat": 2,
+    "locale": ["Normal"],
+    "variants": [],
+    "game": ["MH2", "MH4", "MH GENERATIONS", "MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Congalala/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Enormes bestias de colmillos con un pelaje\nrosado y una cresta inconfundible, la cual los\nmachos acicalan con aceites y jugos de plantas\ncomo señal de virilidad. El Congalala suele\nhabitar en bosques templados, lo que ha\npermitido su estudio. Son muy tragones y\nadoran las setas, que les permiten exhalar\nun sinfín de alientos con distintos efectos,\ncomo veneno, nitro y parálisis, entre otros.",
+    "weaknesses": {"fuego":3,"agua":1,"rayo":1,"hielo":1,"dragon":1,"nitro":2,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema Bestial","rarity":7,"dropRate":5,"source":"Recompensas, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Certificado Congalala S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Cola","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}},{"name":"Patas","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}},{"name":"Cuerpo","breakable":true,"cortable":false,"weaknesses":{"slash":1,"blunt":1,"pierce":1}}]
   },
   {
     "id": 21,
@@ -540,6 +570,21 @@
     "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":1}},{"name":"Espalda","breakable":true,"cortable":false,"weaknesses":{"slash":1,"blunt":2,"pierce":3}},{"name":"Garras Frontales","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":1}},{"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":1,"pierce":2}}]
   },
   {
+    "id": 78,
+    "name": "Lala Barina",
+    "type": "Temnoceran",
+    "threat": 2,
+    "locale": ["Normal"],
+    "variants": [],
+    "game": ["MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lala Barina/icon.png?raw=true",
+    "gallery": [],
+    "description": "Temnoceran autóctonos del Bosque Escarlata.\nRealizan piruetas características y sus fluidos\ncorporales contienen un agente neurálgico que,\ncombinado con agua, produce flósculos: una\nespecie de cerdas rojizas en forma de pétalos\nen el abdomen. Si se alteran, los Lala Barina\nabren estas cerdas como si se tratase de\nflores letales y con ellas paralizan todo lo\nque toquen.",
+    "weaknesses": {"fuego":3,"agua":0,"rayo":1,"hielo":1,"dragon":0,"nitro":2,"veneno":2,"paralisis":1,"sueño":2,"stun":3},
+    "materials": [{"name":"Certificado Lala Barina S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"},{"name":"Mucosa Lala/Caldo de Monstruo","rarity":6,"dropRate":18,"source":"Recompensa, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_drink.png?raw=true"}],
+    "parts": [{"name":"Cola","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":2}},{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":3,"pierce":2}}]
+  },
+  {
     "id": 39,
     "name": "Lavasioth",
     "type": "Piscine Wyvern",
@@ -718,6 +763,21 @@
     "weaknesses": {"fuego": 2, "agua": 0, "rayo": 3, "hielo": 2, "dragon": 1, "nitro": 2, "veneno": 1, "paralisis": 3, "sueño": 3, "stun": 2},
     "materials": [{"name": "Gema de Wyvern Feérico", "rarity": 6, "dropRate": 5, "source": "Tallado / Captura, Cacería (Bronce), Saqueo Felino", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"}, {"name": "Escama Lustrosa", "rarity": 5, "dropRate": 30, "source": "Manto Bandido", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_scale.png?raw=true"}, {"name": "Saco de Veneno Mortal", "rarity": 5, "dropRate": 50, "source": "Cacería (Bronce), Caída Brillante", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_sac.png?raw=true"}],
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 3}}, {"name": "Cuerpo", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 1}}, {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}]
+  },
+  {
+    "id": 77,
+    "name": "Quematrice",
+    "type": "Brute Wyvern",
+    "threat": 2,
+    "locale": ["Desert"],
+    "variants": [],
+    "game": ["MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Quematrice/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Wyverns brutales con colas de proporciones\nextraordinarias. Expelen una sustancia\ninflamable que se vaporiza rápidamente,\na la cual prenden fuego al arrastrar la cola\npor el suelo. El Quematrice no suele cazar\nsus propias presas, por lo que suele\nalimentarse de cadáveres de herbívoros\nabandonados por otros depredadores.\nEsto suele derivar en enfrentamientos\ncon otros carnívoros de menor tamaño.",
+    "weaknesses": {"fuego":0,"agua":3,"rayo":1,"hielo":1,"dragon":1,"nitro":2,"veneno":3,"paralisis":3,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema de Wyvern","rarity":7,"dropRate":5,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Certificado Quematrice S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"},{"name":"Combustible Quematrice+","rarity":6,"dropRate":20,"source":"Recompensa, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_drink.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Torso","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":1}},{"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":3,"pierce":3}}]
   },
   {
     "id": 51,
