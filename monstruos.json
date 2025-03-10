@@ -60,6 +60,21 @@
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}}, {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 3}}, {"name": "Cuerpo", "breakable": true, "cortable": false, "weaknesses": {"slash": 1, "blunt": 1, "pierce": 2}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 3}}]
   },
   {
+    "id": 82,
+    "name": "Arkveld",
+    "type": "Temnoceran",
+    "threat": 7,
+    "locale": ["Normal", "Water", "Snow", "Desert", "Volcano"],
+    "variants": [{"name":"G. Arkveld","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/G. Arkveld/Icon.png?raw=true"}],
+    "game": ["MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Arkveld/Icon.png?raw=true",
+    "gallery": [],
+    "description": "De acuerdo con los registros dejados por el\ngremio, este wyvern volador se considera\nextinguido.",
+    "weaknesses": {"fuego":1,"agua":1,"rayo":1,"hielo":1,"dragon":3,"nitro":2,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema de Arkveld","rarity":7,"dropRate":5,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Certificado Arkveld S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Cedenáculos","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}}]
+  },
+  {
     "id": 10,
     "name": "Azure Rathalos",
     "type": "Flying Wyvern",
@@ -210,6 +225,21 @@
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}}, {"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 1, "blunt": 1, "pierce": 1}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}]
   },
   {
+    "id": 83,
+    "name": "Blangonga",
+    "type": "Fanged Beast",
+    "threat": 4,
+    "locale": ["Snow"],
+    "variants": [],
+    "game": ["MH2", "MH GENERATIONS", "MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Blangonga/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Bestias enormes y blancas que controlan\na los otros Blango y atacan a los intrusos\nen manada.",
+    "weaknesses": {"fuego":3,"agua":1,"rayo":1,"hielo":0,"dragon":0,"nitro":2,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema Bestial","rarity":7,"dropRate":5,"source":"Recompensa, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Certificado Blangonga S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Torso","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}},{"name":"Cuerpo","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":1}}]
+  },
+  {
     "id": 19,
     "name": "Brachydios",
     "type": "Brute Wyvern",
@@ -330,6 +360,21 @@
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 3}}, {"name": "Cuerpo", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Espalda", "breakable": true, "cortable": false, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}, {"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 2, "blunt": 2, "pierce": 2}}]
   },
   {
+    "id": 81,
+    "name": "Doshaguma",
+    "type": "Fanged Beast",
+    "threat": 4,
+    "locale": ["Normal", "Desert"],
+    "variants": [{"name":"G. Doshaguma","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/G. Doshaguma/Icon.png?raw=true"}],
+    "game": ["MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Doshaguma/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Bestias de colmillos que a veces viajan en\nmanada. De constitución fuerte y carácter\nmuy agresivo, los Doshaguma no dudan\nen lanzarse con todo a por el enemigo,\naunque se trate de monstruos pequeños.",
+    "weaknesses": {"fuego":3,"agua":2,"rayo":3,"hielo":2,"dragon":1,"nitro":2,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema Bestial","rarity":7,"dropRate":5,"source":"Recompensa, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Certificado Doshaguma S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Patas delanteras","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Cuerpo","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}]
+  },
+  {
     "id": 25,
     "name": "Ebony Odogaron",
     "type": "Fanged Wyvern",
@@ -440,14 +485,29 @@
     "type": "Elder Dragon",
     "threat": 7,
     "locale": ["Unknown"],
-    "variants": [{"name": "Shagaru Magala", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Shagaru.png?raw=true"},{"name": "Gore Magala Caotico", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Caotic.png?raw=true"}],
-    "game": ["MH4", "MH GENERATIONS", "MH RISE"],
+    "variants": [{"name": "Shagaru Magala", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gore Magala/Icon_Shagaru.png?raw=true"},{"name": "Gore Magala Caotico", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gore Magala/Icon_Caotic.png?raw=true"}],
+    "game": ["MH4", "MH GENERATIONS", "MH RISE", "MH WILDS"],
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gore Magala/Icon.png?raw=true",
     "gallery": [],
     "description": "Un dragón anciano que esparce un virus misterioso y se vuelve más agresivo al enojarse.",
     "weaknesses": {"fuego": 3, "agua": 1, "rayo": 2, "hielo": 1, "dragon": 3, "nitro": 2, "veneno": 1, "paralisis": 3, "sueño": 2, "stun": 2},
-    "materials": [{"name": "Manto de Gore Magala", "rarity": 7, "dropRate": 3, "source": "Cuerpo, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_mantle.png?raw=true"},{"name": "Gema de Gore Magala", "rarity": 7, "dropRate": 4, "source": "Cola, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name": "Placa de Gore Magala", "rarity": 6, "dropRate": 6, "source": "Cuerpo, Captura", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_plate.png?raw=true"}],
+    "materials": [{"name": "Nictogema Gore Magala", "rarity": 7, "dropRate": 5, "source": "Cola, Recompensa", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name": "Certificado Gore Magala S", "rarity": 6, "dropRate": 8, "source": "Recompensa", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"},{"name": "Cristal de cólera", "rarity": 7, "dropRate": 24, "source": "Rematar herida", "icon": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_cortex.png?raw=true"}],
     "parts": [{"name": "Cabeza", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},{"name": "Antenas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 3, "pierce": 2}},{"name": "Alas", "breakable": true, "cortable": false, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 3}},{"name": "Cola", "breakable": false, "cortable": true, "weaknesses": {"slash": 3, "blunt": 2, "pierce": 2}}]
+  },
+  {
+    "id": 84,
+    "name": "Gravios",
+    "type": "Flying Wyvern",
+    "threat": 5,
+    "locale": ["Volcano"],
+    "variants": [],
+    "game": ["MH2", "MH4", "MH GENERATIONS", "MH WILDS"],
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gravios/Icon.png?raw=true",
+    "gallery": [],
+    "description": "Wyverns gigantescos de la Cuenca Oleosa.\nPoseen una constitución muy desarrollada,\nrayos abrasadores y gas que expulsan desde\nsus cuerpos.",
+    "weaknesses": {"fuego":0,"agua":3,"rayo":1,"hielo":1,"dragon":2,"nitro":2,"veneno":2,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Gema de Wyvern","rarity":7,"dropRate":5,"source":"Recompensa, Despiece","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Vesicula de coma/infernal","rarity":6,"dropRate":13,"source":"Recompensas","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_sac.png?raw=true"},{"name":"Médula de Gravios","rarity":7,"dropRate":15,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_body.png?raw=true"},{"name":"Certificado Gravios S","rarity":6,"dropRate":8,"source":"Recompensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
+    "parts": [{"name":"Cuerpo Entero","breakable":true,"cortable":false,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}]
   },
   {
     "id": 32,
@@ -546,7 +606,7 @@
     "threat": 7,
     "locale": ["Normal", "Snow", "Volcano"],
     "variants": [],
-    "game": ["MH2", "MH4", "MH FRONTIERS", "MH WORLD", "MH RISE", "MH WILDS"],
+    "game": ["MH2", "MH4", "MH FRONTIERS", "MH WORLD", "MH RISE"],
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/KushalaDaora/Icon.png?raw=true",
     "gallery": [],
     "description": "Un dragón anciano envuelto en torbellinos de viento que dificultan acercarse a él. Tiene la piel recubierta de duras escamas metálicas.",
@@ -835,8 +895,8 @@
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Rathalos/Icon.png?raw=true",
     "gallery": [],
     "description": "Amo de los cielos. Wyvern volador",
-    "weaknesses": {"fuego":0,"agua":1,"rayo":2,"hielo":1,"dragon":3,"nitro":1,"veneno":1,"paralisis":2,"sueño":2,"stun":2},
-    "materials": [{"name":"Manto de Rathalos","rarity":7,"dropRate":2,"source":"Cabeza, Lomo, Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_mantle.png?raw=true"},{"name":"Rubí de Rathalos","rarity":7,"dropRate":2,"source":"Cabeza, Lomo, Cola, Captura","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Placa de Rathalos","rarity":7,"dropRate":5,"source":"Corte, Lomo, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_plate.png?raw=true"}],
+    "weaknesses": {"fuego":0,"agua":1,"rayo":2,"hielo":1,"dragon":3,"nitro":2,"veneno":1,"paralisis":2,"sueño":2,"stun":2},
+    "materials": [{"name":"Rubí de Rathalos","rarity":7,"dropRate":5,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true"},{"name":"Médula de Rath","rarity":6,"dropRate":11,"source":"Recompensa, Despiece, Cola","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_body.png?raw=true"},{"name":"Certificado Rathalos S","rarity":6,"dropRate":8,"source":"Recommpensa","icon":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/ticket_white.png?raw=true"}],
     "parts": [{"name":"Cabeza","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":3,"pierce":3}},{"name":"Alas","breakable":true,"cortable":false,"weaknesses":{"slash":3,"blunt":2,"pierce":3}},{"name":"Cola","breakable":false,"cortable":true,"weaknesses":{"slash":2,"blunt":2,"pierce":2}}]
   },
   {
