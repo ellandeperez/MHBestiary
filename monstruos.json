@@ -397,7 +397,7 @@
     "locale": ["Unknown"],
     "variants": [{"name": "Shagaru Magala", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Shagaru.png?raw=true"},{"name": "Gore Magala Caotico", "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon_Caotic.png?raw=true"}],
     "game": ["MH4", "MH GENERATIONS", "MH RISE"],
-    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/GoreMagala/Icon.png?raw=true",
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gore Magala/Icon.png?raw=true",
     "gallery": [],
     "description": "Un dragón anciano que esparce un virus misterioso y se vuelve más agresivo al enojarse.",
     "weaknesses": {"fuego": 3, "agua": 1, "rayo": 2, "hielo": 1, "dragon": 3, "nitro": 2, "veneno": 1, "paralisis": 3, "sueño": 2, "stun": 2},
