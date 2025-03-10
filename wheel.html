@@ -67,12 +67,13 @@
     border-radius: 50%;
     cursor: pointer;
     border: 0;
-    background: radial-gradient(#e09e68 50%, #63380f 85%);
-    color: #3b2b1a;
+    background: radial-gradient(#e28c46 50%, #331c07 85%);
+    color: #000000;
     text-transform: uppercase;
     font-size: 1.6em;
     letter-spacing: 0.1em;
     font-weight: 600;
+    border: #000000 10px outset;
     }
     img {
     position: absolute;
@@ -122,11 +123,55 @@
       height: 40px;
       position: static;
     }
+
+    /* Estilos para el modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #995a29;
+      border: 4px solid #2e1a0b;
+      margin: 15% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .modal-image {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .close-modal {
+      color: #2e1a0b;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: #000;
+    }
   </style>
   <body>
     <a href="https://ellandeperez.github.io/MHBestiary/" class="nav-button">
       <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/particons/m_gem.png?raw=true" alt="Home">
     </a>
+    <h1 style="text-align: center; font-family: 'Albertus MT Std Regular'; color: #000000; text-shadow: 0px 0px 20px #ffb35d; top:25px; position: relative; z-index: 1;">
+      MH WILDS ROULETTE
+    </h1>
     <div class="wrapper">
       <div class="container">
         <canvas id="wheel"></canvas>
@@ -137,6 +182,16 @@
         <p style="font-family:'Albertus MT Std Regular';font-weight: bold;">¡GIRA!</p>
       </div>
     </div>
+    
+    <!-- Añadir el modal -->
+    <div id="monsterModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalMonsterName" style="font-family:'Albertus MT Std Regular';color:#2e1a0b;"></h2>
+        <img id="modalMonsterImage" class="modal-image" src="" alt="Monster">
+      </div>
+    </div>
+
     <!-- Chart JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <!-- Chart JS Plugin for displaying text over chart -->
@@ -150,12 +205,12 @@
     const finalValue = document.getElementById("final-value");
 
     const monsters = [
-        'Chatacabra', 'Quematrice', 'Lala Barina', 'Congalala', 'Balahara',
-        'Doshaguma', 'Uth Duna', 'Rompopolo', 'Rey Dau', 'Nerscylla',
-        'Hirabami', 'Ajarakan', 'Nu Udra', 'Doshaguma G', 'Rathalos G',
-        'Jin Dahaad', 'Odogaron E.G', 'Xu Wu', 'Arkveld G', 'Zoh Sia',
-        'Kut Ku', 'Gypceeros', 'Rathian', 'Anjanath F.G', 'Rathalos',
-        'Gravios', 'Blangonga', 'Gore Magala', 'Arkveld'
+        'Ajarakan', 'G. Anjanath F', 'Arkveld', 'G. Arkveld', 'Balahara',
+        'Blangonga', 'Chatacabra', 'Congalala', 'Doshaguma', 'G. Doshaguma',
+        'Gore Magala', 'Gravios', 'Gypceros', 'Hirabami', 'Jin Dahaad',
+        'Yian Kut-Ku', 'Lala Barina', 'Nerscylla', 'Nu Udra', 'G. Odogaron E',
+        'Quematrice', 'Rathalos', 'G. Rathalos', 'Rathian', 'Rey Dau',
+        'Rompopolo', 'Uth Duna', 'Xu Wu', 'Zoh Shia'
     ];
 
     // Crear un array con el mismo valor para cada sección
@@ -225,10 +280,35 @@
         
         const sectionSize = 360 / monsters.length;
         const index = Math.floor(normalizedAngle / sectionSize);
+        const monster = monsters[index];
         
-        finalValue.innerHTML = `<p style="font-family:'Albertus MT Std Regular';font-weight: bold;font-size:32px;">¡${monsters[index]}!</p>`;
+        finalValue.innerHTML = `<p style="font-family:'Albertus MT Std Regular';font-weight: bold;font-size:32px;">¡${monster}!</p>`;
+        
+        // Mostrar el modal con la imagen
+        const modal = document.getElementById("monsterModal");
+        const modalName = document.getElementById("modalMonsterName");
+        const modalImage = document.getElementById("modalMonsterImage");
+        
+        modalName.textContent = monster;
+        modalImage.src = `https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/${monster}/Icon.png?raw=true`;
+        modal.style.display = "block";
+        
         spinBtn.disabled = false;
     };
+
+    // Añadir el código para cerrar el modal
+    const modal = document.getElementById("monsterModal");
+    const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
     let count = 0;
     let resultValue = 101;
