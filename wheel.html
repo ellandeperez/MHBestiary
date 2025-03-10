@@ -91,9 +91,57 @@
     @media screen and (max-width: 768px) {
     .wrapper {
         font-size: 12px;
+        padding: 1em;
+        max-height: 95vh;
     }
-    img {
-        right: -5%;
+    
+    img.arrow {
+        right: -15%;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    #spin-btn {
+        font-size: 1.8em;
+    }
+
+    /* Estilos responsivos para el modal */
+    .modal-content {
+        width: 90%;
+        max-width: 300px;
+        margin: 5% auto;
+        padding: 15px;
+    }
+
+    .modal-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    #modalMonsterName {
+        font-size: 20px !important;
+    }
+
+    /* Ajustar el tamaño del texto en la ruleta */
+    .chartjs-plugin-datalabels {
+        font-size: 12px !important;
+    }
+    }
+    @media screen and (max-width: 480px) {
+    .wrapper {
+        padding: 0.5em;
+    }
+
+    #spin-btn {
+        font-size: 1em;
+    }
+
+    .modal-image {
+        width: 120px;
+        height: 120px;
     }
     }
     .nav-button {
@@ -176,7 +224,7 @@
       <div class="container">
         <canvas id="wheel"></canvas>
         <button style="font-family:'Albertus MT Std Regular';font-weight: bold;" id="spin-btn">Spin</button>
-        <img style="transform: rotate(-90deg);width:75px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true" alt="spinner arrow" />
+        <img class="arrow" style="transform: rotate(-90deg);width:75px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/slash.png?raw=true" alt="spinner arrow" />
       </div>
       <div id="final-value" >
         <p style="font-family:'Albertus MT Std Regular';font-weight: bold;">¡GIRA!</p>
@@ -231,6 +279,16 @@
         };
     });
 
+    function updateChartFontSize() {
+        const fontSize = window.innerWidth <= 768 ? 8 : 12;
+        if (myChart) {
+            myChart.options.plugins.datalabels.font.size = fontSize;
+            myChart.update();
+        }
+    }
+
+    window.addEventListener('resize', updateChartFontSize);
+
     let myChart = new Chart(wheel, {
         plugins: [ChartDataLabels],
         type: "pie",
@@ -254,7 +312,7 @@
                     color: "#ffffff",
                     formatter: (_, context) => context.chart.data.labels[context.dataIndex],
                     font: { 
-                        size: 16,
+                        size: window.innerWidth <= 768 ? 11 : 18,
                         weight: 'bold',
                         family: 'Albertus MT Std Regular'
                     },
