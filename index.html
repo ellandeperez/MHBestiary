@@ -10,33 +10,75 @@
 </head>
 <body style="font-family:'Albertus MT Std Regular';" class="min-h-screen p-4 md:p-6">
     <div class="container mx-auto max-w-6x1">
-        <div class="fixed top-0 left-0 right-0 pr-7 pl-7 pt-5 pb-2 shadow-lg z-50 topcoso">
-            <div class="relative flex justify-between items-center mb-2">
-                <h1 style="text-shadow: 0px 0px 10px #000000;color:white" class="font-semibold absolute left-1/2 transform -translate-x-1/2 text-center text-2xl sm:text-2xl md:text-4xl lg:text-6xl">MONSTER HUNTER</h1>
-                <div class="flex items-center gap-2">
-                    <button 
-                        onclick="toggleTheme()"
-                        class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
-                        <img style="width:35px;height:35px;" src="https://cdn-icons-png.flaticon.com/128/4129/4129212.png" class="h-6 w-6" alt="Alternar Modo Oscuro">
-                    </button>
-                    <a 
-                        href="https://ellandeperez.github.io/MHBestiary/GeneraMonstruos.html"
-                        class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
-                        <img style="width:35px;height:35px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/book_blue.png?raw=true" class="h-6 w-6" alt="Ruleta">
+        <div id="sidebar" class="fixed -left-64 h-full w-64 shadow-lg transition-all duration-300 z-40">
+            <div class="p-4">
+                <div class="toggle-sidebar-button" onclick="toggleSidebar()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </div>
+                <div class="space-y-4">  
+                    <div class="flex items-center justify-between gap-2">
+                        <button 
+                            onclick="toggleTheme()"
+                            class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
+                            <img style="width:35px;height:35px;" src="https://cdn-icons-png.flaticon.com/128/4129/4129212.png" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                        </button>                    
+                        <button 
+                            onclick="toggleView()" 
+                            id="viewToggleBtn"
+                            class="botonDark view-toggle-btn sm:px-4 py-2 px-2 text-white rounded-lg flex items-center justify-center">
+                            <svg id="supergridIcon" class="w-8 h-8" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1">
+                                <!-- Grid de 4 (cuadrados más grandes y más separados) -->
+                                <rect x="2" y="2" width="9" height="9" rx="2" />
+                                <rect x="13" y="2" width="9" height="9" rx="2" />
+                                <rect x="2" y="13" width="9" height="9" rx="2" />
+                                <rect x="13" y="13" width="9" height="9" rx="2" />
+                            </svg>
+                            <svg id="gridIcon" class="w-8 h-8" viewBox="0 0 30 30" fill="none" stroke="black" stroke-width="1">
+                                <!-- Grid de 9 (cuadrados más grandes y más separados) -->
+                                <rect x="1" y="1" width="8" height="8" rx="1" />
+                                <rect x="11" y="1" width="8" height="8" rx="1" />
+                                <rect x="21" y="1" width="8" height="8" rx="1" />
+                                <rect x="1" y="11" width="8" height="8" rx="1" />
+                                <rect x="11" y="11" width="8" height="8" rx="1" />
+                                <rect x="21" y="11" width="8" height="8" rx="1" />
+                                <rect x="1" y="21" width="8" height="8" rx="1" />
+                                <rect x="11" y="21" width="8" height="8" rx="1" />
+                                <rect x="21" y="21" width="8" height="8" rx="1" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="https://ellandeperez.github.io/MHBestiary/menu.html" 
+                    class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/bbq.png?raw=true" 
+                            class="w-8 h-8" alt="Menu">
+                        <span>Menú Wilds</span>
+                    </a>
+                    <a href="https://ellandeperez.github.io/MHBestiary/galeria.html" 
+                    class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/map.png?raw=true" 
+                            class="w-8 h-8" alt="Menu">
+                        <span>Galeria</span>
+                    </a>
+                    <a href="https://ellandeperez.github.io/MHBestiary/wheel.html" 
+                       class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/question.png?raw=true" 
+                             class="w-8 h-8" alt="Ruleta">
+                        <span>Ruleta de Monstruos</span>
+                    </a>
+                    <a href="https://ellandeperez.github.io/MHBestiary/GeneraMonstruos.html" 
+                       class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/book_blue.png?raw=true" 
+                             class="w-8 h-8" alt="Ruleta">
+                        <span>Generar Monstruos</span>
                     </a>
                 </div>
-                <div class="flex items-center gap-2">
-                    <a 
-                        href="https://ellandeperez.github.io/MHBestiary/wheel.html"
-                        class="botonDark px-1 py-1 rounded-lg transition-colors">
-                        <img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/question.png?raw=true" class="h-6 w-6" alt="Generar monstruos">
-                    </a>
-                    <a 
-                        href="https://ellandeperez.github.io/MHBestiary/menu.html"
-                        class="botonDark px-1 py-1 rounded-lg transition-colors">
-                        <img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/bbq.png?raw=true" class="h-6 w-6" alt="Menu">
-                    </a>
-                </div>
+            </div>
+        </div>
+        <div class="fixed top-0 left-0 right-0 pr-7 pl-7 pt-5 pb-2 shadow-lg z-50 topcoso" style="padding-top: 65px;">
+            <div class="relative flex justify-between items-center mb-2 w-full" style="pointer-events: none;">
+                <h1 style="text-shadow: 0px 0px 10px #000000;color:white;padding-bottom: 50px;width:100%;" class="font-semibold absolute left-1/2 transform -translate-x-1/2 text-center text-3xl sm:text-2xl md:text-4xl lg:text-6xl">MONSTER HUNTER</h1>
             </div>
             
             <div class="flex flex-wrap sm:gap-2 gap-1 items-center mb-1">
@@ -49,42 +91,17 @@
                         oninput="debouncedFilterMonsters()">
                 </div>
                 
-                <div class="flex sm:gap-2 gap-1">
+                <div class="flex sm:gap-2 gap-1">     
 					<button 
 						onclick="toggleFilters()"
 						class="sm:px-2 sm:py-0.5 px-1 py-1 bg-gray-400 rounded-lg hover:bg-gray-500 text-white transition-colors">
 						<img style="width:40px;height:40px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/binoculars.png?raw=true" class="h-7 w-7" alt="Filtro">
 					</button>
-                    <button 
-                        onclick="toggleView()" 
-                        id="viewToggleBtn"
-                        class="view-toggle-btn sm:px-4 py-2 px-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center">
-                        <svg id="supergridIcon" class="w-8 h-8" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <!-- Grid de 4 (cuadrados más grandes y más separados) -->
-                            <rect x="2" y="2" width="9" height="9" rx="2" />
-                            <rect x="13" y="2" width="9" height="9" rx="2" />
-                            <rect x="2" y="13" width="9" height="9" rx="2" />
-                            <rect x="13" y="13" width="9" height="9" rx="2" />
-                        </svg>
-                        <svg id="gridIcon" class="w-8 h-8" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="2">
-                            <!-- Grid de 9 (cuadrados más grandes y más separados) -->
-                            <rect x="1" y="1" width="8" height="8" rx="1" />
-                            <rect x="11" y="1" width="8" height="8" rx="1" />
-                            <rect x="21" y="1" width="8" height="8" rx="1" />
-                            <rect x="1" y="11" width="8" height="8" rx="1" />
-                            <rect x="11" y="11" width="8" height="8" rx="1" />
-                            <rect x="21" y="11" width="8" height="8" rx="1" />
-                            <rect x="1" y="21" width="8" height="8" rx="1" />
-                            <rect x="11" y="21" width="8" height="8" rx="1" />
-                            <rect x="21" y="21" width="8" height="8" rx="1" />
-                        </svg>
-                    </button>
 				</div>
             </div>
 
             <div id="filterContainer" class="filter-container">
 				<button class="close-filters-btn" onclick="toggleFilters()">×</button>
-				<button class="close-filters-btn2"><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img></button>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-lg">
                     <div>
                         <label class="block text-sm font-medium mb-2">Tipo de Monstruo</label>
@@ -1268,9 +1285,88 @@
                 closeSuperGridModal();
             }
         }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.left = sidebar.style.left === '0px' ? '-264px' : '0px';
+        }
     </script>
 </body>
 <style>
+#sidebar {
+    position: fixed;
+    top: 125px; /* Ajustar según la altura de tu barra superior */
+    left: -264px; /* Empezar oculto por la izquierda */
+    height: calc(100% - 100px); /* Altura total menos el espacio superior */
+    width: 264px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(50px);
+    transition: left 0.3s ease;
+    z-index: 40; /* Menor que el z-index de la barra superior (50) */
+}
+
+#sidebar .toggle-sidebar-button {
+    position: absolute;
+    right: -40px; /* Hacer que el botón sobresalga */
+    top: 10%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(50px);
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dark #sidebar .toggle-sidebar-button {
+    background-color: rgba(42, 44, 48, 0.95);
+}
+
+#sidebar .toggle-sidebar-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.dark #sidebar .toggle-sidebar-button:hover {
+    background-color: rgba(70, 73, 78, 0.95);
+}
+
+.dark #sidebar {
+    background-color: rgba(40, 42, 43, 0.95);
+}
+
+    #sidebar a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .dark #sidebar a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        background-color: rgba(81, 86, 90, 0.95);
+    }
+
+    #sidebar a:hover {
+        transform: translateX(4px);
+    }
+
+    #sidebar img {
+        transition: transform 0.2s ease;
+    }
+
+    #sidebar a:hover img {
+        transform: scale(1.1);
+    }
 	@font-face {
 			font-family: 'Albertus MT Std Regular';
 			font-style: normal;
@@ -1687,20 +1783,11 @@
 	display: none;
 }
 
-.close-filters-btn2 {
-    position: absolute;
-    top: 4px;
-    right: 48%;
-    width: 20px;
-    height: 20px;
-	display: none;
-}
-
 .botonDark{
-    background-color: #c6ccd8;
+    background-color: #939aa8;
 }
 .botonDark:hover{
-    background-color: #6f737a;
+    background-color: #666a74;
 }
 
 
@@ -1721,9 +1808,10 @@
         position: fixed;
         left: 0;
         right: 0;
-        bottom: 0;
+        margin-right: 20px;
+        margin-left: 20px;
         z-index: 1000;
-        border-radius: 12px 12px 0 0;
+        border-radius: 12px;
         background-color: #f0f0f0;
         padding-bottom: env(safe-area-inset-bottom); /* Para dispositivos con notch */
     }
