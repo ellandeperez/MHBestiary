@@ -114,6 +114,7 @@
             position: relative;  /* Añadido para posicionamiento del h1 */
             backdrop-filter: blur(3px);
             box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         .gallery-container h1 {
@@ -126,6 +127,7 @@
             margin: 0;
             z-index: 99999;
             cursor: default;
+            word-wrap: break-word;
         }
 
         .featured-image {
@@ -142,16 +144,17 @@
 
         .featured-image .frame {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            width: calc(100% + 20px);
-            height: calc(100% + 20px);
+            top: -0px;
+            left: -5px;
+            width: calc(100%);
+            height: calc(100%);
             pointer-events: none;
             z-index: 2;
             object-fit: fill;
         }
 
-        .featured-image img:not(.frame):not(.adorno-featured) {            
+        .featured-image img:not(.frame):not(.adorno-featured) {     
+            left: -5px;       
             width: 100%;
             max-width: 100%;
             height: auto;
@@ -324,7 +327,108 @@
             font-size: 1em;
         }
 
+        /* Media queries para dispositivos móviles */
+        @media screen and (max-width: 768px) {
+            .gallery-container {
+                padding: 40px;
+            }
 
+            .gallery-container h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+
+            .featured-image {
+                padding: 5px;
+                margin-bottom: 15px;
+            }
+
+            .featured-image .pj-name {
+                font-size: 1.8em;
+                padding: 3px 15px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .gallery-item {
+                padding: 5px;
+            }
+
+            .gallery-item .pj-name {
+                font-size: 1em;
+                padding: 3px 10px;
+            }
+
+            .adorno-featured {
+                width: 60px;
+                height: 75px;
+                top: -35px;
+                left: -30px;
+            }
+
+            .featured-image .pj-name::before,
+            .featured-image .pj-name::after,
+            .featured-image .pj-name span::before,
+            .featured-image .pj-name span::after {  /* Añadido nuevo selector */
+                content: "✦";
+                position: absolute;
+                animation: sparkle 0.5s infinite;
+                color: #FFD700;
+                text-shadow: 0 0 5px #FFD700;
+            }
+
+            .featured-image .pj-name::before {
+                top: -12px;
+                left: 2%;
+                animation-delay: 0.2s;
+            }
+
+            .featured-image .pj-name::after {
+                top: 10px;
+                left: 76%;
+                animation-delay: 0s;
+            }
+
+            .featured-image .pj-name span::before {
+                top: -15px;
+                left: 60%;
+                animation-delay: 0.4s;
+                color: #FFD700;
+                font-size: 1.2em;
+            }
+            .featured-image .pj-name span::after {
+                bottom: -10px;
+                left: 22%;
+                animation-delay: 0.6s;
+                font-size: 1em;
+            }
+
+            .modal .pj-name {
+                margin-left: 45%;
+                margin-right: 45%;
+                
+                font-size: 1.2em;
+                bottom: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery-container h1 {
+                font-size: 2em;
+            }
+
+            .featured-image .pj-name {
+                font-size: 1.5em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 8px;
+            }
+        }
     </style>
 </body>
 </html>
