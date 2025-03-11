@@ -517,7 +517,7 @@
     "locale": ["Unknown"],
     "variants": [{"name":"Odogaron","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Odogaron/Icon.png?raw=true"},{"name":"Odogaron Ebano","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/EbonyOdogaron/Icon.png?raw=true"}],
     "game": ["MH WILDS"],
-    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/G. Odogaron/Icon.png?raw=true",
+    "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/G. Odogaron E/Icon.png?raw=true",
     "gallery": [],
     "description": "Guardián Ebony Odogaron es un monstruo guardián",
     "weaknesses": {"fuego":2,"agua":3,"rayo":2,"hielo":2,"dragon":1,"nitro":2,"veneno":2,"paralisis":3,"sueño":2,"stun":2},
