@@ -85,7 +85,7 @@
             <div id="filterContainer" class="filter-container">
 				<button class="close-filters-btn" onclick="toggleFilters()">×</button>
 				<button class="close-filters-btn2"><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img><img src="https://cdn-icons-png.flaticon.com/128/3838/3838683.png"></img></button>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
                     <div>
                         <label class="block text-sm font-medium mb-2">Tipo de Monstruo</label>
                         <select 
@@ -137,6 +137,24 @@
                             <option value="Desert">Desierto</option>
                             <option value="Volcano">Volcan</option>
                             <option value="Unknown">Desconocido</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Aparición en Juegos</label>
+                        <select 
+                            id="gameFilter"
+                            class="w-full p-2 rounded-lg border focus:border-blue-500 outline-none"
+                            onchange="filterMonsters()">
+                            <option value="">Todos</option>
+                            <option value="MH1">MH1</option>
+                            <option value="MH2">MH2</option>
+                            <option value="MH3">MH3</option>
+                            <option value="MH4">MH4</option>
+                            <option value="MH FRONTIERS">MH FRONTIERS</option>
+                            <option value="MH GENERATIONS">MH GENERATIONS</option>
+                            <option value="MH WORLD">MH WORLD</option>
+                            <option value="MH RISE">MH RISE</option>
+                            <option value="MH WILDS">MH WILDS</option>
                         </select>
                     </div>
                 </div>
@@ -588,6 +606,7 @@
             const typeFilter = document.getElementById('typeFilter')?.value || '';
             const threatFilter = document.getElementById('threatFilter')?.value || '';
             const localeFilter = document.getElementById('localeFilter')?.value || '';
+            const gameFilter = document.getElementById('gameFilter')?.value || '';
 
             const filteredMonsters = monsters.filter(monster => {
                 // Verificar que el monstruo tenga las propiedades necesarias
@@ -616,6 +635,7 @@
                 // Resto de filtros con comprobaciones null-safe
                 const matchesType = !typeFilter || monster.type === typeFilter;
                 const matchesLocale = !localeFilter || (monster.locale && monster.locale.includes(localeFilter));
+                const matchesGame = !gameFilter || (monster.game && monster.game.includes(gameFilter));
                 const matchesThreat = !threatFilter || ((() => {
                     if (!monster.threat) return false;
                     const [min, max] = threatFilter.split('-').map(Number);
@@ -626,7 +646,7 @@
                 const matchesElement = !selectedElement || 
                     (monster.weaknesses && monster.weaknesses[selectedElement] >= 3);
 
-                return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesElement;
+                return matchesSearch && matchesType && matchesThreat && matchesLocale && matchesGame && matchesElement;
             });
 
             // Paginar resultados

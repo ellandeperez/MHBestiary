@@ -756,7 +756,7 @@
     "threat": 5,
     "locale": ["Normal", "Water"],
     "variants": [{"name":"Lagiacrus Marmoreo","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Ivory.png?raw=true"},{"name":"Lagiacrus Abyssal","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Abyssal.png?raw=true"},{"name":"Landconquest Lagiacrus","image":"https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon_Landconquest.png?raw=true"}],
-    "game": ["MH1", "MH GENERATIONS"],
+    "game": ["MH3", "MH GENERATIONS"],
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/icon.png?raw=true",
     "gallery": ["https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_1.png?raw=true","https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_2.png?raw=true","https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Lagiacrus/image_3.png?raw=true"],
     "description": "Señor de los Mares -Wyvern Marino-",
