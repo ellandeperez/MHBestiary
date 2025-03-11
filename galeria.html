@@ -130,6 +130,7 @@
         }
 
         .gallery-item {
+            text-shadow: 0px 0px 20px #ffb35d;
             position: relative;
             padding: 20px;
         }
@@ -156,13 +157,25 @@
             font-family:'Albertus MT Std Regular';
             font-weight: bold;
             position: absolute;
-            bottom: 0;
             left: 0;
             right: 0;
             color: white;
             text-align: center;
-            z-index: 2;
+            z-index: 2;            
+            text-shadow: 5px 5px 10px #000;
         }
+
+        .gallery-item .pj-name{
+            font-size: 1.8em;
+            bottom: -5px;
+        }
+
+        .featured-image .pj-name {
+            font-size: 4em;
+            bottom: -35px;
+        }
+
+        
 
         /* Estilos para el modal */
         .modal {
@@ -195,7 +208,12 @@
             right: 0;
             color: white;
             text-align: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
+            text-shadow: 
+                -3px -3px 0 #000,  
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000;
         }
     </style>
 </body>
