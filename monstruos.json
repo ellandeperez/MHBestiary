@@ -636,7 +636,7 @@
     "threat": 5,
     "locale": ["Normal", "Snow", "Desert"],
     "variants": [],
-    "game": ["MH WILDS"],
+    "game": ["MH2", "MH4", "MH GENERATIONS", "MH WILDS"],
     "image": "https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/Gypceros/Icon.png?raw=true",
     "gallery": [],
     "description": "Gypceros es un tímido pájaro Wyvern que puede generar un destello cegador desde su cresta.",
