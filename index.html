@@ -11,14 +11,19 @@
 <body style="font-family:'Albertus MT Std Regular';" class="min-h-screen p-4 md:p-6">
     <div class="container mx-auto max-w-6x1">
         <div id="sidebar" class="fixed -left-64 h-full w-64 shadow-lg transition-all duration-300 z-40">
-            <div class="p-4">
-                <div class="toggle-sidebar-button" onclick="toggleSidebar()">
+            <div class="toggle-sidebar-button" onclick="toggleSidebar()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </div>
+            <div class="sidebar-content">
                 <div class="space-y-4">  
                     <div class="flex items-center justify-between gap-2">
+                        <button 
+                            onclick="window.location.href='https://ellandeperez.github.io/MHBestiary/'"
+                            class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
+                            <img style="width:35px;height:35px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/home.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                        </button>   
                         <button 
                             onclick="toggleTheme()"
                             class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
@@ -1308,21 +1313,58 @@
 
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.style.left = sidebar.style.left === '0px' ? '-264px' : '0px';
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-264px';
+            } else {
+                sidebar.style.left = '0px';
+            }
         }
     </script>
 </body>
 <style>
 #sidebar {
     position: fixed;
-    top: 125px; /* Ajustar según la altura de tu barra superior */
-    left: -264px; /* Empezar oculto por la izquierda */
-    height: calc(100% - 100px); /* Altura total menos el espacio superior */
+    left: -264px;
+    height: 100vh;
+    top: 120px;
     width: 264px;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(50px);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     transition: left 0.3s ease;
-    z-index: 40; /* Menor que el z-index de la barra superior (50) */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor para el botón y el header */
+#sidebar .sidebar-header {
+    position: sticky;
+    top: 175px;
+    padding: 1rem;
+    z-index: 2;
+}
+
+/* Contenedor scrolleable para los enlaces */
+#sidebar .sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    padding-top: 20px;
+    padding-bottom: 140px;
+}
+
+/* Estilizar scrollbar */
+#sidebar .sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar .sidebar-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#sidebar .sidebar-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
 }
 
 #sidebar .toggle-sidebar-button {
@@ -1356,6 +1398,10 @@
 
 .dark #sidebar {
     background-color: rgba(40, 42, 43, 0.95);
+}
+
+.dark #sidebar .sidebar-content::-webkit-scrollbar-thumb {
+    background: #555;
 }
 
     #sidebar a {
