@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>GENERADOR</title>
     <style>
+        @font-face {
+            font-family: 'Albertus MT Std Regular';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Albertus MT Std Regular'), 
+                url('fonts/FuenteMH.woff') format('woff');
+            font-display: swap;
+        }
         * { box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -233,13 +241,6 @@
             margin-left: 8px;
         }
 
-        
-        .topimagen{
-                position:absolute;
-                left:10;
-                top:10;
-            }
-
         @media (max-width: 768px) {
             .grid-weaknesses {
                 grid-template-columns: repeat(2, 1fr);
@@ -252,11 +253,6 @@
             }
             .topcoso{
                 padding-top:30px;
-            }
-            .topimagen{
-                position:absolute;
-                left:5;
-                top:5;
             }
             body {
                 padding: 10px;
@@ -301,14 +297,164 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* Estilos del Sidebar */
+        #sidebar {
+            position: fixed;
+            left: -264px;
+            height: 100vh;
+            top: 0px;
+            width: 264px;
+            background: linear-gradient(to bottom, rgba(234, 239, 243, 0.8), rgba(174, 177, 180, 0.2));
+            backdrop-filter: blur(50px);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar .sidebar-header {
+            position: sticky;
+            top: 175px;
+            padding: 1rem;
+            z-index: 2;
+        }
+
+        #sidebar .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            padding-top: 20px;
+            padding-bottom: 140px;
+        }
+
+        #sidebar .sidebar-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #sidebar .sidebar-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #sidebar .sidebar-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        #sidebar .toggle-sidebar-button {
+            position: absolute;
+            right: -40px;
+            top: 10%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 60px;
+            background-color: rgba(235, 235, 235, 0.75);
+            backdrop-filter: blur(50px);
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #sidebar a {
+            font-family: 'Albertus MT Std Regular';
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: black;
+        }
+
+        #sidebar a:hover {
+            transform: translateX(4px);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        #sidebar img {
+            transition: transform 0.2s ease;
+        }
+
+        #sidebar a:hover img {
+            transform: scale(1.1);
+        }
+
+        .botonDark {
+            background-color: #939aa8;
+        }
+        .botonDark:hover {
+            background-color: #666a74;
+        }
+
+        /* Utility classes for sidebar */
+        .px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
+        .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .transition-colors { transition-property: background-color, border-color, color, fill, stroke; }
+        .p-3 { padding: 0.75rem; }
+        .gap-3 { gap: 0.75rem; }
+        .w-8 { width: 2rem; }
+        .h-8 { height: 2rem; }
+        .h-6 { height: 1.5rem; }
+        .w-6 { width: 1.5rem; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .gap-2 { gap: 0.5rem; }
+        .flex { display: flex; }
     </style>
 </head>
 <body>
-	<div class="topimagen">
-		<a href="https://ellandeperez.github.io/MHBestiary/" style="padding:5px;">
-			<img style="width:40px;height:40px;" src="https://cdn-icons-png.flaticon.com/128/9283/9283458.png" alt="Alternar Modo Oscuro">
-		</a>
-	</div>
+    <!-- Add sidebar -->
+    <div id="sidebar" class="fixed -left-64 h-full w-64 shadow-lg transition-all duration-300 z-40">
+        <div class="toggle-sidebar-button" onclick="toggleSidebar()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </div>
+        <div class="sidebar-content">
+            <div class="space-y-4">  
+                <div class="flex items-center justify-between gap-2">
+                    <button 
+                        onclick="window.location.href='https://ellandeperez.github.io/MHBestiary/'"
+                        class="botonDark px-1.5 py-1.5 rounded-lg transition-colors">
+                        <img style="width:35px;height:35px;" src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/home.png?raw=true" class="h-6 w-6" alt="Alternar Modo Oscuro">
+                    </button>                     
+                </div>
+                <a href="https://ellandeperez.github.io/MHBestiary/menu.html" 
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/bbq.png?raw=true" 
+                        class="w-8 h-8" alt="Menu">
+                    <span>Menú Wilds</span>
+                </a>
+                <a href="https://ellandeperez.github.io/MHBestiary/galeria.html" 
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/map.png?raw=true" 
+                        class="w-8 h-8" alt="Menu">
+                    <span>Galeria</span>
+                </a>
+                <a href="https://ellandeperez.github.io/MHBestiary/wheel.html" 
+                   class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/question.png?raw=true" 
+                         class="w-8 h-8" alt="Ruleta">
+                    <span>Ruleta de Monstruos</span>
+                </a>
+                <a href="https://ellandeperez.github.io/MHBestiary/GeneraMonstruos.html" 
+                   class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <img src="https://github.com/ellandeperez/MHBestiary/blob/main/MHImages/0_Icons/book_blue.png?raw=true" 
+                         class="w-8 h-8" alt="Ruleta">
+                    <span>Generar Monstruos</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <h1 class="topcoso">GENERADOR DE MONSTRUOS</h1>
 	<div class="form-section">
         <div class="form-grid">
@@ -844,6 +990,15 @@
 
 			document.getElementById('jsonOutput').textContent = customStringify(jsonObject);
 		}
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-264px';
+            } else {
+                sidebar.style.left = '0px';
+            }
+        }
     </script>
 </body>
 </html>
